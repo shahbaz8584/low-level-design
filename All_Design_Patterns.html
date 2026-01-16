@@ -48,21 +48,21 @@ player?”</p>
         +drive()
         +stop()
     }
-    
+
     class Car {
         +drive()
         +stop()
     }
-    
+
     class NullVehicle {
-        +drive()$ empty implementation
-        +stop()$ empty implementation
+        +drive() empty implementation
+        +stop() empty implementation
     }
-    
+
     class VehicleFactory {
-        +getVehicle(type): Vehicle$
+        +getVehicle(type): Vehicle
     }
-    
+
     Vehicle &lt;|.. Car
     Vehicle &lt;|.. NullVehicle
     VehicleFactory --&gt; Vehicle: creates</code></pre>
@@ -166,17 +166,17 @@ changes</li>
 <pre class="mermaid"><code>classDiagram
     class StockObserver {
         &lt;&lt;interface&gt;&gt;
-        +update(price: double)*
+        +update(price: double)
     }
-    
+
     class EmailNotifier {
         +update(price: double)
     }
-    
+
     class SMSNotifier {
         +update(price: double)
     }
-    
+
     class StockSubject {
         -observers: List~StockObserver~
         -price: double
@@ -185,7 +185,7 @@ changes</li>
         -notifyObservers()
         +setPrice(double)
     }
-    
+
     StockObserver &lt;|.. EmailNotifier
     StockObserver &lt;|.. SMSNotifier
     StockSubject --&gt; StockObserver: notifies</code></pre>
@@ -292,21 +292,21 @@ on.</p>
         -nextProcessor: LogProcessor
         +setNextProcessor(LogProcessor)
         +logMessage(int level, String message)
-        #write(String message)*
+        #write(String message)
     }
-    
+
     class DebugLogProcessor {
         #write(String message)
     }
-    
+
     class InfoLogProcessor {
         #write(String message)
     }
-    
+
     class ErrorLogProcessor {
         #write(String message)
     }
-    
+
     LogProcessor &lt;|-- DebugLogProcessor
     LogProcessor &lt;|-- InfoLogProcessor
     LogProcessor &lt;|-- ErrorLogProcessor
@@ -409,18 +409,18 @@ logic</li>
         +createMemento(): Memento
         +restoreFromMemento(Memento)
     }
-    
+
     class Memento {
         -state: String
         +getState(): String
     }
-    
+
     class CareTaker {
         -mementos: List~Memento~
         +saveMemento(Memento)
         +getMemento(int): Memento
     }
-    
+
     Originator --&gt; Memento: creates
     CareTaker --&gt; Memento: manages</code></pre>
 <h2 id="class-relationships-3">Class Relationships</h2>
@@ -519,7 +519,7 @@ You borrow a book (getConnection) → Use it → Return it
         +executeQuery(String)
         +close()
     }
-    
+
     class DBConnectionPoolManager {
         -availableConnections: Queue~DBConnection~
         -inUseConnections: Set~DBConnection~
@@ -528,7 +528,7 @@ You borrow a book (getConnection) → Use it → Return it
         +releaseConnection(DBConnection)
         -createNewConnection(): DBConnection
     }
-    
+
     DBConnectionPoolManager --&gt; DBConnection: manages &amp; reuses</code></pre>
 <h2 id="class-relationships-4">Class Relationships</h2>
 <table>
@@ -622,29 +622,29 @@ state</li>
 <pre class="mermaid"><code>classDiagram
     class ATMState {
         &lt;&lt;interface&gt;&gt;
-        +insertCard(ATM)*
-        +insertPin(ATM)*
-        +withdraw(ATM, amount)*
+        +insertCard(ATM)
+        +insertPin(ATM)
+        +withdraw(ATM, amount)
     }
-    
+
     class IdleStateATM {
         +insertCard(ATM)
         +insertPin(ATM)
         +withdraw(ATM, amount)
     }
-    
+
     class CardInsertedState {
         +insertCard(ATM)
         +insertPin(ATM)
         +withdraw(ATM, amount)
     }
-    
+
     class PinVerifiedState {
         +insertCard(ATM)
         +insertPin(ATM)
         +withdraw(ATM, amount)
     }
-    
+
     class ATM {
         -currentState: ATMState
         +setState(ATMState)
@@ -652,7 +652,7 @@ state</li>
         +insertPin()
         +withdraw(amount)
     }
-    
+
     ATMState &lt;|.. IdleStateATM
     ATMState &lt;|.. CardInsertedState
     ATMState &lt;|.. PinVerifiedState
@@ -766,23 +766,23 @@ algorithm</li>
 <pre class="mermaid"><code>classDiagram
     class DriveStrategy {
         &lt;&lt;interface&gt;&gt;
-        +drive()*
+        +drive()
     }
-    
+
     class NormalDrive {
         +drive()
     }
-    
+
     class SportsDrive {
         +drive()
     }
-    
+
     class Vehicle {
         -driveStrategy: DriveStrategy
         +setDriveStrategy(DriveStrategy)
         +drive()
     }
-    
+
     DriveStrategy &lt;|.. NormalDrive
     DriveStrategy &lt;|.. SportsDrive
     Vehicle --&gt; DriveStrategy: uses</code></pre>
@@ -891,24 +891,24 @@ Diagram</h1>
 <pre class="mermaid"><code>classDiagram
     class PaymentFlow {
         &lt;&lt;abstract&gt;&gt;
-        +pay()$ final
-        #validate()*
-        #charge()*
-        #confirm()*
+        +pay() final
+        #validate()
+        #charge()
+        #confirm()
     }
-    
+
     class PaymentToFriend {
         #validate()
         #charge()
         #confirm()
     }
-    
+
     class PaymentToMerchant {
         #validate()
         #charge()
         #confirm()
     }
-    
+
     PaymentFlow &lt;|-- PaymentToFriend
     PaymentFlow &lt;|-- PaymentToMerchant</code></pre>
 <h2 id="class-relationships-7">Class Relationships</h2>
@@ -1013,43 +1013,43 @@ Diagram</h1>
 <pre class="mermaid"><code>classDiagram
     class CarFactory {
         &lt;&lt;interface&gt;&gt;
-        +createCar(): Car*
-        +createEngine(): Engine*
-        +createTyre(): Tyre*
+        +createCar(): Car
+        +createEngine(): Engine
+        +createTyre(): Tyre
     }
-    
+
     class EconomyCarFactory {
         +createCar(): Car
         +createEngine(): Engine
         +createTyre(): Tyre
     }
-    
+
     class LuxuryCarFactory {
         +createCar(): Car
         +createEngine(): Engine
         +createTyre(): Tyre
     }
-    
+
     class Car {
         &lt;&lt;interface&gt;&gt;
     }
-    
+
     class EconomyCar {
     }
-    
+
     class LuxuryCar {
     }
-    
+
     class Engine {
         &lt;&lt;interface&gt;&gt;
     }
-    
+
     class EconomyEngine {
     }
-    
+
     class LuxuryEngine {
     }
-    
+
     CarFactory &lt;|.. EconomyCarFactory
     CarFactory &lt;|.. LuxuryCarFactory
     Car &lt;|.. EconomyCar
@@ -1175,7 +1175,7 @@ boilerplate</li>
         -courses: List
         -Student(builder)
     }
-    
+
     class StudentBuilder {
         -name: String
         -age: int
@@ -1187,7 +1187,7 @@ boilerplate</li>
         +addCourse(String): StudentBuilder
         +build(): Student
     }
-    
+
     Student --&gt; StudentBuilder: created by</code></pre>
 <h2 id="class-relationships-9">Class Relationships</h2>
 <table>
@@ -1282,25 +1282,25 @@ Diagram</h1>
 <pre class="mermaid"><code>classDiagram
     class Shape {
         &lt;&lt;interface&gt;&gt;
-        +draw()*
+        +draw()
     }
-    
+
     class Circle {
         +draw()
     }
-    
+
     class Rectangle {
         +draw()
     }
-    
+
     class Square {
         +draw()
     }
-    
+
     class ShapeFactory {
-        +getShape(type): Shape$
+        +getShape(type): Shape
     }
-    
+
     Shape &lt;|.. Circle
     Shape &lt;|.. Rectangle
     Shape &lt;|.. Square
@@ -1403,9 +1403,9 @@ objects</li>
 <pre class="mermaid"><code>classDiagram
     class Cloneable {
         &lt;&lt;interface&gt;&gt;
-        +clone(): Object*
+        +clone(): Object
     }
-    
+
     class NetworkConnection {
         -ip: String
         -port: int
@@ -1414,7 +1414,7 @@ objects</li>
         +shallowClone(): NetworkConnection
         +deepClone(): NetworkConnection
     }
-    
+
     Cloneable &lt;|.. NetworkConnection</code></pre>
 <h2 id="class-relationships-11">Class Relationships</h2>
 <table>
@@ -1649,17 +1649,17 @@ adapter (composition)</li>
     class WeightMachine {
         +getWeight(): double
     }
-    
+
     class WeightMachineAdapter {
         &lt;&lt;interface&gt;&gt;
-        +getWeightInPounds(): double*
+        +getWeightInPounds(): double
     }
-    
+
     class WeightMachineAdapterImpl {
         -weightMachine: WeightMachine
         +getWeightInPounds(): double
     }
-    
+
     WeightMachine --|&gt; WeightMachineAdapterImpl: adapted by
     WeightMachineAdapter &lt;|.. WeightMachineAdapterImpl: implements</code></pre>
 <h2 id="class-relationships-13">Class Relationships</h2>
@@ -1840,32 +1840,32 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb18-1"><a href=
 <span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a>classDiagram</span>
 <span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> IceCream <span class="op">{</span></span>
 <span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;&lt;</span><span class="kw">interface</span><span class="op">&gt;&gt;</span></span>
-<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span><span class="op">*</span></span>
-<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span><span class="op">*</span></span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
 <span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> VanillaIceCream <span class="op">{</span></span>
 <span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
 <span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
 <span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> IceCreamDecorator <span class="op">{</span></span>
 <span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;&lt;</span><span class="kw">abstract</span><span class="op">&gt;&gt;</span></span>
 <span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span>iceCream<span class="op">:</span> IceCream</span>
 <span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
 <span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
 <span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> ChocolateSyrupDecorator <span class="op">{</span></span>
 <span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
 <span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
 <span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> ChocoChipsDecorator <span class="op">{</span></span>
 <span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
 <span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
 <span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a>    IceCream <span class="op">&lt;|..</span> <span class="fu">VanillaIceCream</span></span>
 <span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a>    IceCream <span class="op">&lt;|..</span> <span class="fu">IceCreamDecorator</span></span>
 <span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a>    IceCreamDecorator <span class="op">&lt;|--</span> ChocolateSyrupDecorator</span>
@@ -1993,17 +1993,17 @@ proxy, remote proxy</li>
 <pre class="mermaid"><code>classDiagram
     class Employee {
         &lt;&lt;interface&gt;&gt;
-        +getSalary(): int*
-        +getName(): String*
+        +getSalary(): int
+        +getName(): String
     }
-    
+
     class EmployeeImpl {
         -name: String
         -salary: int
         +getSalary(): int
         +getName(): String
     }
-    
+
     class EmployeeCacheProxy {
         -employee: Employee
         -cachedData: Map~String,Object~
@@ -2011,12 +2011,12 @@ proxy, remote proxy</li>
         +getName(): String
         -fetchFromDB(): void
     }
-    
+
     class RedisCacheClient {
-        +get(key): Object$
-        +set(key, value): void$
+        +get(key): Object
+        +set(key, value): void
     }
-    
+
     Employee &lt;|.. EmployeeImpl
     Employee &lt;|.. EmployeeCacheProxy
     EmployeeCacheProxy --&gt; EmployeeImpl: delegates to
@@ -2188,36 +2188,36 @@ behavior</li>
         -breathingProcess: BreathingProcess
         +breath()
     }
-    
+
     class Dog {
         +breath()
     }
-    
+
     class Fish {
         +breath()
     }
-    
+
     class Tree {
         +breath()
     }
-    
+
     class BreathingProcess {
         &lt;&lt;interface&gt;&gt;
-        +breathe()*
+        +breathe()
     }
-    
+
     class LungsBreathProcess {
         +breathe()
     }
-    
+
     class GillBreathingProcess {
         +breathe()
     }
-    
+
     class PhotoSynthesisProcess {
         +breathe()
     }
-    
+
     LivingThing &lt;|-- Dog
     LivingThing &lt;|-- Fish
     LivingThing &lt;|-- Tree
@@ -2339,14 +2339,14 @@ children)</li>
 <pre class="mermaid"><code>classDiagram
     class FileSystem {
         &lt;&lt;interface&gt;&gt;
-        +getSize(): int*
+        +getSize(): int
     }
-    
+
     class File {
         -size: int
         +getSize(): int
     }
-    
+
     class Directory {
         -children: List~FileSystem~
         +add(FileSystem)
@@ -2354,7 +2354,7 @@ children)</li>
         +getChildren(): List
         +getSize(): int
     }
-    
+
     FileSystem &lt;|.. File
     FileSystem &lt;|.. Directory
     Directory --&gt; FileSystem: contains</code></pre>
@@ -2469,29 +2469,29 @@ objects</li>
 <pre class="mermaid"><code>classDiagram
     class IRobot {
         &lt;&lt;interface&gt;&gt;
-        +display(x: int, y: int)*
+        +display(x: int, y: int)
     }
-    
+
     class HumanoidRobot {
         -sprite: Sprite
         +display(x: int, y: int)
     }
-    
+
     class RoboticDogImpl {
         -sprite: Sprite
         +display(x: int, y: int)
     }
-    
+
     class RoboticFactory {
         -robots: Map~String,IRobot~
-        +createRobot(type): IRobot$
+        +createRobot(type): IRobot
     }
-    
+
     class Sprite {
         -image: Image
         -animationFrames: List
     }
-    
+
     IRobot &lt;|.. HumanoidRobot
     IRobot &lt;|.. RoboticDogImpl
     RoboticFactory --&gt; IRobot: creates &amp; manages
