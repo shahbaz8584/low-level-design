@@ -49,8 +49,22 @@ with open(out,'w',encoding='utf-8') as o:
                 o.write('\n\n')
             else:
                 o.write('_No description available._\n\n')
-            # Defer UML diagrams until content is finalized — placeholder shown here
             if uml.exists():
-                o.write('### UML / Class Diagram (TO DO)\n\n')
-                o.write('_UML diagrams will be added after content review._\n\n')
+                o.write('### UML / Class Diagram\n\n')
+                imgname = safe_name(uml)
+                svgpath = img_dir / (imgname + '.svg')
+                pngpath = img_dir / (imgname + '.png')
+                if svgpath.exists():
+                    svg_text = svgpath.read_text(encoding='utf-8')
+                    import re
+                    svg_text = re.sub(r'<\?xml.*?\?>\s*', '', svg_text, flags=re.S)
+                    o.write(f'<figure class="diagram">\n')
+                    o.write(svg_text)
+                    o.write(f'\n<figcaption>{name} — UML Class Diagram</figcaption>\n</figure>\n\n')
+                elif pngpath.exists():
+                    o.write(f'<div class="diagram"><img src="{pngpath.as_posix()}" alt="{name} UML"/></div>\n\n')
+                else:
+                    o.write('```mermaid\n')
+                    o.write(uml.read_text(encoding='utf-8'))
+                    o.write('\n```\n\n')
 print('Rebuilt', out)

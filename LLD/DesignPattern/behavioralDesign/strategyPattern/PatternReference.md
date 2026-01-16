@@ -26,6 +26,22 @@ See `UML/ClassDiagram.md` and generated diagram at `build/diagrams/behavioralDes
 3. Strategy executes algorithm and returns result
 
 ## Minimal Java Example
+## Without Pattern
+
+```java
+// Without Strategy: conditional selection of algorithm
+if(mode=="zip") compressZip(data); else compressGzip(data);
+```
+
+## With Pattern
+
+```java
+// With Strategy: inject Compression strategy
+Compressor c = new Compressor(new ZipCompression());
+c.compress(data);
+```
+
+
 ```java
 public interface Compression { byte[] compress(byte[] data); }
 public class ZipCompression implements Compression { public byte[] compress(byte[] d){/*...*/} }

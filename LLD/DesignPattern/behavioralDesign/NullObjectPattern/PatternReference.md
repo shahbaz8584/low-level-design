@@ -13,6 +13,19 @@ Often ad-hoc solutions (if/else, scattered constructors, tight coupling) make co
 Describe how the NullObjectPattern pattern solves the problem by providing structure and separation of concerns.
 
 ## Minimal Java Example
+## Without Pattern
+
+```java
+// Example not provided.
+```
+
+## With Pattern
+
+```java
+// Example not provided.
+```
+
+
 ```java
 // Example not provided in original README.
 ```

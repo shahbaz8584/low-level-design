@@ -27,6 +27,23 @@ See [UML/ClassDiagram.md](UML/ClassDiagram.md) and generated diagram at `build/d
 3. Factory returns Product interface to client
 
 ## Minimal Java Example
+## Without Pattern
+
+```java
+// Without Factory: client instantiates concrete types directly
+Shape s = new Circle();
+s.draw();
+```
+
+## With Pattern
+
+```java
+// With Factory: use ShapeFactory to obtain interface
+Shape s = ShapeFactory.getShape("circle");
+s.draw();
+```
+
+
 ```java
 public interface Shape { void draw(); }
 public class Circle implements Shape { public void draw(){ /*...*/ } }

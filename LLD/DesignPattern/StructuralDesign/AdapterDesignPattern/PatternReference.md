@@ -26,6 +26,19 @@ See `UML/ClassDiagram.md` and generated diagram at `build/diagrams/StructuralDes
 3. Adaptee performs the work; Adapter returns results to client
 
 ## Minimal Java Example
+## Without Pattern
+
+```java
+// Example not provided.
+```
+
+## With Pattern
+
+```java
+// Example not provided.
+```
+
+
 ```java
 public interface MediaPlayer { void play(String file); }
 public class LegacyPlayer { public void start(String f){ /*...*/ } }

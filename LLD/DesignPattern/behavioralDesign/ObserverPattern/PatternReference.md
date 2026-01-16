@@ -26,6 +26,23 @@ See `observable` folder UML and generated diagram at `build/diagrams/behavioralD
 3. Each Observer.update() executes handling logic
 
 ## Minimal Java Example
+## Without Pattern
+
+```java
+// Without Observer: manual callback invocations across components
+serviceChanged(); loggerUpdate(); cacheUpdate();
+```
+
+## With Pattern
+
+```java
+// With Observer: register observers to subject
+subject.register(new LoggerObserver());
+subject.register(new CacheObserver());
+subject.notifyAll("UPDATE");
+```
+
+
 ```java
 public interface Observer { void update(String evt); }
 public class EventSource {

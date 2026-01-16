@@ -24,6 +24,22 @@ See `UML/ClassDiagram.md` and generated diagram at `build/diagrams/creationalDes
 3. Client uses shared instance
 
 ## Minimal Java Example
+## Without Pattern
+
+```java
+// Without Singleton: using public static field or multiple instances
+Config a = new Config();
+Config b = new Config();
+```
+
+## With Pattern
+
+```java
+// With Singleton: single shared instance
+Config cfg = Config.getInstance();
+```
+
+
 ```java
 public class Config {
   private static volatile Config instance;
