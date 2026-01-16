@@ -7,21 +7,21 @@ classDiagram
         +drive()
         +stop()
     }
-    
+
     class Car {
         +drive()
         +stop()
     }
-    
+
     class NullVehicle {
-        +drive()$ empty implementation
-        +stop()$ empty implementation
+        +drive()
+        +stop()
     }
-    
+
     class VehicleFactory {
-        +getVehicle(type): Vehicle$
+        +getVehicle(type): Vehicle
     }
-    
+
     Vehicle <|.. Car
     Vehicle <|.. NullVehicle
     VehicleFactory --> Vehicle: creates
