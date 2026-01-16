@@ -1,4 +1,781 @@
-<h1 id="all-design-patterns">All Design Patterns</h1>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="shahbazhussain" />
+  <meta name="dcterms.date" content="2026-01-17" />
+  <title>All Design Patterns — Notes</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="tools/pdf_styles.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">All Design Patterns — Notes</h1>
+<p class="author">shahbazhussain</p>
+<p class="date">2026-01-17</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#nullobjectpattern"
+id="toc-nullobjectpattern">NullObjectPattern</a>
+<ul>
+<li><a href="#overview-readme.md" id="toc-overview-readme.md">Overview
+(README.md)</a></li>
+</ul></li>
+<li><a href="#null-object-pattern" id="toc-null-object-pattern">Null
+Object Pattern</a>
+<ul>
+<li><a href="#what-is-it" id="toc-what-is-it">What is it?</a></li>
+<li><a href="#when-to-use-it" id="toc-when-to-use-it">When to use
+it?</a></li>
+<li><a href="#real-world-example" id="toc-real-world-example">Real-world
+Example</a></li>
+<li><a href="#key-benefits" id="toc-key-benefits">Key Benefits</a></li>
+<li><a href="#key-drawbacks" id="toc-key-drawbacks">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy" id="toc-easy-analogy">Easy Analogy</a></li>
+<li><a href="#implementation-notes"
+id="toc-implementation-notes">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram" id="toc-uml-class-diagram">UML / Class
+Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#null-object---class-diagram"
+id="toc-null-object---class-diagram">Null Object - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships" id="toc-class-relationships">Class
+Relationships</a></li>
+<li><a href="#how-to-code-this-pattern"
+id="toc-how-to-code-this-pattern">How to Code This Pattern</a></li>
+<li><a href="#observerpattern"
+id="toc-observerpattern">ObserverPattern</a>
+<ul>
+<li><a href="#overview-readme.md-1"
+id="toc-overview-readme.md-1">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#observer-pattern" id="toc-observer-pattern">Observer
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-1" id="toc-what-is-it-1">What is it?</a></li>
+<li><a href="#when-to-use-it-1" id="toc-when-to-use-it-1">When to use
+it?</a></li>
+<li><a href="#real-world-example-1"
+id="toc-real-world-example-1">Real-world Example</a></li>
+<li><a href="#key-benefits-1" id="toc-key-benefits-1">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-1" id="toc-key-drawbacks-1">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-1" id="toc-easy-analogy-1">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-1"
+id="toc-implementation-notes-1">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-1" id="toc-uml-class-diagram-1">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#observer---class-diagram"
+id="toc-observer---class-diagram">Observer - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-1"
+id="toc-class-relationships-1">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-1"
+id="toc-how-to-code-this-pattern-1">How to Code This Pattern</a></li>
+<li><a href="#chainofresponsibilty"
+id="toc-chainofresponsibilty">chainOfResponsibilty</a>
+<ul>
+<li><a href="#overview-readme.md-2"
+id="toc-overview-readme.md-2">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#chain-of-responsibility-pattern"
+id="toc-chain-of-responsibility-pattern">Chain of Responsibility
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-2" id="toc-what-is-it-2">What is it?</a></li>
+<li><a href="#when-to-use-it-2" id="toc-when-to-use-it-2">When to use
+it?</a></li>
+<li><a href="#real-world-example-2"
+id="toc-real-world-example-2">Real-world Example</a></li>
+<li><a href="#key-benefits-2" id="toc-key-benefits-2">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-2" id="toc-key-drawbacks-2">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-2" id="toc-easy-analogy-2">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-2"
+id="toc-implementation-notes-2">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-2" id="toc-uml-class-diagram-2">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#chain-of-responsibility---class-diagram"
+id="toc-chain-of-responsibility---class-diagram">Chain of Responsibility
+- Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-2"
+id="toc-class-relationships-2">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-2"
+id="toc-how-to-code-this-pattern-2">How to Code This Pattern</a></li>
+<li><a href="#mementopattern" id="toc-mementopattern">mementoPattern</a>
+<ul>
+<li><a href="#overview-readme.md-3"
+id="toc-overview-readme.md-3">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#memento-pattern" id="toc-memento-pattern">Memento
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-3" id="toc-what-is-it-3">What is it?</a></li>
+<li><a href="#when-to-use-it-3" id="toc-when-to-use-it-3">When to use
+it?</a></li>
+<li><a href="#real-world-example-3"
+id="toc-real-world-example-3">Real-world Example</a></li>
+<li><a href="#key-benefits-3" id="toc-key-benefits-3">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-3" id="toc-key-drawbacks-3">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-3" id="toc-easy-analogy-3">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-3"
+id="toc-implementation-notes-3">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-3" id="toc-uml-class-diagram-3">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#memento---class-diagram"
+id="toc-memento---class-diagram">Memento - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-3"
+id="toc-class-relationships-3">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-3"
+id="toc-how-to-code-this-pattern-3">How to Code This Pattern</a></li>
+<li><a href="#objectpoolpattern"
+id="toc-objectpoolpattern">objectPoolPattern</a>
+<ul>
+<li><a href="#overview-readme.md-4"
+id="toc-overview-readme.md-4">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#object-pool-pattern" id="toc-object-pool-pattern">Object
+Pool Pattern</a>
+<ul>
+<li><a href="#what-is-it-4" id="toc-what-is-it-4">What is it?</a></li>
+<li><a href="#when-to-use-it-4" id="toc-when-to-use-it-4">When to use
+it?</a></li>
+<li><a href="#real-world-example-4"
+id="toc-real-world-example-4">Real-world Example</a></li>
+<li><a href="#key-benefits-4" id="toc-key-benefits-4">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-4" id="toc-key-drawbacks-4">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-4" id="toc-easy-analogy-4">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-4"
+id="toc-implementation-notes-4">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-4" id="toc-uml-class-diagram-4">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#object-pool---class-diagram"
+id="toc-object-pool---class-diagram">Object Pool - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-4"
+id="toc-class-relationships-4">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-4"
+id="toc-how-to-code-this-pattern-4">How to Code This Pattern</a></li>
+<li><a href="#statepattern" id="toc-statepattern">statePattern</a>
+<ul>
+<li><a href="#overview-readme.md-5"
+id="toc-overview-readme.md-5">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#state-pattern" id="toc-state-pattern">State Pattern</a>
+<ul>
+<li><a href="#what-is-it-5" id="toc-what-is-it-5">What is it?</a></li>
+<li><a href="#when-to-use-it-5" id="toc-when-to-use-it-5">When to use
+it?</a></li>
+<li><a href="#real-world-example-5"
+id="toc-real-world-example-5">Real-world Example</a></li>
+<li><a href="#key-benefits-5" id="toc-key-benefits-5">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-5" id="toc-key-drawbacks-5">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-5" id="toc-easy-analogy-5">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-5"
+id="toc-implementation-notes-5">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-5" id="toc-uml-class-diagram-5">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#state---class-diagram"
+id="toc-state---class-diagram">State - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-5"
+id="toc-class-relationships-5">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-5"
+id="toc-how-to-code-this-pattern-5">How to Code This Pattern</a></li>
+<li><a href="#strategypattern"
+id="toc-strategypattern">strategyPattern</a>
+<ul>
+<li><a href="#overview-readme.md-6"
+id="toc-overview-readme.md-6">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#strategy-pattern" id="toc-strategy-pattern">Strategy
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-6" id="toc-what-is-it-6">What is it?</a></li>
+<li><a href="#when-to-use-it-6" id="toc-when-to-use-it-6">When to use
+it?</a></li>
+<li><a href="#real-world-example-6"
+id="toc-real-world-example-6">Real-world Example</a></li>
+<li><a href="#key-benefits-6" id="toc-key-benefits-6">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-6" id="toc-key-drawbacks-6">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-6" id="toc-easy-analogy-6">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-6"
+id="toc-implementation-notes-6">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-6" id="toc-uml-class-diagram-6">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#strategy---class-diagram"
+id="toc-strategy---class-diagram">Strategy - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-6"
+id="toc-class-relationships-6">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-6"
+id="toc-how-to-code-this-pattern-6">How to Code This Pattern</a></li>
+<li><a href="#templatepattern"
+id="toc-templatepattern">templatePattern</a>
+<ul>
+<li><a href="#overview-readme.md-7"
+id="toc-overview-readme.md-7">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#template-pattern" id="toc-template-pattern">Template
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-7" id="toc-what-is-it-7">What is it?</a></li>
+<li><a href="#when-to-use-it-7" id="toc-when-to-use-it-7">When to use
+it?</a></li>
+<li><a href="#real-world-example-7"
+id="toc-real-world-example-7">Real-world Example</a></li>
+<li><a href="#key-benefits-7" id="toc-key-benefits-7">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-7" id="toc-key-drawbacks-7">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-7" id="toc-easy-analogy-7">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-7"
+id="toc-implementation-notes-7">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-7" id="toc-uml-class-diagram-7">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#template-method---class-diagram"
+id="toc-template-method---class-diagram">Template Method - Class
+Diagram</a>
+<ul>
+<li><a href="#class-relationships-7"
+id="toc-class-relationships-7">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-7"
+id="toc-how-to-code-this-pattern-7">How to Code This Pattern</a></li>
+<li><a href="#abstractfacotorypattern"
+id="toc-abstractfacotorypattern">abstractFacotoryPattern</a>
+<ul>
+<li><a href="#overview-readme.md-8"
+id="toc-overview-readme.md-8">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#abstract-factory-pattern"
+id="toc-abstract-factory-pattern">Abstract Factory Pattern</a>
+<ul>
+<li><a href="#what-is-it-8" id="toc-what-is-it-8">What is it?</a></li>
+<li><a href="#when-to-use-it-8" id="toc-when-to-use-it-8">When to use
+it?</a></li>
+<li><a href="#real-world-example-8"
+id="toc-real-world-example-8">Real-world Example</a></li>
+<li><a href="#key-benefits-8" id="toc-key-benefits-8">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-8" id="toc-key-drawbacks-8">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-8" id="toc-easy-analogy-8">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-8"
+id="toc-implementation-notes-8">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-8" id="toc-uml-class-diagram-8">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#abstract-factory---class-diagram"
+id="toc-abstract-factory---class-diagram">Abstract Factory - Class
+Diagram</a>
+<ul>
+<li><a href="#class-relationships-8"
+id="toc-class-relationships-8">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-8"
+id="toc-how-to-code-this-pattern-8">How to Code This Pattern</a></li>
+<li><a href="#abstractfactorydesignpattern"
+id="toc-abstractfactorydesignpattern">abstractFactoryDesignPattern</a></li>
+<li><a href="#builderpattern" id="toc-builderpattern">builderPattern</a>
+<ul>
+<li><a href="#overview-readme.md-9"
+id="toc-overview-readme.md-9">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#builder-pattern" id="toc-builder-pattern">Builder
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-9" id="toc-what-is-it-9">What is it?</a></li>
+<li><a href="#when-to-use-it-9" id="toc-when-to-use-it-9">When to use
+it?</a></li>
+<li><a href="#real-world-example-9"
+id="toc-real-world-example-9">Real-world Example</a></li>
+<li><a href="#key-benefits-9" id="toc-key-benefits-9">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-9" id="toc-key-drawbacks-9">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-9" id="toc-easy-analogy-9">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-9"
+id="toc-implementation-notes-9">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-9" id="toc-uml-class-diagram-9">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#builder---class-diagram"
+id="toc-builder---class-diagram">Builder - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-9"
+id="toc-class-relationships-9">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-9"
+id="toc-how-to-code-this-pattern-9">How to Code This Pattern</a></li>
+<li><a href="#factorypattern" id="toc-factorypattern">factoryPattern</a>
+<ul>
+<li><a href="#overview-readme.md-10"
+id="toc-overview-readme.md-10">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#factory-pattern" id="toc-factory-pattern">Factory
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-10" id="toc-what-is-it-10">What is it?</a></li>
+<li><a href="#when-to-use-it-10" id="toc-when-to-use-it-10">When to use
+it?</a></li>
+<li><a href="#real-world-example-10"
+id="toc-real-world-example-10">Real-world Example</a></li>
+<li><a href="#key-benefits-10" id="toc-key-benefits-10">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-10" id="toc-key-drawbacks-10">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-10" id="toc-easy-analogy-10">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-10"
+id="toc-implementation-notes-10">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-10" id="toc-uml-class-diagram-10">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#factory-method---class-diagram"
+id="toc-factory-method---class-diagram">Factory Method - Class
+Diagram</a>
+<ul>
+<li><a href="#class-relationships-10"
+id="toc-class-relationships-10">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-10"
+id="toc-how-to-code-this-pattern-10">How to Code This Pattern</a></li>
+<li><a href="#prototypepattern"
+id="toc-prototypepattern">prototypePattern</a>
+<ul>
+<li><a href="#overview-readme.md-11"
+id="toc-overview-readme.md-11">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#prototype-pattern" id="toc-prototype-pattern">Prototype
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-11" id="toc-what-is-it-11">What is it?</a></li>
+<li><a href="#when-to-use-it-11" id="toc-when-to-use-it-11">When to use
+it?</a></li>
+<li><a href="#real-world-example-11"
+id="toc-real-world-example-11">Real-world Example</a></li>
+<li><a href="#key-benefits-11" id="toc-key-benefits-11">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-11" id="toc-key-drawbacks-11">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-11" id="toc-easy-analogy-11">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-11"
+id="toc-implementation-notes-11">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-11" id="toc-uml-class-diagram-11">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#prototype---class-diagram"
+id="toc-prototype---class-diagram">Prototype - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-11"
+id="toc-class-relationships-11">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-11"
+id="toc-how-to-code-this-pattern-11">How to Code This Pattern</a></li>
+<li><a href="#singletondesignpattern"
+id="toc-singletondesignpattern">singletonDesignPattern</a>
+<ul>
+<li><a href="#overview-readme.md-12"
+id="toc-overview-readme.md-12">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#singleton-pattern" id="toc-singleton-pattern">Singleton
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-12" id="toc-what-is-it-12">What is it?</a></li>
+<li><a href="#when-to-use-it-12" id="toc-when-to-use-it-12">When to use
+it?</a></li>
+<li><a href="#real-world-example-12"
+id="toc-real-world-example-12">Real-world Example</a></li>
+<li><a href="#key-benefits-12" id="toc-key-benefits-12">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-12" id="toc-key-drawbacks-12">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-12" id="toc-easy-analogy-12">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-12"
+id="toc-implementation-notes-12">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-12" id="toc-uml-class-diagram-12">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#singleton---class-diagram"
+id="toc-singleton---class-diagram">Singleton - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-12"
+id="toc-class-relationships-12">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-12"
+id="toc-how-to-code-this-pattern-12">How to Code This Pattern</a>
+<ul>
+<li><a href="#eager-initialization-thread-safe"
+id="toc-eager-initialization-thread-safe">Eager Initialization
+(Thread-Safe)</a></li>
+<li><a href="#lazy-initialization-thread-safe"
+id="toc-lazy-initialization-thread-safe">Lazy Initialization
+(Thread-Safe)</a></li>
+<li><a href="#double-checked-locking"
+id="toc-double-checked-locking">Double-Checked Locking</a></li>
+</ul></li>
+<li><a href="#key-points" id="toc-key-points">Key Points</a></li>
+<li><a href="#adapterdesignpattern"
+id="toc-adapterdesignpattern">AdapterDesignPattern</a>
+<ul>
+<li><a href="#overview-readme.md-13"
+id="toc-overview-readme.md-13">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#adapter-pattern" id="toc-adapter-pattern">Adapter
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-13" id="toc-what-is-it-13">What is it?</a></li>
+<li><a href="#when-to-use-it-13" id="toc-when-to-use-it-13">When to use
+it?</a></li>
+<li><a href="#real-world-example-13"
+id="toc-real-world-example-13">Real-world Example</a></li>
+<li><a href="#key-benefits-13" id="toc-key-benefits-13">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-13" id="toc-key-drawbacks-13">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-13" id="toc-easy-analogy-13">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-13"
+id="toc-implementation-notes-13">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-13" id="toc-uml-class-diagram-13">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#adapter---class-diagram"
+id="toc-adapter---class-diagram">Adapter - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-13"
+id="toc-class-relationships-13">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-13"
+id="toc-how-to-code-this-pattern-13">How to Code This Pattern</a>
+<ul>
+<li><a href="#object-adapter-composition---recommended"
+id="toc-object-adapter-composition---recommended">Object Adapter
+(Composition - Recommended)</a></li>
+</ul></li>
+<li><a href="#class-relationships-14"
+id="toc-class-relationships-14">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-14"
+id="toc-how-to-code-this-pattern-14">How to Code This Pattern</a></li>
+<li><a href="#example-usage" id="toc-example-usage">Example
+Usage</a></li>
+<li><a href="#key-points-1" id="toc-key-points-1">Key Points</a></li>
+<li><a href="#proxypattern" id="toc-proxypattern">ProxyPattern</a>
+<ul>
+<li><a href="#overview-readme.md-14"
+id="toc-overview-readme.md-14">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#proxy-pattern" id="toc-proxy-pattern">Proxy Pattern</a>
+<ul>
+<li><a href="#what-is-it-14" id="toc-what-is-it-14">What is it?</a></li>
+<li><a href="#when-to-use-it-14" id="toc-when-to-use-it-14">When to use
+it?</a></li>
+<li><a href="#real-world-example-14"
+id="toc-real-world-example-14">Real-world Example</a></li>
+<li><a href="#key-benefits-14" id="toc-key-benefits-14">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-14" id="toc-key-drawbacks-14">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-14" id="toc-easy-analogy-14">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-14"
+id="toc-implementation-notes-14">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-14" id="toc-uml-class-diagram-14">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#proxy---class-diagram"
+id="toc-proxy---class-diagram">Proxy - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-15"
+id="toc-class-relationships-15">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-15"
+id="toc-how-to-code-this-pattern-15">How to Code This Pattern</a></li>
+<li><a href="#proxy-types" id="toc-proxy-types">Proxy Types</a></li>
+<li><a href="#key-points-2" id="toc-key-points-2">Key Points</a></li>
+<li><a href="#bridgepattern" id="toc-bridgepattern">bridgePattern</a>
+<ul>
+<li><a href="#overview-readme.md-15"
+id="toc-overview-readme.md-15">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#bridge-pattern" id="toc-bridge-pattern">Bridge Pattern</a>
+<ul>
+<li><a href="#what-is-it-15" id="toc-what-is-it-15">What is it?</a></li>
+<li><a href="#when-to-use-it-15" id="toc-when-to-use-it-15">When to use
+it?</a></li>
+<li><a href="#real-world-example-15"
+id="toc-real-world-example-15">Real-world Example</a></li>
+<li><a href="#key-benefits-15" id="toc-key-benefits-15">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-15" id="toc-key-drawbacks-15">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-15" id="toc-easy-analogy-15">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-15"
+id="toc-implementation-notes-15">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-15" id="toc-uml-class-diagram-15">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#bridge---class-diagram"
+id="toc-bridge---class-diagram">Bridge - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-16"
+id="toc-class-relationships-16">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-16"
+id="toc-how-to-code-this-pattern-16">How to Code This Pattern</a></li>
+<li><a href="#key-points-3" id="toc-key-points-3">Key Points</a></li>
+<li><a href="#compositepattern"
+id="toc-compositepattern">compositePattern</a>
+<ul>
+<li><a href="#overview-readme.md-16"
+id="toc-overview-readme.md-16">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#composite-pattern" id="toc-composite-pattern">Composite
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-16" id="toc-what-is-it-16">What is it?</a></li>
+<li><a href="#when-to-use-it-16" id="toc-when-to-use-it-16">When to use
+it?</a></li>
+<li><a href="#real-world-example-16"
+id="toc-real-world-example-16">Real-world Example</a></li>
+<li><a href="#key-benefits-16" id="toc-key-benefits-16">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-16" id="toc-key-drawbacks-16">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-16" id="toc-easy-analogy-16">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-16"
+id="toc-implementation-notes-16">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-16" id="toc-uml-class-diagram-16">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#composite---class-diagram"
+id="toc-composite---class-diagram">Composite - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-17"
+id="toc-class-relationships-17">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-17"
+id="toc-how-to-code-this-pattern-17">How to Code This Pattern</a></li>
+<li><a href="#key-points-4" id="toc-key-points-4">Key Points</a></li>
+<li><a href="#flyweightpattern"
+id="toc-flyweightpattern">flyweightPattern</a>
+<ul>
+<li><a href="#overview-readme.md-17"
+id="toc-overview-readme.md-17">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#flyweight-pattern" id="toc-flyweight-pattern">Flyweight
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-17" id="toc-what-is-it-17">What is it?</a></li>
+<li><a href="#when-to-use-it-17" id="toc-when-to-use-it-17">When to use
+it?</a></li>
+<li><a href="#real-world-example-17"
+id="toc-real-world-example-17">Real-world Example</a></li>
+<li><a href="#key-benefits-17" id="toc-key-benefits-17">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-17" id="toc-key-drawbacks-17">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-17" id="toc-easy-analogy-17">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-17"
+id="toc-implementation-notes-17">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-17" id="toc-uml-class-diagram-17">UML /
+Class Diagram</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#flyweight---class-diagram"
+id="toc-flyweight---class-diagram">Flyweight - Class Diagram</a>
+<ul>
+<li><a href="#class-relationships-18"
+id="toc-class-relationships-18">Class Relationships</a></li>
+<li><a href="#how-to-code-this-pattern-18"
+id="toc-how-to-code-this-pattern-18">How to Code This Pattern</a></li>
+<li><a href="#key-points-5" id="toc-key-points-5">Key Points</a></li>
+</ul></li>
+</ul>
+</nav>
+<div class="cover">
+<h1>
+All Design Patterns
+</h1>
+<p class="subtitle">
+Concise notes, UML diagrams and minimal code examples
+</p>
+<p class="meta">
+Repository: shahbaz8584/low-level-design — branch:
+docs/add-design-pattern-documentation
+</p>
+<p class="meta">
+Generated: 2026-01-17
+</p>
+</div>
+<div class="page-break">
+
+</div>
 <p>Generated from repository files.</p>
 <hr />
 <h2 id="nullobjectpattern">NullObjectPattern</h2>
@@ -2575,3 +3352,5 @@ savings</li>
 <li><strong>Immutable</strong>: Flyweight objects must be immutable</li>
 <li><strong>Factory</strong>: Factory manages caching and reuse</li>
 </ul>
+</body>
+</html>

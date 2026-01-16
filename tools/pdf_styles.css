@@ -1,0 +1,18 @@
+/* PDF styling for All_Design_Patterns.html */
+@page { size: A4; margin: 28mm 20mm; }
+body { font-family: 'Georgia', 'Times New Roman', serif; color: #111; line-height: 1.35; }
+h1 { font-size: 32px; margin: 0 0 10px 0; }
+h2 { font-size: 22px; margin-top: 24px; }
+h3 { font-size: 18px; }
+.cover { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; }
+.cover h1 { font-size: 48px; margin-bottom: 10px; }
+.cover .subtitle { font-size: 18px; margin-bottom: 8px; }
+.cover .meta { font-size: 12px; color: #444; }
+.page-break { page-break-after: always; }
+.toc { margin-top: 20px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 6px 8px; vertical-align: top; }
+thead th { text-align: left; }
+.uml { margin: 10px 0 20px 0; text-align: center; }
+pre.code { background: #f7f7f7; padding: 8px; border-radius: 4px; overflow-x: auto; }
+footer { position: fixed; bottom: 10px; width: 100%; text-align: center; font-size: 10px; color: #666; }

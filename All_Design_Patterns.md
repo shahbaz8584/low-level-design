@@ -1,7 +1,19 @@
-# All Design Patterns
+---
+title: "All Design Patterns — Notes"
+author: "shahbazhussain"
+date: "2026-01-17"
+---
+
+<div class="cover">
+<h1>All Design Patterns</h1>
+<p class="subtitle">Concise notes, UML diagrams and minimal code examples</p>
+<p class="meta">Repository: shahbaz8584/low-level-design — branch: docs/add-design-pattern-documentation</p>
+<p class="meta">Generated: 2026-01-17</p>
+</div>
+
+<div class="page-break"></div>
 
 Generated from repository files.
-
 
 ---
 
