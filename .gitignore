@@ -25,4 +25,4 @@ replay_pid*
 _bmad*
 .github/
 .vscode
-.DS*
+.DS*.DS_Store
