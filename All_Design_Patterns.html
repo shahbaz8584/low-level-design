@@ -4,9 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="shahbazhussain" />
-  <meta name="dcterms.date" content="2026-01-17" />
-  <title>All Design Patterns — Notes</title>
+  <title>All_Design_Patterns</title>
   <style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,87 +24,21 @@
       vertical-align: middle;
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { color: #008000; } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { color: #008000; font-weight: bold; } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="tools/pdf_styles.css" />
 </head>
 <body>
-<header id="title-block-header">
-<h1 class="title">All Design Patterns — Notes</h1>
-<p class="author">shahbazhussain</p>
-<p class="date">2026-01-17</p>
-</header>
 <nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#all-design-patterns" id="toc-all-design-patterns">All
+Design Patterns</a>
 <ul>
 <li><a href="#nullobjectpattern"
 id="toc-nullobjectpattern">NullObjectPattern</a>
 <ul>
 <li><a href="#overview-readme.md" id="toc-overview-readme.md">Overview
 (README.md)</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#null-object-pattern" id="toc-null-object-pattern">Null
 Object Pattern</a>
@@ -126,14 +58,6 @@ id="toc-implementation-notes">Implementation Notes</a>
 <li><a href="#uml-class-diagram" id="toc-uml-class-diagram">UML / Class
 Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#null-object---class-diagram"
-id="toc-null-object---class-diagram">Null Object - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships" id="toc-class-relationships">Class
-Relationships</a></li>
-<li><a href="#how-to-code-this-pattern"
-id="toc-how-to-code-this-pattern">How to Code This Pattern</a></li>
 <li><a href="#observerpattern"
 id="toc-observerpattern">ObserverPattern</a>
 <ul>
@@ -161,14 +85,6 @@ id="toc-implementation-notes-1">Implementation Notes</a>
 <li><a href="#uml-class-diagram-1" id="toc-uml-class-diagram-1">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#observer---class-diagram"
-id="toc-observer---class-diagram">Observer - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-1"
-id="toc-class-relationships-1">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-1"
-id="toc-how-to-code-this-pattern-1">How to Code This Pattern</a></li>
 <li><a href="#chainofresponsibilty"
 id="toc-chainofresponsibilty">chainOfResponsibilty</a>
 <ul>
@@ -197,15 +113,6 @@ id="toc-implementation-notes-2">Implementation Notes</a>
 <li><a href="#uml-class-diagram-2" id="toc-uml-class-diagram-2">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#chain-of-responsibility---class-diagram"
-id="toc-chain-of-responsibility---class-diagram">Chain of Responsibility
-- Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-2"
-id="toc-class-relationships-2">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-2"
-id="toc-how-to-code-this-pattern-2">How to Code This Pattern</a></li>
 <li><a href="#mementopattern" id="toc-mementopattern">mementoPattern</a>
 <ul>
 <li><a href="#overview-readme.md-3"
@@ -232,14 +139,6 @@ id="toc-implementation-notes-3">Implementation Notes</a>
 <li><a href="#uml-class-diagram-3" id="toc-uml-class-diagram-3">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#memento---class-diagram"
-id="toc-memento---class-diagram">Memento - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-3"
-id="toc-class-relationships-3">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-3"
-id="toc-how-to-code-this-pattern-3">How to Code This Pattern</a></li>
 <li><a href="#objectpoolpattern"
 id="toc-objectpoolpattern">objectPoolPattern</a>
 <ul>
@@ -267,14 +166,6 @@ id="toc-implementation-notes-4">Implementation Notes</a>
 <li><a href="#uml-class-diagram-4" id="toc-uml-class-diagram-4">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#object-pool---class-diagram"
-id="toc-object-pool---class-diagram">Object Pool - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-4"
-id="toc-class-relationships-4">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-4"
-id="toc-how-to-code-this-pattern-4">How to Code This Pattern</a></li>
 <li><a href="#statepattern" id="toc-statepattern">statePattern</a>
 <ul>
 <li><a href="#overview-readme.md-5"
@@ -300,14 +191,6 @@ id="toc-implementation-notes-5">Implementation Notes</a>
 <li><a href="#uml-class-diagram-5" id="toc-uml-class-diagram-5">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#state---class-diagram"
-id="toc-state---class-diagram">State - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-5"
-id="toc-class-relationships-5">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-5"
-id="toc-how-to-code-this-pattern-5">How to Code This Pattern</a></li>
 <li><a href="#strategypattern"
 id="toc-strategypattern">strategyPattern</a>
 <ul>
@@ -335,14 +218,6 @@ id="toc-implementation-notes-6">Implementation Notes</a>
 <li><a href="#uml-class-diagram-6" id="toc-uml-class-diagram-6">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#strategy---class-diagram"
-id="toc-strategy---class-diagram">Strategy - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-6"
-id="toc-class-relationships-6">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-6"
-id="toc-how-to-code-this-pattern-6">How to Code This Pattern</a></li>
 <li><a href="#templatepattern"
 id="toc-templatepattern">templatePattern</a>
 <ul>
@@ -370,15 +245,6 @@ id="toc-implementation-notes-7">Implementation Notes</a>
 <li><a href="#uml-class-diagram-7" id="toc-uml-class-diagram-7">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#template-method---class-diagram"
-id="toc-template-method---class-diagram">Template Method - Class
-Diagram</a>
-<ul>
-<li><a href="#class-relationships-7"
-id="toc-class-relationships-7">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-7"
-id="toc-how-to-code-this-pattern-7">How to Code This Pattern</a></li>
 <li><a href="#abstractfacotorypattern"
 id="toc-abstractfacotorypattern">abstractFacotoryPattern</a>
 <ul>
@@ -406,15 +272,6 @@ id="toc-implementation-notes-8">Implementation Notes</a>
 <li><a href="#uml-class-diagram-8" id="toc-uml-class-diagram-8">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#abstract-factory---class-diagram"
-id="toc-abstract-factory---class-diagram">Abstract Factory - Class
-Diagram</a>
-<ul>
-<li><a href="#class-relationships-8"
-id="toc-class-relationships-8">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-8"
-id="toc-how-to-code-this-pattern-8">How to Code This Pattern</a></li>
 <li><a href="#abstractfactorydesignpattern"
 id="toc-abstractfactorydesignpattern">abstractFactoryDesignPattern</a></li>
 <li><a href="#builderpattern" id="toc-builderpattern">builderPattern</a>
@@ -443,14 +300,6 @@ id="toc-implementation-notes-9">Implementation Notes</a>
 <li><a href="#uml-class-diagram-9" id="toc-uml-class-diagram-9">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#builder---class-diagram"
-id="toc-builder---class-diagram">Builder - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-9"
-id="toc-class-relationships-9">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-9"
-id="toc-how-to-code-this-pattern-9">How to Code This Pattern</a></li>
 <li><a href="#factorypattern" id="toc-factorypattern">factoryPattern</a>
 <ul>
 <li><a href="#overview-readme.md-10"
@@ -477,15 +326,6 @@ id="toc-implementation-notes-10">Implementation Notes</a>
 <li><a href="#uml-class-diagram-10" id="toc-uml-class-diagram-10">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#factory-method---class-diagram"
-id="toc-factory-method---class-diagram">Factory Method - Class
-Diagram</a>
-<ul>
-<li><a href="#class-relationships-10"
-id="toc-class-relationships-10">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-10"
-id="toc-how-to-code-this-pattern-10">How to Code This Pattern</a></li>
 <li><a href="#prototypepattern"
 id="toc-prototypepattern">prototypePattern</a>
 <ul>
@@ -513,14 +353,6 @@ id="toc-implementation-notes-11">Implementation Notes</a>
 <li><a href="#uml-class-diagram-11" id="toc-uml-class-diagram-11">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#prototype---class-diagram"
-id="toc-prototype---class-diagram">Prototype - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-11"
-id="toc-class-relationships-11">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-11"
-id="toc-how-to-code-this-pattern-11">How to Code This Pattern</a></li>
 <li><a href="#singletondesignpattern"
 id="toc-singletondesignpattern">singletonDesignPattern</a>
 <ul>
@@ -548,25 +380,6 @@ id="toc-implementation-notes-12">Implementation Notes</a>
 <li><a href="#uml-class-diagram-12" id="toc-uml-class-diagram-12">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#singleton---class-diagram"
-id="toc-singleton---class-diagram">Singleton - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-12"
-id="toc-class-relationships-12">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-12"
-id="toc-how-to-code-this-pattern-12">How to Code This Pattern</a>
-<ul>
-<li><a href="#eager-initialization-thread-safe"
-id="toc-eager-initialization-thread-safe">Eager Initialization
-(Thread-Safe)</a></li>
-<li><a href="#lazy-initialization-thread-safe"
-id="toc-lazy-initialization-thread-safe">Lazy Initialization
-(Thread-Safe)</a></li>
-<li><a href="#double-checked-locking"
-id="toc-double-checked-locking">Double-Checked Locking</a></li>
-</ul></li>
-<li><a href="#key-points" id="toc-key-points">Key Points</a></li>
 <li><a href="#adapterdesignpattern"
 id="toc-adapterdesignpattern">AdapterDesignPattern</a>
 <ul>
@@ -594,33 +407,15 @@ id="toc-implementation-notes-13">Implementation Notes</a>
 <li><a href="#uml-class-diagram-13" id="toc-uml-class-diagram-13">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#adapter---class-diagram"
-id="toc-adapter---class-diagram">Adapter - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-13"
-id="toc-class-relationships-13">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-13"
-id="toc-how-to-code-this-pattern-13">How to Code This Pattern</a>
-<ul>
-<li><a href="#object-adapter-composition---recommended"
-id="toc-object-adapter-composition---recommended">Object Adapter
-(Composition - Recommended)</a></li>
-</ul></li>
-<li><a href="#class-relationships-14"
-id="toc-class-relationships-14">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-14"
-id="toc-how-to-code-this-pattern-14">How to Code This Pattern</a></li>
-<li><a href="#example-usage" id="toc-example-usage">Example
-Usage</a></li>
-<li><a href="#key-points-1" id="toc-key-points-1">Key Points</a></li>
-<li><a href="#proxypattern" id="toc-proxypattern">ProxyPattern</a>
+<li><a href="#decoratordesign"
+id="toc-decoratordesign">DecoratorDesign</a>
 <ul>
 <li><a href="#overview-readme.md-14"
 id="toc-overview-readme.md-14">Overview (README.md)</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#proxy-pattern" id="toc-proxy-pattern">Proxy Pattern</a>
+<li><a href="#decorator-pattern" id="toc-decorator-pattern">Decorator
+Pattern</a>
 <ul>
 <li><a href="#what-is-it-14" id="toc-what-is-it-14">What is it?</a></li>
 <li><a href="#when-to-use-it-14" id="toc-when-to-use-it-14">When to use
@@ -639,23 +434,13 @@ id="toc-implementation-notes-14">Implementation Notes</a>
 <li><a href="#uml-class-diagram-14" id="toc-uml-class-diagram-14">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#proxy---class-diagram"
-id="toc-proxy---class-diagram">Proxy - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-15"
-id="toc-class-relationships-15">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-15"
-id="toc-how-to-code-this-pattern-15">How to Code This Pattern</a></li>
-<li><a href="#proxy-types" id="toc-proxy-types">Proxy Types</a></li>
-<li><a href="#key-points-2" id="toc-key-points-2">Key Points</a></li>
-<li><a href="#bridgepattern" id="toc-bridgepattern">bridgePattern</a>
+<li><a href="#proxypattern" id="toc-proxypattern">ProxyPattern</a>
 <ul>
 <li><a href="#overview-readme.md-15"
 id="toc-overview-readme.md-15">Overview (README.md)</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#bridge-pattern" id="toc-bridge-pattern">Bridge Pattern</a>
+<li><a href="#proxy-pattern" id="toc-proxy-pattern">Proxy Pattern</a>
 <ul>
 <li><a href="#what-is-it-15" id="toc-what-is-it-15">What is it?</a></li>
 <li><a href="#when-to-use-it-15" id="toc-when-to-use-it-15">When to use
@@ -674,24 +459,13 @@ id="toc-implementation-notes-15">Implementation Notes</a>
 <li><a href="#uml-class-diagram-15" id="toc-uml-class-diagram-15">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#bridge---class-diagram"
-id="toc-bridge---class-diagram">Bridge - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-16"
-id="toc-class-relationships-16">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-16"
-id="toc-how-to-code-this-pattern-16">How to Code This Pattern</a></li>
-<li><a href="#key-points-3" id="toc-key-points-3">Key Points</a></li>
-<li><a href="#compositepattern"
-id="toc-compositepattern">compositePattern</a>
+<li><a href="#bridgepattern" id="toc-bridgepattern">bridgePattern</a>
 <ul>
 <li><a href="#overview-readme.md-16"
 id="toc-overview-readme.md-16">Overview (README.md)</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#composite-pattern" id="toc-composite-pattern">Composite
-Pattern</a>
+<li><a href="#bridge-pattern" id="toc-bridge-pattern">Bridge Pattern</a>
 <ul>
 <li><a href="#what-is-it-16" id="toc-what-is-it-16">What is it?</a></li>
 <li><a href="#when-to-use-it-16" id="toc-when-to-use-it-16">When to use
@@ -710,23 +484,14 @@ id="toc-implementation-notes-16">Implementation Notes</a>
 <li><a href="#uml-class-diagram-16" id="toc-uml-class-diagram-16">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#composite---class-diagram"
-id="toc-composite---class-diagram">Composite - Class Diagram</a>
-<ul>
-<li><a href="#class-relationships-17"
-id="toc-class-relationships-17">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-17"
-id="toc-how-to-code-this-pattern-17">How to Code This Pattern</a></li>
-<li><a href="#key-points-4" id="toc-key-points-4">Key Points</a></li>
-<li><a href="#flyweightpattern"
-id="toc-flyweightpattern">flyweightPattern</a>
+<li><a href="#compositepattern"
+id="toc-compositepattern">compositePattern</a>
 <ul>
 <li><a href="#overview-readme.md-17"
 id="toc-overview-readme.md-17">Overview (README.md)</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#flyweight-pattern" id="toc-flyweight-pattern">Flyweight
+<li><a href="#composite-pattern" id="toc-composite-pattern">Composite
 Pattern</a>
 <ul>
 <li><a href="#what-is-it-17" id="toc-what-is-it-17">What is it?</a></li>
@@ -746,37 +511,38 @@ id="toc-implementation-notes-17">Implementation Notes</a>
 <li><a href="#uml-class-diagram-17" id="toc-uml-class-diagram-17">UML /
 Class Diagram</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#flyweight---class-diagram"
-id="toc-flyweight---class-diagram">Flyweight - Class Diagram</a>
+<li><a href="#flyweightpattern"
+id="toc-flyweightpattern">flyweightPattern</a>
 <ul>
-<li><a href="#class-relationships-18"
-id="toc-class-relationships-18">Class Relationships</a></li>
-<li><a href="#how-to-code-this-pattern-18"
-id="toc-how-to-code-this-pattern-18">How to Code This Pattern</a></li>
-<li><a href="#key-points-5" id="toc-key-points-5">Key Points</a></li>
+<li><a href="#overview-readme.md-18"
+id="toc-overview-readme.md-18">Overview (README.md)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#flyweight-pattern" id="toc-flyweight-pattern">Flyweight
+Pattern</a>
+<ul>
+<li><a href="#what-is-it-18" id="toc-what-is-it-18">What is it?</a></li>
+<li><a href="#when-to-use-it-18" id="toc-when-to-use-it-18">When to use
+it?</a></li>
+<li><a href="#real-world-example-18"
+id="toc-real-world-example-18">Real-world Example</a></li>
+<li><a href="#key-benefits-18" id="toc-key-benefits-18">Key
+Benefits</a></li>
+<li><a href="#key-drawbacks-18" id="toc-key-drawbacks-18">Key
+Drawbacks</a></li>
+<li><a href="#easy-analogy-18" id="toc-easy-analogy-18">Easy
+Analogy</a></li>
+<li><a href="#implementation-notes-18"
+id="toc-implementation-notes-18">Implementation Notes</a>
+<ul>
+<li><a href="#uml-class-diagram-18" id="toc-uml-class-diagram-18">UML /
+Class Diagram</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
-<div class="cover">
-<h1>
-All Design Patterns
-</h1>
-<p class="subtitle">
-Concise notes, UML diagrams and minimal code examples
-</p>
-<p class="meta">
-Repository: shahbaz8584/low-level-design — branch:
-docs/add-design-pattern-documentation
-</p>
-<p class="meta">
-Generated: 2026-01-17
-</p>
-</div>
-<div class="page-break">
-
-</div>
-<p>Generated from repository files.</p>
+<h1 id="all-design-patterns">All Design Patterns</h1>
+<p>Generated with rendered UML images where available.</p>
 <hr />
 <h2 id="nullobjectpattern">NullObjectPattern</h2>
 <h3 id="overview-readme.md">Overview (README.md)</h3>
@@ -818,81 +584,8 @@ player?”</p>
 <li>Use composition where null object provides safe defaults</li>
 </ul>
 <h3 id="uml-class-diagram">UML / Class Diagram</h3>
-<h1 id="null-object---class-diagram">Null Object - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class Vehicle {
-        &lt;&lt;interface&gt;&gt;
-        +drive()
-        +stop()
-    }
-
-    class Car {
-        +drive()
-        +stop()
-    }
-
-    class NullVehicle {
-        +drive() empty implementation
-        +stop() empty implementation
-    }
-
-    class VehicleFactory {
-        +getVehicle(type): Vehicle
-    }
-
-    Vehicle &lt;|.. Car
-    Vehicle &lt;|.. NullVehicle
-    VehicleFactory --&gt; Vehicle: creates</code></pre>
-<h2 id="class-relationships">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Vehicle</strong></td>
-<td>Interface defining vehicle behavior (contract)</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>Car</strong></td>
-<td>Real implementation of vehicle</td>
-<td>Implements Vehicle</td>
-</tr>
-<tr>
-<td><strong>NullVehicle</strong></td>
-<td>Null object - implements interface but does nothing</td>
-<td>Implements Vehicle</td>
-</tr>
-<tr>
-<td><strong>VehicleFactory</strong></td>
-<td>Creates vehicles or NullVehicle instead of returning null</td>
-<td>Returns Vehicle</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Define Interface</strong>: Create <code>Vehicle</code>
-interface</li>
-<li><strong>Create Real Class</strong>: <code>Car</code> implements
-<code>Vehicle</code> with actual behavior</li>
-<li><strong>Create Null Class</strong>: <code>NullVehicle</code>
-implements <code>Vehicle</code> with empty methods</li>
-<li><strong>Update Factory</strong>: Return <code>NullVehicle</code>
-instead of <code>null</code></li>
-<li><strong>No Null Checks</strong>: Client code doesn’t need to check
-for null</li>
-</ol>
+<p><img
+src="build/diagrams/behavioralDesign_NullObjectPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="observerpattern">ObserverPattern</h2>
 <h3 id="overview-readme.md-1">Overview (README.md)</h3>
@@ -939,85 +632,8 @@ changes</li>
 <li>Consider thread-safety for concurrent observers</li>
 </ul>
 <h3 id="uml-class-diagram-1">UML / Class Diagram</h3>
-<h1 id="observer---class-diagram">Observer - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class StockObserver {
-        &lt;&lt;interface&gt;&gt;
-        +update(price: double)
-    }
-
-    class EmailNotifier {
-        +update(price: double)
-    }
-
-    class SMSNotifier {
-        +update(price: double)
-    }
-
-    class StockSubject {
-        -observers: List~StockObserver~
-        -price: double
-        +attach(StockObserver)
-        +detach(StockObserver)
-        -notifyObservers()
-        +setPrice(double)
-    }
-
-    StockObserver &lt;|.. EmailNotifier
-    StockObserver &lt;|.. SMSNotifier
-    StockSubject --&gt; StockObserver: notifies</code></pre>
-<h2 id="class-relationships-1">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>StockObserver</strong></td>
-<td>Interface for observers receiving notifications</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>EmailNotifier</strong></td>
-<td>Concrete observer - sends email when notified</td>
-<td>Implements StockObserver</td>
-</tr>
-<tr>
-<td><strong>SMSNotifier</strong></td>
-<td>Concrete observer - sends SMS when notified</td>
-<td>Implements StockObserver</td>
-</tr>
-<tr>
-<td><strong>StockSubject</strong></td>
-<td>Subject/Observable - notifies all observers on state change</td>
-<td>Maintains list of StockObserver</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-1">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Observer Interface</strong>: Define
-<code>update()</code> method signature</li>
-<li><strong>Create Concrete Observers</strong>:
-<code>EmailNotifier</code>, <code>SMSNotifier</code> implement
-<code>update()</code></li>
-<li><strong>Create Subject</strong>: Maintain list of observers</li>
-<li><strong>Implement attach()</strong>: Add observer to list</li>
-<li><strong>Implement detach()</strong>: Remove observer from list</li>
-<li><strong>Implement notifyObservers()</strong>: Call
-<code>update()</code> on all observers</li>
-<li><strong>On State Change</strong>: Call
-<code>notifyObservers()</code> when data changes</li>
-</ol>
+<p><img
+src="build/diagrams/behavioralDesign_ObserverPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="chainofresponsibilty">chainOfResponsibilty</h2>
 <h3 id="overview-readme.md-2">Overview (README.md)</h3>
@@ -1061,82 +677,8 @@ on.</p>
 <li>Create chain before using it</li>
 </ul>
 <h3 id="uml-class-diagram-2">UML / Class Diagram</h3>
-<h1 id="chain-of-responsibility---class-diagram">Chain of Responsibility
-- Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class LogProcessor {
-        &lt;&lt;abstract&gt;&gt;
-        -nextProcessor: LogProcessor
-        +setNextProcessor(LogProcessor)
-        +logMessage(int level, String message)
-        #write(String message)
-    }
-
-    class DebugLogProcessor {
-        #write(String message)
-    }
-
-    class InfoLogProcessor {
-        #write(String message)
-    }
-
-    class ErrorLogProcessor {
-        #write(String message)
-    }
-
-    LogProcessor &lt;|-- DebugLogProcessor
-    LogProcessor &lt;|-- InfoLogProcessor
-    LogProcessor &lt;|-- ErrorLogProcessor
-    LogProcessor --&gt; LogProcessor: nextProcessor</code></pre>
-<h2 id="class-relationships-2">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>LogProcessor</strong></td>
-<td>Abstract base - defines chain structure and template for
-logging</td>
-<td>nextProcessor (self-reference)</td>
-</tr>
-<tr>
-<td><strong>DebugLogProcessor</strong></td>
-<td>Handles debug-level log messages</td>
-<td>LogProcessor (extends)</td>
-</tr>
-<tr>
-<td><strong>InfoLogProcessor</strong></td>
-<td>Handles info-level log messages</td>
-<td>LogProcessor (extends)</td>
-</tr>
-<tr>
-<td><strong>ErrorLogProcessor</strong></td>
-<td>Handles error-level log messages</td>
-<td>LogProcessor (extends)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-2">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Abstract Processor</strong>: Define
-<code>LogProcessor</code> with next processor reference</li>
-<li><strong>Implement Processors</strong>: Each concrete class handles
-specific log level</li>
-<li><strong>Build Chain</strong>: Connect processors in order (Debug →
-Info → Error)</li>
-<li><strong>Send Request</strong>: Processor either handles it or passes
-to next</li>
-</ol>
+<p><img
+src="build/diagrams/behavioralDesign_chainOfResponsibilty_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="mementopattern">mementoPattern</h2>
 <h3 id="overview-readme.md-3">Overview (README.md)</h3>
@@ -1178,74 +720,8 @@ logic</li>
 <li>Store mementos in a list for undo/redo operations</li>
 </ul>
 <h3 id="uml-class-diagram-3">UML / Class Diagram</h3>
-<h1 id="memento---class-diagram">Memento - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class Originator {
-        -state: String
-        +setState(String)
-        +createMemento(): Memento
-        +restoreFromMemento(Memento)
-    }
-
-    class Memento {
-        -state: String
-        +getState(): String
-    }
-
-    class CareTaker {
-        -mementos: List~Memento~
-        +saveMemento(Memento)
-        +getMemento(int): Memento
-    }
-
-    Originator --&gt; Memento: creates
-    CareTaker --&gt; Memento: manages</code></pre>
-<h2 id="class-relationships-3">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Originator</strong></td>
-<td>Creates memento snapshots of its state, can restore from
-memento</td>
-<td>Creates Memento</td>
-</tr>
-<tr>
-<td><strong>Memento</strong></td>
-<td>Immutable snapshot of originator’s state at a point in time</td>
-<td>None (value object)</td>
-</tr>
-<tr>
-<td><strong>CareTaker</strong></td>
-<td>Manages collection of mementos, provides history management</td>
-<td>Stores/retrieves Memento</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-3">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Originator</strong>: Add <code>createMemento()</code>
-and <code>restoreFromMemento()</code> methods</li>
-<li><strong>Create Memento</strong>: Immutable class storing state
-snapshot</li>
-<li><strong>Create CareTaker</strong>: Maintain list of mementos
-(undo/redo stack)</li>
-<li><strong>Save State</strong>: Call <code>createMemento()</code>
-before changes</li>
-<li><strong>Restore State</strong>: Call
-<code>restoreFromMemento()</code> to go back</li>
-</ol>
+<p><img
+src="build/diagrams/behavioralDesign_mementoPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="objectpoolpattern">objectPoolPattern</h2>
 <h3 id="overview-readme.md-4">Overview (README.md)</h3>
@@ -1288,68 +764,8 @@ You borrow a book (getConnection) → Use it → Return it
 <li>Ensure proper initialization of pooled objects</li>
 </ul>
 <h3 id="uml-class-diagram-4">UML / Class Diagram</h3>
-<h1 id="object-pool---class-diagram">Object Pool - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class DBConnection {
-        -connectionId: int
-        -isAvailable: boolean
-        +executeQuery(String)
-        +close()
-    }
-
-    class DBConnectionPoolManager {
-        -availableConnections: Queue~DBConnection~
-        -inUseConnections: Set~DBConnection~
-        -poolSize: int
-        +getConnection(): DBConnection
-        +releaseConnection(DBConnection)
-        -createNewConnection(): DBConnection
-    }
-
-    DBConnectionPoolManager --&gt; DBConnection: manages &amp; reuses</code></pre>
-<h2 id="class-relationships-4">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>DBConnection</strong></td>
-<td>Represents a database connection that can be reused</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>DBConnectionPoolManager</strong></td>
-<td>Manages pool of connections, hands out and accepts returns</td>
-<td>Creates/manages DBConnection</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-4">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Pooled Class</strong>: <code>DBConnection</code> with
-proper initialization/cleanup</li>
-<li><strong>Create Pool Manager</strong>:
-<code>DBConnectionPoolManager</code> with queues for
-available/in-use</li>
-<li><strong>Implement getConnection()</strong>: Get from available pool
-or create new</li>
-<li><strong>Implement releaseConnection()</strong>: Return connection to
-available pool</li>
-<li><strong>Handle Pool Exhaustion</strong>: Either wait for available
-or create new (with limits)</li>
-<li><strong>Thread Safety</strong>: Use synchronized collections or
-locks</li>
-</ol>
+<p><img
+src="build/diagrams/behavioralDesign_objectPoolPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="statepattern">statePattern</h2>
 <h3 id="overview-readme.md-5">Overview (README.md)</h3>
@@ -1395,103 +811,8 @@ state</li>
 <li>Use state pattern for 3+ states or complex transitions</li>
 </ul>
 <h3 id="uml-class-diagram-5">UML / Class Diagram</h3>
-<h1 id="state---class-diagram">State - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class ATMState {
-        &lt;&lt;interface&gt;&gt;
-        +insertCard(ATM)
-        +insertPin(ATM)
-        +withdraw(ATM, amount)
-    }
-
-    class IdleStateATM {
-        +insertCard(ATM)
-        +insertPin(ATM)
-        +withdraw(ATM, amount)
-    }
-
-    class CardInsertedState {
-        +insertCard(ATM)
-        +insertPin(ATM)
-        +withdraw(ATM, amount)
-    }
-
-    class PinVerifiedState {
-        +insertCard(ATM)
-        +insertPin(ATM)
-        +withdraw(ATM, amount)
-    }
-
-    class ATM {
-        -currentState: ATMState
-        +setState(ATMState)
-        +insertCard()
-        +insertPin()
-        +withdraw(amount)
-    }
-
-    ATMState &lt;|.. IdleStateATM
-    ATMState &lt;|.. CardInsertedState
-    ATMState &lt;|.. PinVerifiedState
-    ATM --&gt; ATMState: currentState</code></pre>
-<h2 id="class-relationships-5">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>ATMState</strong></td>
-<td>Interface defining operations for a state</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>IdleStateATM</strong></td>
-<td>Initial state - only allows card insertion</td>
-<td>Implements ATMState</td>
-</tr>
-<tr>
-<td><strong>CardInsertedState</strong></td>
-<td>Card inserted - only allows PIN entry</td>
-<td>Implements ATMState</td>
-</tr>
-<tr>
-<td><strong>PinVerifiedState</strong></td>
-<td>PIN verified - only allows withdrawal</td>
-<td>Implements ATMState</td>
-</tr>
-<tr>
-<td><strong>ATM</strong></td>
-<td>Context - delegates to current state</td>
-<td>Holds reference to ATMState</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-5">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create State Interface</strong>: Define operations like
-<code>insertCard()</code>, <code>insertPin()</code>,
-<code>withdraw()</code></li>
-<li><strong>Create Concrete States</strong>: Each state implements the
-interface</li>
-<li><strong>In State Implementation</strong>: Only allow valid
-operations, change ATM state accordingly</li>
-<li><strong>Create Context (ATM)</strong>: Maintain current state,
-delegate method calls to it</li>
-<li><strong>State Transitions</strong>: From within state methods, call
-<code>atm.setState(newState)</code></li>
-<li><strong>Invalid Operations</strong>: Throw exception or do nothing
-for invalid state transitions</li>
-</ol>
+<p><img
+src="build/diagrams/behavioralDesign_statePattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="strategypattern">strategyPattern</h2>
 <h3 id="overview-readme.md-6">Overview (README.md)</h3>
@@ -1539,82 +860,8 @@ algorithm</li>
 <li>Strategies should be stateless when possible</li>
 </ul>
 <h3 id="uml-class-diagram-6">UML / Class Diagram</h3>
-<h1 id="strategy---class-diagram">Strategy - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class DriveStrategy {
-        &lt;&lt;interface&gt;&gt;
-        +drive()
-    }
-
-    class NormalDrive {
-        +drive()
-    }
-
-    class SportsDrive {
-        +drive()
-    }
-
-    class Vehicle {
-        -driveStrategy: DriveStrategy
-        +setDriveStrategy(DriveStrategy)
-        +drive()
-    }
-
-    DriveStrategy &lt;|.. NormalDrive
-    DriveStrategy &lt;|.. SportsDrive
-    Vehicle --&gt; DriveStrategy: uses</code></pre>
-<h2 id="class-relationships-6">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>DriveStrategy</strong></td>
-<td>Interface defining driving algorithms</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>NormalDrive</strong></td>
-<td>Concrete strategy - normal driving behavior</td>
-<td>Implements DriveStrategy</td>
-</tr>
-<tr>
-<td><strong>SportsDrive</strong></td>
-<td>Concrete strategy - aggressive driving behavior</td>
-<td>Implements DriveStrategy</td>
-</tr>
-<tr>
-<td><strong>Vehicle</strong></td>
-<td>Context - uses strategy to drive</td>
-<td>Holds reference to DriveStrategy</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-6">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Strategy Interface</strong>: Define
-<code>drive()</code> method</li>
-<li><strong>Create Concrete Strategies</strong>:
-<code>NormalDrive</code> and <code>SportsDrive</code></li>
-<li><strong>Create Context (Vehicle)</strong>: Maintain reference to
-strategy</li>
-<li><strong>Implement setDriveStrategy()</strong>: Allow changing
-strategy at runtime</li>
-<li><strong>Delegate to Strategy</strong>: <code>vehicle.drive()</code>
-calls <code>strategy.drive()</code></li>
-<li><strong>Switch Algorithms</strong>: Change strategy based on user
-input or conditions</li>
-</ol>
+<p><img
+src="build/diagrams/behavioralDesign_strategyPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="templatepattern">templatePattern</h2>
 <h3 id="overview-readme.md-7">Overview (README.md)</h3>
@@ -1663,78 +910,8 @@ customization</li>
 <li>Keep base class focused on algorithm structure</li>
 </ul>
 <h3 id="uml-class-diagram-7">UML / Class Diagram</h3>
-<h1 id="template-method---class-diagram">Template Method - Class
-Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class PaymentFlow {
-        &lt;&lt;abstract&gt;&gt;
-        +pay() final
-        #validate()
-        #charge()
-        #confirm()
-    }
-
-    class PaymentToFriend {
-        #validate()
-        #charge()
-        #confirm()
-    }
-
-    class PaymentToMerchant {
-        #validate()
-        #charge()
-        #confirm()
-    }
-
-    PaymentFlow &lt;|-- PaymentToFriend
-    PaymentFlow &lt;|-- PaymentToMerchant</code></pre>
-<h2 id="class-relationships-7">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>PaymentFlow</strong></td>
-<td>Abstract class - defines payment algorithm skeleton (template)</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>PaymentToFriend</strong></td>
-<td>Concrete implementation - specific steps for friend payment</td>
-<td>Extends PaymentFlow</td>
-</tr>
-<tr>
-<td><strong>PaymentToMerchant</strong></td>
-<td>Concrete implementation - specific steps for merchant payment</td>
-<td>Extends PaymentFlow</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-7">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Abstract Class</strong>: Define <code>pay()</code> as
-final (can’t override)</li>
-<li><strong>Define Template Method</strong>: <code>pay()</code> calls
-abstract methods in order</li>
-<li><strong>Define Abstract Methods</strong>: <code>validate()</code>,
-<code>charge()</code>, <code>confirm()</code> (protected/abstract)</li>
-<li><strong>Create Concrete Classes</strong>: Implement abstract methods
-with specific logic</li>
-<li><strong>Skeleton in Base</strong>: Algorithm structure stays in
-base, details in subclasses</li>
-<li><strong>Call Order</strong>: Template method controls execution
-order, subclasses fill in steps</li>
-</ol>
+<p><img
+src="build/diagrams/behavioralDesign_templatePattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="abstractfacotorypattern">abstractFacotoryPattern</h2>
 <h3 id="overview-readme.md-8">Overview (README.md)</h3>
@@ -1785,115 +962,8 @@ products</li>
 each</li>
 </ul>
 <h3 id="uml-class-diagram-8">UML / Class Diagram</h3>
-<h1 id="abstract-factory---class-diagram">Abstract Factory - Class
-Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class CarFactory {
-        &lt;&lt;interface&gt;&gt;
-        +createCar(): Car
-        +createEngine(): Engine
-        +createTyre(): Tyre
-    }
-
-    class EconomyCarFactory {
-        +createCar(): Car
-        +createEngine(): Engine
-        +createTyre(): Tyre
-    }
-
-    class LuxuryCarFactory {
-        +createCar(): Car
-        +createEngine(): Engine
-        +createTyre(): Tyre
-    }
-
-    class Car {
-        &lt;&lt;interface&gt;&gt;
-    }
-
-    class EconomyCar {
-    }
-
-    class LuxuryCar {
-    }
-
-    class Engine {
-        &lt;&lt;interface&gt;&gt;
-    }
-
-    class EconomyEngine {
-    }
-
-    class LuxuryEngine {
-    }
-
-    CarFactory &lt;|.. EconomyCarFactory
-    CarFactory &lt;|.. LuxuryCarFactory
-    Car &lt;|.. EconomyCar
-    Car &lt;|.. LuxuryCar
-    Engine &lt;|.. EconomyEngine
-    Engine &lt;|.. LuxuryEngine
-    EconomyCarFactory --&gt; EconomyCar: creates
-    EconomyCarFactory --&gt; EconomyEngine: creates
-    LuxuryCarFactory --&gt; LuxuryCar: creates
-    LuxuryCarFactory --&gt; LuxuryEngine: creates</code></pre>
-<h2 id="class-relationships-8">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>CarFactory</strong></td>
-<td>Abstract factory interface - declares creation methods</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>EconomyCarFactory</strong></td>
-<td>Creates economy family products</td>
-<td>Creates Economy*, implements CarFactory</td>
-</tr>
-<tr>
-<td><strong>LuxuryCarFactory</strong></td>
-<td>Creates luxury family products</td>
-<td>Creates Luxury*, implements CarFactory</td>
-</tr>
-<tr>
-<td><strong>Car/Engine/Tyre</strong></td>
-<td>Product interfaces</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>Economy/Luxury variants</strong></td>
-<td>Concrete products for each family</td>
-<td>Implement product interfaces</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-8">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Abstract Factory</strong>: Interface with methods for
-each product</li>
-<li><strong>Create Product Interfaces</strong>: <code>Car</code>,
-<code>Engine</code>, <code>Tyre</code></li>
-<li><strong>Create Concrete Products</strong>: Economy and Luxury
-variants</li>
-<li><strong>Create Concrete Factories</strong>: Each factory creates its
-family</li>
-<li><strong>Ensure Consistency</strong>: Factory ensures related
-products are from same family</li>
-<li><strong>Client Code</strong>: Use factory interface only, don’t know
-concrete classes</li>
-</ol>
+<p><img
+src="build/diagrams/creationalDesign_abstractFacotoryPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="abstractfactorydesignpattern">abstractFactoryDesignPattern</h2>
 <hr />
@@ -1943,73 +1013,8 @@ data-cites="Builder">@Builder</span> annotation for less
 boilerplate</li>
 </ul>
 <h3 id="uml-class-diagram-9">UML / Class Diagram</h3>
-<h1 id="builder---class-diagram">Builder - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class Student {
-        -name: String
-        -age: int
-        -branch: String
-        -courses: List
-        -Student(builder)
-    }
-
-    class StudentBuilder {
-        -name: String
-        -age: int
-        -branch: String
-        -courses: List
-        +setName(String): StudentBuilder
-        +setAge(int): StudentBuilder
-        +setBranch(String): StudentBuilder
-        +addCourse(String): StudentBuilder
-        +build(): Student
-    }
-
-    Student --&gt; StudentBuilder: created by</code></pre>
-<h2 id="class-relationships-9">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Student</strong></td>
-<td>Object with multiple optional fields (immutable after building)</td>
-<td>Built by StudentBuilder</td>
-</tr>
-<tr>
-<td><strong>StudentBuilder</strong></td>
-<td>Builds Student step-by-step with fluent API</td>
-<td>Creates Student</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-9">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Product Class</strong>: <code>Student</code> with
-private constructor accepting builder</li>
-<li><strong>Create Builder Class</strong>: Nested static class with same
-fields as product</li>
-<li><strong>Implement Fluent Methods</strong>: Each setter returns
-<code>this</code> for chaining</li>
-<li><strong>Add Defaults</strong>: Provide sensible default values for
-optional fields</li>
-<li><strong>Implement build()</strong>: Create and return final
-product</li>
-<li><strong>Usage</strong>:
-<code>new StudentBuilder().setName("X").setAge(20).build()</code></li>
-<li><strong>Optional</strong>: Use <code>@Builder</code> annotation from
-Lombok to auto-generate</li>
-</ol>
+<p><img
+src="build/diagrams/creationalDesign_builderPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="factorypattern">factoryPattern</h2>
 <h3 id="overview-readme.md-10">Overview (README.md)</h3>
@@ -2054,83 +1059,8 @@ specific type</li>
 <li>Ensure all created objects conform to product interface</li>
 </ul>
 <h3 id="uml-class-diagram-10">UML / Class Diagram</h3>
-<h1 id="factory-method---class-diagram">Factory Method - Class
-Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class Shape {
-        &lt;&lt;interface&gt;&gt;
-        +draw()
-    }
-
-    class Circle {
-        +draw()
-    }
-
-    class Rectangle {
-        +draw()
-    }
-
-    class Square {
-        +draw()
-    }
-
-    class ShapeFactory {
-        +getShape(type): Shape
-    }
-
-    Shape &lt;|.. Circle
-    Shape &lt;|.. Rectangle
-    Shape &lt;|.. Square
-    ShapeFactory --&gt; Shape: creates</code></pre>
-<h2 id="class-relationships-10">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Shape</strong></td>
-<td>Product interface</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>Circle/Rectangle/Square</strong></td>
-<td>Concrete products</td>
-<td>Implement Shape</td>
-</tr>
-<tr>
-<td><strong>ShapeFactory</strong></td>
-<td>Creator - factory method for creating shapes</td>
-<td>Returns Shape interface</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-10">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Product Interface</strong>: Define
-<code>draw()</code> method</li>
-<li><strong>Create Concrete Products</strong>: <code>Circle</code>,
-<code>Rectangle</code>, <code>Square</code></li>
-<li><strong>Create Factory Class</strong>: Static method
-<code>getShape(String type)</code></li>
-<li><strong>Implement Factory Logic</strong>: Switch/if-else to create
-right shape</li>
-<li><strong>Return Interface</strong>: Always return <code>Shape</code>
-type, not concrete class</li>
-<li><strong>Client Usage</strong>:
-<code>Shape shape = ShapeFactory.getShape("circle")</code></li>
-<li><strong>Encapsulate Creation</strong>: Client doesn’t know how to
-create shapes</li>
-</ol>
+<p><img
+src="build/diagrams/creationalDesign_factoryPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="prototypepattern">prototypePattern</h2>
 <h3 id="overview-readme.md-11">Overview (README.md)</h3>
@@ -2176,69 +1106,8 @@ objects</li>
 <li>Handle CloneNotSupportedException</li>
 </ul>
 <h3 id="uml-class-diagram-11">UML / Class Diagram</h3>
-<h1 id="prototype---class-diagram">Prototype - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class Cloneable {
-        &lt;&lt;interface&gt;&gt;
-        +clone(): Object
-    }
-
-    class NetworkConnection {
-        -ip: String
-        -port: int
-        -connections: List
-        +clone(): NetworkConnection
-        +shallowClone(): NetworkConnection
-        +deepClone(): NetworkConnection
-    }
-
-    Cloneable &lt;|.. NetworkConnection</code></pre>
-<h2 id="class-relationships-11">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Cloneable</strong></td>
-<td>Interface for cloneable objects</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>NetworkConnection</strong></td>
-<td>Implements cloning - supports both shallow and deep</td>
-<td>Implements Cloneable</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-11">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Implement Cloneable</strong>: Make class implement
-<code>Cloneable</code> interface</li>
-<li><strong>Override clone()</strong>: Create and return copy of
-object</li>
-<li><strong>Shallow Clone</strong>: Copy primitive fields, share
-reference fields</li>
-<li><strong>Deep Clone</strong>: Create new instances of referenced
-objects</li>
-<li><strong>Handle Arrays/Lists</strong>: Create new list and add cloned
-elements</li>
-<li><strong>Catch Exception</strong>: Catch
-<code>CloneNotSupportedException</code> in implementation</li>
-<li><strong>Usage</strong>:
-<code>NetworkConnection copy = original.clone()</code></li>
-<li><strong>Alternative</strong>: Use copy constructor instead of
-<code>clone()</code></li>
-</ol>
+<p><img
+src="build/diagrams/creationalDesign_prototypePattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="singletondesignpattern">singletonDesignPattern</h2>
 <h3 id="overview-readme.md-12">Overview (README.md)</h3>
@@ -2288,93 +1157,8 @@ double-checked locking</li>
 singleton</li>
 </ul>
 <h3 id="uml-class-diagram-12">UML / Class Diagram</h3>
-<h1 id="singleton---class-diagram">Singleton - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class DBConnection {
-        -instance: DBConnection static
-        -DBConnection() private
-        +getInstance(): DBConnection static
-        +executeQuery(String)
-    }</code></pre>
-<h2 id="class-relationships-12">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>DBConnection</strong></td>
-<td>Singleton - only one instance, global access</td>
-<td>Self-manages instance</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-12">How to Code This Pattern</h2>
-<h3 id="eager-initialization-thread-safe">Eager Initialization
-(Thread-Safe)</h3>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DBConnection <span class="op">{</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> DBConnection instance <span class="op">=</span> <span class="kw">new</span> <span class="fu">DBConnection</span><span class="op">();</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="fu">DBConnection</span><span class="op">()</span> <span class="op">{</span> <span class="op">}</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> DBConnection <span class="fu">getInstance</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> instance<span class="op">;</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="lazy-initialization-thread-safe">Lazy Initialization
-(Thread-Safe)</h3>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DBConnection <span class="op">{</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">static</span> DBConnection instance<span class="op">;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="fu">DBConnection</span><span class="op">()</span> <span class="op">{</span> <span class="op">}</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="kw">synchronized</span> DBConnection <span class="fu">getInstance</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>instance <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            instance <span class="op">=</span> <span class="kw">new</span> <span class="fu">DBConnection</span><span class="op">();</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> instance<span class="op">;</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="double-checked-locking">Double-Checked Locking</h3>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DBConnection <span class="op">{</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="kw">volatile</span> DBConnection instance<span class="op">;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="fu">DBConnection</span><span class="op">()</span> <span class="op">{</span> <span class="op">}</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> DBConnection <span class="fu">getInstance</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>instance <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            <span class="kw">synchronized</span><span class="op">(</span>DBConnection<span class="op">.</span><span class="fu">class</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>instance <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                    instance <span class="op">=</span> <span class="kw">new</span> <span class="fu">DBConnection</span><span class="op">();</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> instance<span class="op">;</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h2 id="key-points">Key Points</h2>
-<ul>
-<li><strong>Private Constructor</strong>: Prevent instantiation from
-outside</li>
-<li><strong>Static Instance</strong>: Hold single instance</li>
-<li><strong>getInstance()</strong>: Return the singleton instance</li>
-<li><strong>Thread-Safe</strong>: Use synchronized or volatile for
-concurrency</li>
-<li><strong>Enum Alternative</strong>: Use enum for automatic
-singleton</li>
-</ul>
+<p><img
+src="build/diagrams/creationalDesign_singletonDesignPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="adapterdesignpattern">AdapterDesignPattern</h2>
 <h3 id="overview-readme.md-13">Overview (README.md)</h3>
@@ -2421,314 +1205,68 @@ adapter (composition)</li>
 <li>Consider whether modification of adaptee is possible</li>
 </ul>
 <h3 id="uml-class-diagram-13">UML / Class Diagram</h3>
-<h1 id="adapter---class-diagram">Adapter - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class WeightMachine {
-        +getWeight(): double
-    }
-
-    class WeightMachineAdapter {
-        &lt;&lt;interface&gt;&gt;
-        +getWeightInPounds(): double
-    }
-
-    class WeightMachineAdapterImpl {
-        -weightMachine: WeightMachine
-        +getWeightInPounds(): double
-    }
-
-    WeightMachine --|&gt; WeightMachineAdapterImpl: adapted by
-    WeightMachineAdapter &lt;|.. WeightMachineAdapterImpl: implements</code></pre>
-<h2 id="class-relationships-13">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>WeightMachine</strong></td>
-<td>Adaptee - existing class with incompatible interface</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>WeightMachineAdapter</strong></td>
-<td>Target interface - interface client expects</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>WeightMachineAdapterImpl</strong></td>
-<td>Adapter - converts adaptee to target interface</td>
-<td>Has WeightMachine, implements Adapter</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-13">How to Code This Pattern</h2>
-<h3 id="object-adapter-composition---recommended">Object Adapter
-(Composition - Recommended)</h3>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> WeightMachineAdapterImpl <span class="kw">implements</span> WeightMachineAdapter <span class="op">{</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> WeightMachine weightMachine<span class="op">;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="fu">WeightMachineAdapterImpl</span><span class="op">(</span>WeightMachine wm<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        # Adapter <span class="op">-</span> <span class="bu">Class</span> Diagram</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        ```mermaid</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        classDiagram</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>            <span class="kw">class</span> WeightMachine <span class="op">{</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span><span class="fu">getWeight</span><span class="op">():</span> <span class="dt">double</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>            <span class="kw">class</span> WeightReader <span class="op">{</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;&lt;</span><span class="kw">interface</span><span class="op">&gt;&gt;</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span><span class="fu">getWeightInPounds</span><span class="op">():</span> <span class="dt">double</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>            <span class="kw">class</span> WeightMachineAdapterImpl <span class="op">{</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span>weightMachine<span class="op">:</span> WeightMachine</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span><span class="fu">WeightMachineAdapterImpl</span><span class="op">(</span>wm<span class="op">:</span> WeightMachine<span class="op">)</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span><span class="fu">getWeightInPounds</span><span class="op">():</span> <span class="dt">double</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>            <span class="op">%%</span> Relationships</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>            WeightMachineAdapterImpl <span class="op">--&gt;</span> WeightMachine <span class="op">:</span> uses</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>            WeightReader <span class="op">&lt;|..</span> <span class="fu">WeightMachineAdapterImpl</span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        ```</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>        ## <span class="bu">Class</span> Relationships</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>        <span class="op">|</span> <span class="bu">Class</span> <span class="op">|</span> Responsibility <span class="op">|</span> Depends On <span class="op">|</span></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">|-------|---|---|</span></span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">|</span> <span class="op">**</span>WeightMachine<span class="op">**</span> <span class="op">|</span> Adaptee — existing <span class="kw">class</span> providing weight in its own units <span class="op">|</span> None <span class="op">|</span></span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">|</span> <span class="op">**</span>WeightReader<span class="op">**</span> <span class="op">|</span> <span class="bu">Target</span> <span class="kw">interface</span> — what clients <span class="fu">expect</span> <span class="op">(</span>weight in pounds<span class="op">)</span> <span class="op">|</span> None <span class="op">|</span></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>        <span class="op">|</span> <span class="op">**</span>WeightMachineAdapterImpl<span class="op">**</span> <span class="op">|</span> <span class="fu">Adapter</span> <span class="op">(</span>object adapter<span class="op">)</span> — converts WeightMachine to WeightReader <span class="op">|</span> Uses `WeightMachine`<span class="op">,</span> <span class="kw">implements</span> `WeightReader` <span class="op">|</span></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>        ## Plain Explanation</span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>        The client expects `WeightReader` <span class="op">(</span>method `<span class="fu">getWeightInPounds</span><span class="op">()</span>`<span class="op">),</span> but `WeightMachine` only provides `<span class="fu">getWeight</span><span class="op">()</span>`<span class="op">.</span> <span class="fu">The</span> <span class="fu">adapter</span> <span class="op">(</span>`WeightMachineAdapterImpl`<span class="op">)</span> holds a `WeightMachine` and converts its result into the expected format<span class="op">.</span></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>        ## How to Code This <span class="bu">Pattern</span> <span class="op">(</span>Minimal<span class="op">)</span></span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>        ### <span class="bu">Object</span> <span class="fu">Adapter</span> <span class="op">(</span>Composition — recommended<span class="op">)</span></span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>        ```java</span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Target</span></span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="kw">interface</span> WeightReader <span class="op">{</span></span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>            <span class="dt">double</span> <span class="fu">getWeightInPounds</span><span class="op">();</span></span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Adaptee</span></span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="kw">class</span> WeightMachine <span class="op">{</span></span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="dt">double</span> <span class="fu">getWeight</span><span class="op">()</span> <span class="op">{</span> <span class="cf">return</span> <span class="fl">50.0</span><span class="op">;</span> <span class="co">/* kg */</span> <span class="op">}</span></span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Adapter</span></span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="kw">class</span> WeightMachineAdapterImpl <span class="kw">implements</span> WeightReader <span class="op">{</span></span>
-<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>            <span class="kw">private</span> <span class="dt">final</span> WeightMachine weightMachine<span class="op">;</span></span>
-<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="fu">WeightMachineAdapterImpl</span><span class="op">(</span>WeightMachine wm<span class="op">)</span> <span class="op">{</span> <span class="kw">this</span><span class="op">.</span><span class="fu">weightMachine</span> <span class="op">=</span> wm<span class="op">;</span> <span class="op">}</span></span>
-<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
-<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="dt">double</span> <span class="fu">getWeightInPounds</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> weightMachine<span class="op">.</span><span class="fu">getWeight</span><span class="op">()</span> <span class="op">*</span> <span class="fl">2.20462</span><span class="op">;</span> <span class="co">// kg -&gt; lb</span></span>
-<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>        ```</span>
-<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>        ### <span class="bu">Class</span> <span class="fu">Adapter</span> <span class="op">(</span>Inheritance — less flexible<span class="op">)</span></span>
-<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a>        ```java</span>
-<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="kw">class</span> WeightMachineAdapter <span class="kw">extends</span> WeightMachine <span class="kw">implements</span> WeightReader <span class="op">{</span></span>
-<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
-<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="dt">double</span> <span class="fu">getWeightInPounds</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="fu">getWeight</span><span class="op">()</span> <span class="op">*</span> <span class="fl">2.20462</span><span class="op">;</span></span>
-<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>        ```</span>
-<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>        ## <span class="bu">Key</span> Points</span>
-<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> Use object <span class="fu">adapter</span> <span class="op">(</span>composition<span class="op">)</span> when you can<span class="op">:</span> it works with <span class="dt">final</span><span class="op">/</span>adapted classes and is more flexible<span class="op">.</span></span>
-<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> Use <span class="kw">class</span> <span class="fu">adapter</span> <span class="op">(</span>inheritance<span class="op">)</span> only when you must inherit and the adaptee<span class="er">&#39;</span>s <span class="kw">interface</span> is compatible with inheritance<span class="op">.</span></span>
-<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> Adapter focuses on converting interfaces<span class="op">,</span> not changing behaviour<span class="op">.</span></span>
-<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
-<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a>## DecoratorDesign</span>
-<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>### <span class="fu">Overview</span> <span class="op">(</span>README<span class="op">.</span><span class="fu">md</span><span class="op">)</span></span>
-<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a># Decorator <span class="bu">Pattern</span></span>
-<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>## What is it<span class="op">?</span></span>
-<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a>The Decorator pattern attaches additional responsibilities to an object dynamically<span class="op">.</span> <span class="fu">It</span> provides a flexible alternative to subclassing <span class="cf">for</span> extending functionality<span class="op">.</span></span>
-<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>## When to use it<span class="op">?</span></span>
-<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Add responsibilities to individual objects without affecting others</span>
-<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Subclassing would create too many classes</span>
-<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Need to combine multiple behaviors dynamically</span>
-<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Avoid <span class="st">&quot;explosion&quot;</span> of subclasses</span>
-<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a>## Real<span class="op">-</span>world Example</span>
-<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a><span class="op">**</span>Ice Cream Shop<span class="op">**:</span> Base ice <span class="fu">cream</span> <span class="op">(</span>Vanilla<span class="op">,</span> Chocolate<span class="op">)</span> can be decorated with <span class="fu">toppings</span> <span class="op">(</span>ChocolateSyrup<span class="op">,</span> ChocoChips<span class="op">).</span> <span class="fu">Each</span> decorator adds features<span class="op">.</span></span>
-<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a>## <span class="bu">Key</span> Benefits</span>
-<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a>✓ More flexible than subclassing</span>
-<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a>✓ Add<span class="op">/</span>remove responsibilities at runtime</span>
-<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>✓ Combine behaviors dynamically</span>
-<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a>✓ Single Responsibility<span class="op">:</span> Each decorator has one responsibility</span>
-<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a>✓ Avoids subclass explosion</span>
-<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>## <span class="bu">Key</span> Drawbacks</span>
-<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a>✗ Many small <span class="fu">classes</span> <span class="op">(</span>decorators<span class="op">)</span></span>
-<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>✗ Complex object composition</span>
-<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>✗ Decoration order <span class="fu">matters</span> <span class="op">(</span>may affect functionality<span class="op">)</span></span>
-<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>✗ Can be overkill <span class="cf">for</span> simple additions</span>
-<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>## Easy Analogy</span>
-<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="op">**</span>Think of it like customizing a shirt<span class="op">:**</span></span>
-<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a>Basic shirt → Add <span class="fu">sleeves</span> <span class="op">(</span>decorator<span class="op">)</span> → Add <span class="fu">buttons</span> <span class="op">(</span>another decorator<span class="op">)</span> → Add <span class="fu">collar</span> <span class="op">(</span>another decorator<span class="op">).</span> <span class="fu">Each</span> decorator adds functionality without changing the original shirt<span class="op">.</span></span>
-<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a>## Implementation Notes</span>
-<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span><span class="bu">Component</span><span class="op">**:</span> Interface <span class="cf">for</span> decorators and concrete objects</span>
-<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span>ConcreteComponent<span class="op">**:</span> Original object being decorated</span>
-<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span>Decorator<span class="op">**:</span> Abstract <span class="kw">class</span> maintaining reference to component</span>
-<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span>ConcreteDecorator<span class="op">**:</span> Adds specific responsibility</span>
-<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Decorator wraps component and delegates calls</span>
-<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Can wrap decorator with another decorator</span>
-<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Maintain same <span class="kw">interface</span> as component</span>
-<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Watch order of <span class="fu">decoration</span> <span class="op">(</span>may affect results<span class="op">)</span></span>
-<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>### UML <span class="op">/</span> <span class="bu">Class</span> Diagram</span>
-<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a># Decorator <span class="op">-</span> <span class="bu">Class</span> Diagram</span>
-<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>```mermaid</span>
-<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a>classDiagram</span>
-<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> IceCream <span class="op">{</span></span>
-<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;&lt;</span><span class="kw">interface</span><span class="op">&gt;&gt;</span></span>
-<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
-<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
-<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> VanillaIceCream <span class="op">{</span></span>
-<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
-<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
-<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> IceCreamDecorator <span class="op">{</span></span>
-<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;&lt;</span><span class="kw">abstract</span><span class="op">&gt;&gt;</span></span>
-<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span>iceCream<span class="op">:</span> IceCream</span>
-<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
-<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
-<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> ChocolateSyrupDecorator <span class="op">{</span></span>
-<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
-<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
-<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> ChocoChipsDecorator <span class="op">{</span></span>
-<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getCost</span><span class="op">():</span> <span class="dt">double</span></span>
-<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fu">getDescription</span><span class="op">():</span> <span class="bu">String</span></span>
-<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a>    IceCream <span class="op">&lt;|..</span> <span class="fu">VanillaIceCream</span></span>
-<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a>    IceCream <span class="op">&lt;|..</span> <span class="fu">IceCreamDecorator</span></span>
-<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a>    IceCreamDecorator <span class="op">&lt;|--</span> ChocolateSyrupDecorator</span>
-<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a>    IceCreamDecorator <span class="op">&lt;|--</span> ChocoChipsDecorator</span>
-<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a>    IceCreamDecorator <span class="op">--&gt;</span> IceCream<span class="op">:</span> wraps</span></code></pre></div>
-<h2 id="class-relationships-14">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>IceCream</strong></td>
-<td>Component interface - defines ice cream operations</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>VanillaIceCream</strong></td>
-<td>Concrete component - base ice cream</td>
-<td>Implements IceCream</td>
-</tr>
-<tr>
-<td><strong>IceCreamDecorator</strong></td>
-<td>Abstract decorator - wraps ice cream and adds features</td>
-<td>Has IceCream, implements IceCream</td>
-</tr>
-<tr>
-<td><strong>ChocolateSyrupDecorator</strong></td>
-<td>Concrete decorator - adds chocolate syrup</td>
-<td>Extends IceCreamDecorator</td>
-</tr>
-<tr>
-<td><strong>ChocoChipsDecorator</strong></td>
-<td>Concrete decorator - adds choco chips</td>
-<td>Extends IceCreamDecorator</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-14">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Component Interface</strong>: <code>IceCream</code>
-with <code>getCost()</code> and <code>getDescription()</code></li>
-<li><strong>Create Concrete Component</strong>:
-<code>VanillaIceCream</code> implements interface</li>
-<li><strong>Create Abstract Decorator</strong>: Implements interface,
-wraps component</li>
-<li><strong>Decorator holds Component</strong>:
-<code>IceCreamDecorator</code> has <code>IceCream</code> reference</li>
-<li><strong>Decorator delegates</strong>: Call wrapped component’s
-methods first, then add own behavior</li>
-<li><strong>Create Concrete Decorators</strong>: Each adds specific
-feature</li>
-<li><strong>Stack Decorators</strong>: Can wrap decorator with another
-decorator</li>
-</ol>
-<h2 id="example-usage">Example Usage</h2>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>IceCream iceCream <span class="op">=</span> <span class="kw">new</span> <span class="fu">VanillaIceCream</span><span class="op">();</span>  <span class="co">// cost: 30</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>iceCream <span class="op">=</span> <span class="kw">new</span> <span class="fu">ChocolateSyrupDecorator</span><span class="op">(</span>iceCream<span class="op">);</span>  <span class="co">// cost: 30 + 15 = 45</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>iceCream <span class="op">=</span> <span class="kw">new</span> <span class="fu">ChocoChipsDecorator</span><span class="op">(</span>iceCream<span class="op">);</span>  <span class="co">// cost: 45 + 10 = 55</span></span></code></pre></div>
-<h2 id="key-points-1">Key Points</h2>
+<p><img
+src="build/diagrams/StructuralDesign_AdapterDesignPattern_UML_ClassDiagram.md.png" /></p>
+<hr />
+<h2 id="decoratordesign">DecoratorDesign</h2>
+<h3 id="overview-readme.md-14">Overview (README.md)</h3>
+<h1 id="decorator-pattern">Decorator Pattern</h1>
+<h2 id="what-is-it-14">What is it?</h2>
+<p>The Decorator pattern attaches additional responsibilities to an
+object dynamically. It provides a flexible alternative to subclassing
+for extending functionality.</p>
+<h2 id="when-to-use-it-14">When to use it?</h2>
 <ul>
-<li><strong>Wrapper Pattern</strong>: Decorators wrap components</li>
-<li><strong>Same Interface</strong>: Decorator implements same interface
-as component</li>
-<li><strong>Recursive Composition</strong>: Can nest decorators</li>
-<li><strong>Runtime Addition</strong>: Add features at runtime</li>
+<li>Add responsibilities to individual objects without affecting
+others</li>
+<li>Subclassing would create too many classes</li>
+<li>Need to combine multiple behaviors dynamically</li>
+<li>Avoid “explosion” of subclasses</li>
 </ul>
+<h2 id="real-world-example-14">Real-world Example</h2>
+<p><strong>Ice Cream Shop</strong>: Base ice cream (Vanilla, Chocolate)
+can be decorated with toppings (ChocolateSyrup, ChocoChips). Each
+decorator adds features.</p>
+<h2 id="key-benefits-14">Key Benefits</h2>
+<p>✓ More flexible than subclassing ✓ Add/remove responsibilities at
+runtime ✓ Combine behaviors dynamically ✓ Single Responsibility: Each
+decorator has one responsibility ✓ Avoids subclass explosion</p>
+<h2 id="key-drawbacks-14">Key Drawbacks</h2>
+<p>✗ Many small classes (decorators) ✗ Complex object composition ✗
+Decoration order matters (may affect functionality) ✗ Can be overkill
+for simple additions</p>
+<h2 id="easy-analogy-14">Easy Analogy</h2>
+<p><strong>Think of it like customizing a shirt:</strong> Basic shirt →
+Add sleeves (decorator) → Add buttons (another decorator) → Add collar
+(another decorator). Each decorator adds functionality without changing
+the original shirt.</p>
+<h2 id="implementation-notes-14">Implementation Notes</h2>
+<ul>
+<li><strong>Component</strong>: Interface for decorators and concrete
+objects</li>
+<li><strong>ConcreteComponent</strong>: Original object being
+decorated</li>
+<li><strong>Decorator</strong>: Abstract class maintaining reference to
+component</li>
+<li><strong>ConcreteDecorator</strong>: Adds specific
+responsibility</li>
+<li>Decorator wraps component and delegates calls</li>
+<li>Can wrap decorator with another decorator</li>
+<li>Maintain same interface as component</li>
+<li>Watch order of decoration (may affect results)</li>
+</ul>
+<h3 id="uml-class-diagram-14">UML / Class Diagram</h3>
+<p><img
+src="build/diagrams/StructuralDesign_DecoratorDesign_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="proxypattern">ProxyPattern</h2>
-<h3 id="overview-readme.md-14">Overview (README.md)</h3>
+<h3 id="overview-readme.md-15">Overview (README.md)</h3>
 <h1 id="proxy-pattern">Proxy Pattern</h1>
-<h2 id="what-is-it-14">What is it?</h2>
+<h2 id="what-is-it-15">What is it?</h2>
 <p>The Proxy pattern provides a surrogate or placeholder for another
 object to control access to it. Proxy acts on behalf of the real
 object.</p>
-<h2 id="when-to-use-it-14">When to use it?</h2>
+<h2 id="when-to-use-it-15">When to use it?</h2>
 <ul>
 <li>Defer expensive object creation (lazy initialization)</li>
 <li>Control access to sensitive objects</li>
@@ -2736,24 +1274,24 @@ object.</p>
 <li>Cache results of expensive operations</li>
 <li>Restrict operations on objects</li>
 </ul>
-<h2 id="real-world-example-14">Real-world Example</h2>
+<h2 id="real-world-example-15">Real-world Example</h2>
 <p><strong>Employee Data Cache Proxy</strong>: Real expensive employee
 data fetches from DB. Proxy caches data in Redis, returning cached
 results when available.</p>
-<h2 id="key-benefits-14">Key Benefits</h2>
+<h2 id="key-benefits-15">Key Benefits</h2>
 <p>✓ Control access to objects ✓ Lazy initialization (create object only
 when needed) ✓ Add logging/caching without modifying original ✓ Follows
 Single Responsibility Principle ✓ Transparent to client code</p>
-<h2 id="key-drawbacks-14">Key Drawbacks</h2>
+<h2 id="key-drawbacks-15">Key Drawbacks</h2>
 <p>✗ Added complexity with extra proxy class ✗ Performance overhead from
 proxy indirection ✗ Response time slightly increased ✗ Overkill for
 simple objects</p>
-<h2 id="easy-analogy-14">Easy Analogy</h2>
+<h2 id="easy-analogy-15">Easy Analogy</h2>
 <p><strong>Think of it like a personal assistant:</strong> You (Real
 Subject) are busy. Your assistant (Proxy) handles your calls → If
 someone asks your salary, assistant checks notes (cache) → If not there,
 asks you. No one directly bothers you.</p>
-<h2 id="implementation-notes-14">Implementation Notes</h2>
+<h2 id="implementation-notes-15">Implementation Notes</h2>
 <ul>
 <li><strong>Subject</strong>: Interface for proxy and real object</li>
 <li><strong>RealSubject</strong>: Actual object being proxied</li>
@@ -2765,162 +1303,18 @@ proxy, remote proxy</li>
 <li>Maintain reference to real subject</li>
 <li>Delegate calls to real subject after proxy logic</li>
 </ul>
-<h3 id="uml-class-diagram-14">UML / Class Diagram</h3>
-<h1 id="proxy---class-diagram">Proxy - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class Employee {
-        &lt;&lt;interface&gt;&gt;
-        +getSalary(): int
-        +getName(): String
-    }
-
-    class EmployeeImpl {
-        -name: String
-        -salary: int
-        +getSalary(): int
-        +getName(): String
-    }
-
-    class EmployeeCacheProxy {
-        -employee: Employee
-        -cachedData: Map~String,Object~
-        +getSalary(): int
-        +getName(): String
-        -fetchFromDB(): void
-    }
-
-    class RedisCacheClient {
-        +get(key): Object
-        +set(key, value): void
-    }
-
-    Employee &lt;|.. EmployeeImpl
-    Employee &lt;|.. EmployeeCacheProxy
-    EmployeeCacheProxy --&gt; EmployeeImpl: delegates to
-    EmployeeCacheProxy --&gt; RedisCacheClient: uses for caching</code></pre>
-<h2 id="class-relationships-15">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Employee</strong></td>
-<td>Subject interface - defines operations</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>EmployeeImpl</strong></td>
-<td>Real subject - actual expensive object</td>
-<td>Implements Employee</td>
-</tr>
-<tr>
-<td><strong>EmployeeCacheProxy</strong></td>
-<td>Proxy - controls access, adds caching</td>
-<td>Has Employee, uses cache</td>
-</tr>
-<tr>
-<td><strong>RedisCacheClient</strong></td>
-<td>External cache - stores cached data</td>
-<td>None</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-15">How to Code This Pattern</h2>
-<ol type="1">
-<li><p><strong>Create Subject Interface</strong>: <code>Employee</code>
-with <code>getSalary()</code>, <code>getName()</code></p></li>
-<li><p><strong>Create Real Subject</strong>: <code>EmployeeImpl</code>
-does expensive DB operations</p></li>
-<li><p><strong>Create Proxy</strong>: Implements same interface</p></li>
-</ol>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> EmployeeCacheProxy <span class="kw">implements</span> Employee <span class="op">{</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> Employee employee<span class="op">;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Object</span><span class="op">&gt;</span> cache<span class="op">;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="fu">EmployeeCacheProxy</span><span class="op">(</span>Employee emp<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="fu">employee</span> <span class="op">=</span> emp<span class="op">;</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="fu">cache</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getSalary</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>cache<span class="op">.</span><span class="fu">containsKey</span><span class="op">(</span><span class="st">&quot;salary&quot;</span><span class="op">))</span> <span class="op">{</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span> cache<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">&quot;salary&quot;</span><span class="op">);</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> salary <span class="op">=</span> employee<span class="op">.</span><span class="fu">getSalary</span><span class="op">();</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        cache<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">&quot;salary&quot;</span><span class="op">,</span> salary<span class="op">);</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> salary<span class="op">;</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<ol start="4" type="1">
-<li><strong>Proxy Controls Access</strong>:
-<ul>
-<li>Cache before delegating</li>
-<li>Lazy load real object</li>
-<li>Log/track access</li>
-<li>Restrict access</li>
-</ul></li>
-<li><strong>Client uses Proxy</strong>:
-<code>Employee emp = new EmployeeCacheProxy(...)</code></li>
-</ol>
-<h2 id="proxy-types">Proxy Types</h2>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Protection Proxy</strong></td>
-<td>Control access (security)</td>
-</tr>
-<tr>
-<td><strong>Virtual Proxy</strong></td>
-<td>Lazy initialization of expensive objects</td>
-</tr>
-<tr>
-<td><strong>Cache Proxy</strong></td>
-<td>Cache expensive operations</td>
-</tr>
-<tr>
-<td><strong>Remote Proxy</strong></td>
-<td>Represent remote object</td>
-</tr>
-</tbody>
-</table>
-<h2 id="key-points-2">Key Points</h2>
-<ul>
-<li><strong>Same Interface</strong>: Proxy implements same interface as
-real object</li>
-<li><strong>Transparent</strong>: Client doesn’t know it’s using
-proxy</li>
-<li><strong>Add Behavior</strong>: Before/after delegating to real
-object</li>
-<li><strong>Control Access</strong>: Decide when and how to
-delegate</li>
-</ul>
+<h3 id="uml-class-diagram-15">UML / Class Diagram</h3>
+<p><img
+src="build/diagrams/StructuralDesign_ProxyPattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="bridgepattern">bridgePattern</h2>
-<h3 id="overview-readme.md-15">Overview (README.md)</h3>
+<h3 id="overview-readme.md-16">Overview (README.md)</h3>
 <h1 id="bridge-pattern">Bridge Pattern</h1>
-<h2 id="what-is-it-15">What is it?</h2>
+<h2 id="what-is-it-16">What is it?</h2>
 <p>The Bridge pattern decouples an abstraction from its implementation
 so that the two can vary independently. It bridges the gap between
 abstraction and implementation.</p>
-<h2 id="when-to-use-it-15">When to use it?</h2>
+<h2 id="when-to-use-it-16">When to use it?</h2>
 <ul>
 <li>Abstraction and implementation should be independent</li>
 <li>Changes in implementation shouldn’t affect client code</li>
@@ -2928,26 +1322,26 @@ abstraction and implementation.</p>
 implementation</li>
 <li>Multiple implementations for same abstraction</li>
 </ul>
-<h2 id="real-world-example-15">Real-world Example</h2>
+<h2 id="real-world-example-16">Real-world Example</h2>
 <p><strong>Living Things Breathing</strong>: Different living things
 (Dog, Fish, Tree) have different breathing mechanisms (Lungs, Gills,
 Photosynthesis). Bridge separates living things from breathing
 processes.</p>
-<h2 id="key-benefits-15">Key Benefits</h2>
+<h2 id="key-benefits-16">Key Benefits</h2>
 <p>✓ Decouples abstraction from implementation ✓ Implementation can
 change without affecting clients ✓ Avoid permanent binding between
 abstraction and implementation ✓ Improves code maintainability ✓ Follows
 Open/Closed Principle</p>
-<h2 id="key-drawbacks-15">Key Drawbacks</h2>
+<h2 id="key-drawbacks-16">Key Drawbacks</h2>
 <p>✗ More complex design (more classes needed) ✗ Overkill for simple
 hierarchies ✗ Increased indirection affects performance ✗ Can
 overcomplicate simple designs</p>
-<h2 id="easy-analogy-15">Easy Analogy</h2>
+<h2 id="easy-analogy-16">Easy Analogy</h2>
 <p><strong>Think of it like a car and its engine types:</strong> A car
 is abstraction (LivingThing) → It can be Sedan, SUV (Dog, Fish) → Engine
 type is implementation (Breathing) → Can be Petrol, Diesel (Lungs,
 Gills). You can mix any car with any engine.</p>
-<h2 id="implementation-notes-15">Implementation Notes</h2>
+<h2 id="implementation-notes-16">Implementation Notes</h2>
 <ul>
 <li><strong>Abstraction</strong>: Defines high-level interface</li>
 <li><strong>RefinedAbstraction</strong>: Extends abstraction</li>
@@ -2958,123 +1352,18 @@ behavior</li>
 <li>Use composition instead of inheritance</li>
 <li>Separate abstraction hierarchy from implementation hierarchy</li>
 </ul>
-<h3 id="uml-class-diagram-15">UML / Class Diagram</h3>
-<h1 id="bridge---class-diagram">Bridge - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class LivingThing {
-        -breathingProcess: BreathingProcess
-        +breath()
-    }
-
-    class Dog {
-        +breath()
-    }
-
-    class Fish {
-        +breath()
-    }
-
-    class Tree {
-        +breath()
-    }
-
-    class BreathingProcess {
-        &lt;&lt;interface&gt;&gt;
-        +breathe()
-    }
-
-    class LungsBreathProcess {
-        +breathe()
-    }
-
-    class GillBreathingProcess {
-        +breathe()
-    }
-
-    class PhotoSynthesisProcess {
-        +breathe()
-    }
-
-    LivingThing &lt;|-- Dog
-    LivingThing &lt;|-- Fish
-    LivingThing &lt;|-- Tree
-    BreathingProcess &lt;|.. LungsBreathProcess
-    BreathingProcess &lt;|.. GillBreathingProcess
-    BreathingProcess &lt;|.. PhotoSynthesisProcess
-    LivingThing --&gt; BreathingProcess: uses</code></pre>
-<h2 id="class-relationships-16">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>LivingThing</strong></td>
-<td>Abstraction - high-level interface</td>
-<td>Uses BreathingProcess</td>
-</tr>
-<tr>
-<td><strong>Dog/Fish/Tree</strong></td>
-<td>Refined abstractions</td>
-<td>Extend LivingThing</td>
-</tr>
-<tr>
-<td><strong>BreathingProcess</strong></td>
-<td>Implementor interface - low-level interface</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>Lungs/Gill/Photosynthesis</strong></td>
-<td>Concrete implementors</td>
-<td>Implement BreathingProcess</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-16">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Separate Hierarchies</strong>: Keep abstraction and
-implementation in separate hierarchies</li>
-<li><strong>Abstraction contains Implementor</strong>:
-<code>LivingThing</code> has reference to
-<code>BreathingProcess</code></li>
-<li><strong>Concrete Abstractions</strong>: <code>Dog</code>,
-<code>Fish</code>, <code>Tree</code> extend abstraction</li>
-<li><strong>Concrete Implementors</strong>: Implement the implementor
-interface</li>
-<li><strong>Combine dynamically</strong>: <code>Dog</code> can use any
-<code>BreathingProcess</code></li>
-<li><strong>Avoid Explosion</strong>: Without bridge, would have
-Dog-Lungs, Dog-Gills, etc. classes</li>
-</ol>
-<h2 id="key-points-3">Key Points</h2>
-<ul>
-<li><strong>Bridge</strong>: Separate abstraction from
-implementation</li>
-<li><strong>Two Hierarchies</strong>: One for abstraction, one for
-implementation</li>
-<li><strong>Composition</strong>: Abstraction uses composition with
-implementor</li>
-<li><strong>Flexibility</strong>: Change implementation independently
-from abstraction</li>
-</ul>
+<h3 id="uml-class-diagram-16">UML / Class Diagram</h3>
+<p><img
+src="build/diagrams/StructuralDesign_bridgePattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="compositepattern">compositePattern</h2>
-<h3 id="overview-readme.md-16">Overview (README.md)</h3>
+<h3 id="overview-readme.md-17">Overview (README.md)</h3>
 <h1 id="composite-pattern">Composite Pattern</h1>
-<h2 id="what-is-it-16">What is it?</h2>
+<h2 id="what-is-it-17">What is it?</h2>
 <p>The Composite pattern composes objects into tree structures to
 represent part-whole hierarchies. It allows clients to treat individual
 objects and compositions uniformly.</p>
-<h2 id="when-to-use-it-16">When to use it?</h2>
+<h2 id="when-to-use-it-17">When to use it?</h2>
 <ul>
 <li>Represent hierarchical structures (trees)</li>
 <li>Clients should treat individual and composite objects the same
@@ -3082,25 +1371,25 @@ way</li>
 <li>Part-whole relationships need to be represented</li>
 <li>File system or menu structures</li>
 </ul>
-<h2 id="real-world-example-16">Real-world Example</h2>
+<h2 id="real-world-example-17">Real-world Example</h2>
 <p><strong>File System</strong>: Files and directories form a tree. Both
 can have operations like get size, copy. Composite pattern treats them
 uniformly.</p>
-<h2 id="key-benefits-16">Key Benefits</h2>
+<h2 id="key-benefits-17">Key Benefits</h2>
 <p>✓ Simplifies client code (same treatment for leaf and composite) ✓
 Flexible tree structures (easy to add/remove nodes) ✓ Follows Single
 Responsibility Principle ✓ Follows Open/Closed Principle ✓ Recursive
 composition is natural</p>
-<h2 id="key-drawbacks-16">Key Drawbacks</h2>
+<h2 id="key-drawbacks-17">Key Drawbacks</h2>
 <p>✗ May force inappropriate operations on leaves ✗ Less type safety
 (both leaf and composite look same) ✗ Complexity increases with tree
 depth ✗ Performance issues with deep trees</p>
-<h2 id="easy-analogy-16">Easy Analogy</h2>
+<h2 id="easy-analogy-17">Easy Analogy</h2>
 <p><strong>Think of it like a folder structure on your
 computer:</strong> Folders contain files and other folders → You can ask
 any folder/file “what’s your size?” → A folder calculates size by adding
 all children’s sizes. Same operation, different implementations.</p>
-<h2 id="implementation-notes-16">Implementation Notes</h2>
+<h2 id="implementation-notes-17">Implementation Notes</h2>
 <ul>
 <li><strong>Component</strong>: Declares common operations</li>
 <li><strong>Leaf</strong>: Represents leaf objects (no children)</li>
@@ -3111,122 +1400,43 @@ children)</li>
 <li>Watch out for inappropriate operations on leaves</li>
 <li>Consider empty checks for operations on leaves</li>
 </ul>
-<h3 id="uml-class-diagram-16">UML / Class Diagram</h3>
-<h1 id="composite---class-diagram">Composite - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class FileSystem {
-        &lt;&lt;interface&gt;&gt;
-        +getSize(): int
-    }
-
-    class File {
-        -size: int
-        +getSize(): int
-    }
-
-    class Directory {
-        -children: List~FileSystem~
-        +add(FileSystem)
-        +remove(FileSystem)
-        +getChildren(): List
-        +getSize(): int
-    }
-
-    FileSystem &lt;|.. File
-    FileSystem &lt;|.. Directory
-    Directory --&gt; FileSystem: contains</code></pre>
-<h2 id="class-relationships-17">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>FileSystem</strong></td>
-<td>Component interface - defines common operations</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>File</strong></td>
-<td>Leaf - represents file with no children</td>
-<td>Implements FileSystem</td>
-</tr>
-<tr>
-<td><strong>Directory</strong></td>
-<td>Composite - contains FileSystem objects (files/folders)</td>
-<td>Implements FileSystem, contains FileSystem</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-17">How to Code This Pattern</h2>
-<ol type="1">
-<li><strong>Create Component Interface</strong>: Define
-<code>getSize()</code>, <code>add()</code>, <code>remove()</code></li>
-<li><strong>Create Leaf Class</strong>: <code>File</code> implements
-interface, <code>getSize()</code> returns file size</li>
-<li><strong>Create Composite Class</strong>: <code>Directory</code>
-implements interface</li>
-<li><strong>Maintain Children</strong>: Directory has list of FileSystem
-objects</li>
-<li><strong>Add/Remove Methods</strong>: Composite implements add() and
-remove()</li>
-<li><strong>Recursive Operations</strong>:
-<code>Directory.getSize()</code> sums all children’s sizes</li>
-<li><strong>Uniform Treatment</strong>: Both File and Directory are
-treated as FileSystem</li>
-</ol>
-<h2 id="key-points-4">Key Points</h2>
-<ul>
-<li><strong>Leaf</strong>: File - no children, performs actual work</li>
-<li><strong>Composite</strong>: Directory - can have children</li>
-<li><strong>Recursive</strong>: Operations work recursively through
-tree</li>
-<li><strong>Uniform</strong>: Client treats both File and Directory same
-way</li>
-</ul>
+<h3 id="uml-class-diagram-17">UML / Class Diagram</h3>
+<p><img
+src="build/diagrams/StructuralDesign_compositePattern_UML_ClassDiagram.md.png" /></p>
 <hr />
 <h2 id="flyweightpattern">flyweightPattern</h2>
-<h3 id="overview-readme.md-17">Overview (README.md)</h3>
+<h3 id="overview-readme.md-18">Overview (README.md)</h3>
 <h1 id="flyweight-pattern">Flyweight Pattern</h1>
-<h2 id="what-is-it-17">What is it?</h2>
+<h2 id="what-is-it-18">What is it?</h2>
 <p>The Flyweight pattern uses sharing to support large numbers of
 fine-grained objects efficiently by sharing common state between
 multiple objects.</p>
-<h2 id="when-to-use-it-17">When to use it?</h2>
+<h2 id="when-to-use-it-18">When to use it?</h2>
 <ul>
 <li>Application uses large number of similar objects</li>
 <li>Memory usage is a concern</li>
 <li>Intrinsic state can be shared between objects</li>
 <li>Many objects with same properties</li>
 </ul>
-<h2 id="real-world-example-17">Real-world Example</h2>
+<h2 id="real-world-example-18">Real-world Example</h2>
 <p><strong>Robot Game</strong>: Game has thousands of robots. Instead of
 creating separate objects, share intrinsic state (sprite type) and keep
 extrinsic state (position) separate.</p>
-<h2 id="key-benefits-17">Key Benefits</h2>
+<h2 id="key-benefits-18">Key Benefits</h2>
 <p>✓ Significantly reduces memory usage ✓ Improves application
 performance ✓ Centralizes management of shared state ✓ Good for
 large-scale applications ✓ Transparent to client code</p>
-<h2 id="key-drawbacks-17">Key Drawbacks</h2>
+<h2 id="key-drawbacks-18">Key Drawbacks</h2>
 <p>✗ Increased complexity in code ✗ Thread-safety concerns (shared
 objects) ✗ Performance overhead from object lookup ✗ Intrinsic/extrinsic
 state separation not always clear</p>
-<h2 id="easy-analogy-17">Easy Analogy</h2>
+<h2 id="easy-analogy-18">Easy Analogy</h2>
 <p><strong>Think of it like a multiplayer game with 10,000
 soldiers:</strong> All soldiers have the same armor type
 (shared/intrinsic) but different positions (unique/extrinsic). Instead
 of creating 10,000 objects, create 1 shared soldier object, reuse it
 with different positions.</p>
-<h2 id="implementation-notes-17">Implementation Notes</h2>
+<h2 id="implementation-notes-18">Implementation Notes</h2>
 <ul>
 <li><strong>Flyweight</strong>: Interface for shared and unique
 states</li>
@@ -3241,116 +1451,8 @@ objects</li>
 <li>Consider thread-safety for shared objects</li>
 <li>Useful when you have thousands of similar objects</li>
 </ul>
-<h3 id="uml-class-diagram-17">UML / Class Diagram</h3>
-<h1 id="flyweight---class-diagram">Flyweight - Class Diagram</h1>
-<pre class="mermaid"><code>classDiagram
-    class IRobot {
-        &lt;&lt;interface&gt;&gt;
-        +display(x: int, y: int)
-    }
-
-    class HumanoidRobot {
-        -sprite: Sprite
-        +display(x: int, y: int)
-    }
-
-    class RoboticDogImpl {
-        -sprite: Sprite
-        +display(x: int, y: int)
-    }
-
-    class RoboticFactory {
-        -robots: Map~String,IRobot~
-        +createRobot(type): IRobot
-    }
-
-    class Sprite {
-        -image: Image
-        -animationFrames: List
-    }
-
-    IRobot &lt;|.. HumanoidRobot
-    IRobot &lt;|.. RoboticDogImpl
-    RoboticFactory --&gt; IRobot: creates &amp; manages
-    HumanoidRobot --&gt; Sprite: intrinsic (shared)
-    RoboticDogImpl --&gt; Sprite: intrinsic (shared)</code></pre>
-<h2 id="class-relationships-18">Class Relationships</h2>
-<table>
-<colgroup>
-<col style="width: 53%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Class</th>
-<th>Responsibility</th>
-<th>Depends On</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>IRobot</strong></td>
-<td>Flyweight interface - defines robot display method</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>HumanoidRobot/RoboticDogImpl</strong></td>
-<td>Concrete flyweights - store intrinsic state (sprite)</td>
-<td>Implements IRobot, has shared Sprite</td>
-</tr>
-<tr>
-<td><strong>RoboticFactory</strong></td>
-<td>Flyweight factory - creates and caches flyweights</td>
-<td>Creates and manages IRobot</td>
-</tr>
-<tr>
-<td><strong>Sprite</strong></td>
-<td>Intrinsic state - shared across many robots (immutable)</td>
-<td>None</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-code-this-pattern-18">How to Code This Pattern</h2>
-<ol type="1">
-<li><p><strong>Separate Intrinsic/Extrinsic State</strong>:</p>
-<ul>
-<li><strong>Intrinsic</strong>: Sprite (shared) - stored in
-flyweight</li>
-<li><strong>Extrinsic</strong>: Position x, y (unique) - passed as
-parameter</li>
-</ul></li>
-<li><p><strong>Create Flyweight Interface</strong>: <code>IRobot</code>
-with <code>display(x, y)</code></p></li>
-<li><p><strong>Create Concrete Flyweights</strong>: Store only intrinsic
-state</p></li>
-<li><p><strong>Create Factory</strong>: Cache and reuse
-flyweights</p></li>
-</ol>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RoboticFactory <span class="op">{</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> IRobot<span class="op">&gt;</span> robots <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> IRobot <span class="fu">createRobot</span><span class="op">(</span><span class="bu">String</span> type<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!</span>robots<span class="op">.</span><span class="fu">containsKey</span><span class="op">(</span>type<span class="op">))</span> <span class="op">{</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>            robots<span class="op">.</span><span class="fu">put</span><span class="op">(</span>type<span class="op">,</span> <span class="kw">new</span> <span class="fu">HumanoidRobot</span><span class="op">(</span><span class="kw">new</span> <span class="fu">Sprite</span><span class="op">(</span><span class="kw">...</span><span class="op">)));</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> robots<span class="op">.</span><span class="fu">get</span><span class="op">(</span>type<span class="op">);</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<ol start="5" type="1">
-<li><strong>Client provides extrinsic state</strong>:
-<code>robot.display(100, 200)</code></li>
-</ol>
-<h2 id="key-points-5">Key Points</h2>
-<ul>
-<li><strong>Shared State</strong>: Intrinsic state shared across many
-objects</li>
-<li><strong>Unique State</strong>: Extrinsic state kept in client</li>
-<li><strong>Memory Optimization</strong>: 10,000 robots, 1 sprite = huge
-savings</li>
-<li><strong>Immutable</strong>: Flyweight objects must be immutable</li>
-<li><strong>Factory</strong>: Factory manages caching and reuse</li>
-</ul>
+<h3 id="uml-class-diagram-18">UML / Class Diagram</h3>
+<p><img
+src="build/diagrams/StructuralDesign_flyweightPattern_UML_ClassDiagram.md.png" /></p>
 </body>
 </html>

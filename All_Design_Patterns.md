@@ -1,19 +1,7 @@
----
-title: "All Design Patterns — Notes"
-author: "shahbazhussain"
-date: "2026-01-17"
----
+# All Design Patterns
 
-<div class="cover">
-<h1>All Design Patterns</h1>
-<p class="subtitle">Concise notes, UML diagrams and minimal code examples</p>
-<p class="meta">Repository: shahbaz8584/low-level-design — branch: docs/add-design-pattern-documentation</p>
-<p class="meta">Generated: 2026-01-17</p>
-</div>
+Generated with rendered UML images where available.
 
-<div class="page-break"></div>
-
-Generated from repository files.
 
 ---
 
@@ -61,52 +49,7 @@ When the main player gets injured, instead of having "no player", you put in a b
 
 ### UML / Class Diagram
 
-# Null Object - Class Diagram
-
-```mermaid
-classDiagram
-    class Vehicle {
-        <<interface>>
-        +drive()
-        +stop()
-    }
-
-    class Car {
-        +drive()
-        +stop()
-    }
-
-    class NullVehicle {
-        +drive() empty implementation
-        +stop() empty implementation
-    }
-
-    class VehicleFactory {
-        +getVehicle(type): Vehicle
-    }
-
-    Vehicle <|.. Car
-    Vehicle <|.. NullVehicle
-    VehicleFactory --> Vehicle: creates
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **Vehicle** | Interface defining vehicle behavior (contract) | None |
-| **Car** | Real implementation of vehicle | Implements Vehicle |
-| **NullVehicle** | Null object - implements interface but does nothing | Implements Vehicle |
-| **VehicleFactory** | Creates vehicles or NullVehicle instead of returning null | Returns Vehicle |
-
-## How to Code This Pattern
-
-1. **Define Interface**: Create `Vehicle` interface
-2. **Create Real Class**: `Car` implements `Vehicle` with actual behavior
-3. **Create Null Class**: `NullVehicle` implements `Vehicle` with empty methods
-4. **Update Factory**: Return `NullVehicle` instead of `null`
-5. **No Null Checks**: Client code doesn't need to check for null
-
+![](build/diagrams/behavioralDesign_NullObjectPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -156,56 +99,7 @@ You (Observer) subscribe to a channel (Subject) → When the creator uploads a v
 
 ### UML / Class Diagram
 
-# Observer - Class Diagram
-
-```mermaid
-classDiagram
-    class StockObserver {
-        <<interface>>
-        +update(price: double)
-    }
-
-    class EmailNotifier {
-        +update(price: double)
-    }
-
-    class SMSNotifier {
-        +update(price: double)
-    }
-
-    class StockSubject {
-        -observers: List~StockObserver~
-        -price: double
-        +attach(StockObserver)
-        +detach(StockObserver)
-        -notifyObservers()
-        +setPrice(double)
-    }
-
-    StockObserver <|.. EmailNotifier
-    StockObserver <|.. SMSNotifier
-    StockSubject --> StockObserver: notifies
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **StockObserver** | Interface for observers receiving notifications | None |
-| **EmailNotifier** | Concrete observer - sends email when notified | Implements StockObserver |
-| **SMSNotifier** | Concrete observer - sends SMS when notified | Implements StockObserver |
-| **StockSubject** | Subject/Observable - notifies all observers on state change | Maintains list of StockObserver |
-
-## How to Code This Pattern
-
-1. **Create Observer Interface**: Define `update()` method signature
-2. **Create Concrete Observers**: `EmailNotifier`, `SMSNotifier` implement `update()`
-3. **Create Subject**: Maintain list of observers
-4. **Implement attach()**: Add observer to list
-5. **Implement detach()**: Remove observer from list
-6. **Implement notifyObservers()**: Call `update()` on all observers
-7. **On State Change**: Call `notifyObservers()` when data changes
-
+![](build/diagrams/behavioralDesign_ObserverPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -250,52 +144,7 @@ Your complaint goes to the frontdesk → If they can't solve it, they pass to ma
 
 ### UML / Class Diagram
 
-# Chain of Responsibility - Class Diagram
-
-```mermaid
-classDiagram
-    class LogProcessor {
-        <<abstract>>
-        -nextProcessor: LogProcessor
-        +setNextProcessor(LogProcessor)
-        +logMessage(int level, String message)
-        #write(String message)
-    }
-
-    class DebugLogProcessor {
-        #write(String message)
-    }
-
-    class InfoLogProcessor {
-        #write(String message)
-    }
-
-    class ErrorLogProcessor {
-        #write(String message)
-    }
-
-    LogProcessor <|-- DebugLogProcessor
-    LogProcessor <|-- InfoLogProcessor
-    LogProcessor <|-- ErrorLogProcessor
-    LogProcessor --> LogProcessor: nextProcessor
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **LogProcessor** | Abstract base - defines chain structure and template for logging | nextProcessor (self-reference) |
-| **DebugLogProcessor** | Handles debug-level log messages | LogProcessor (extends) |
-| **InfoLogProcessor** | Handles info-level log messages | LogProcessor (extends) |
-| **ErrorLogProcessor** | Handles error-level log messages | LogProcessor (extends) |
-
-## How to Code This Pattern
-
-1. **Create Abstract Processor**: Define `LogProcessor` with next processor reference
-2. **Implement Processors**: Each concrete class handles specific log level
-3. **Build Chain**: Connect processors in order (Debug → Info → Error)
-4. **Send Request**: Processor either handles it or passes to next
-
+![](build/diagrams/behavioralDesign_chainOfResponsibilty_UML_ClassDiagram.md.png)
 
 
 ---
@@ -342,48 +191,7 @@ Your document (Originator) saves snapshots at certain points → Each snapshot i
 
 ### UML / Class Diagram
 
-# Memento - Class Diagram
-
-```mermaid
-classDiagram
-    class Originator {
-        -state: String
-        +setState(String)
-        +createMemento(): Memento
-        +restoreFromMemento(Memento)
-    }
-
-    class Memento {
-        -state: String
-        +getState(): String
-    }
-
-    class CareTaker {
-        -mementos: List~Memento~
-        +saveMemento(Memento)
-        +getMemento(int): Memento
-    }
-
-    Originator --> Memento: creates
-    CareTaker --> Memento: manages
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **Originator** | Creates memento snapshots of its state, can restore from memento | Creates Memento |
-| **Memento** | Immutable snapshot of originator's state at a point in time | None (value object) |
-| **CareTaker** | Manages collection of mementos, provides history management | Stores/retrieves Memento |
-
-## How to Code This Pattern
-
-1. **Create Originator**: Add `createMemento()` and `restoreFromMemento()` methods
-2. **Create Memento**: Immutable class storing state snapshot
-3. **Create CareTaker**: Maintain list of mementos (undo/redo stack)
-4. **Save State**: Call `createMemento()` before changes
-5. **Restore State**: Call `restoreFromMemento()` to go back
-
+![](build/diagrams/behavioralDesign_mementoPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -433,45 +241,7 @@ Instead of making a new book for each person, the library has a pool of books. Y
 
 ### UML / Class Diagram
 
-# Object Pool - Class Diagram
-
-```mermaid
-classDiagram
-    class DBConnection {
-        -connectionId: int
-        -isAvailable: boolean
-        +executeQuery(String)
-        +close()
-    }
-
-    class DBConnectionPoolManager {
-        -availableConnections: Queue~DBConnection~
-        -inUseConnections: Set~DBConnection~
-        -poolSize: int
-        +getConnection(): DBConnection
-        +releaseConnection(DBConnection)
-        -createNewConnection(): DBConnection
-    }
-
-    DBConnectionPoolManager --> DBConnection: manages & reuses
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **DBConnection** | Represents a database connection that can be reused | None |
-| **DBConnectionPoolManager** | Manages pool of connections, hands out and accepts returns | Creates/manages DBConnection |
-
-## How to Code This Pattern
-
-1. **Create Pooled Class**: `DBConnection` with proper initialization/cleanup
-2. **Create Pool Manager**: `DBConnectionPoolManager` with queues for available/in-use
-3. **Implement getConnection()**: Get from available pool or create new
-4. **Implement releaseConnection()**: Return connection to available pool
-5. **Handle Pool Exhaustion**: Either wait for available or create new (with limits)
-6. **Thread Safety**: Use synchronized collections or locks
-
+![](build/diagrams/behavioralDesign_objectPoolPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -521,68 +291,7 @@ IdleState → You insert card (CardInsertedState) → You enter PIN (PinVerified
 
 ### UML / Class Diagram
 
-# State - Class Diagram
-
-```mermaid
-classDiagram
-    class ATMState {
-        <<interface>>
-        +insertCard(ATM)
-        +insertPin(ATM)
-        +withdraw(ATM, amount)
-    }
-
-    class IdleStateATM {
-        +insertCard(ATM)
-        +insertPin(ATM)
-        +withdraw(ATM, amount)
-    }
-
-    class CardInsertedState {
-        +insertCard(ATM)
-        +insertPin(ATM)
-        +withdraw(ATM, amount)
-    }
-
-    class PinVerifiedState {
-        +insertCard(ATM)
-        +insertPin(ATM)
-        +withdraw(ATM, amount)
-    }
-
-    class ATM {
-        -currentState: ATMState
-        +setState(ATMState)
-        +insertCard()
-        +insertPin()
-        +withdraw(amount)
-    }
-
-    ATMState <|.. IdleStateATM
-    ATMState <|.. CardInsertedState
-    ATMState <|.. PinVerifiedState
-    ATM --> ATMState: currentState
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **ATMState** | Interface defining operations for a state | None |
-| **IdleStateATM** | Initial state - only allows card insertion | Implements ATMState |
-| **CardInsertedState** | Card inserted - only allows PIN entry | Implements ATMState |
-| **PinVerifiedState** | PIN verified - only allows withdrawal | Implements ATMState |
-| **ATM** | Context - delegates to current state | Holds reference to ATMState |
-
-## How to Code This Pattern
-
-1. **Create State Interface**: Define operations like `insertCard()`, `insertPin()`, `withdraw()`
-2. **Create Concrete States**: Each state implements the interface
-3. **In State Implementation**: Only allow valid operations, change ATM state accordingly
-4. **Create Context (ATM)**: Maintain current state, delegate method calls to it
-5. **State Transitions**: From within state methods, call `atm.setState(newState)`
-6. **Invalid Operations**: Throw exception or do nothing for invalid state transitions
-
+![](build/diagrams/behavioralDesign_statePattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -633,52 +342,7 @@ You have a car (Vehicle) → You can use GoogleMaps route (Strategy1) → Or Waz
 
 ### UML / Class Diagram
 
-# Strategy - Class Diagram
-
-```mermaid
-classDiagram
-    class DriveStrategy {
-        <<interface>>
-        +drive()
-    }
-
-    class NormalDrive {
-        +drive()
-    }
-
-    class SportsDrive {
-        +drive()
-    }
-
-    class Vehicle {
-        -driveStrategy: DriveStrategy
-        +setDriveStrategy(DriveStrategy)
-        +drive()
-    }
-
-    DriveStrategy <|.. NormalDrive
-    DriveStrategy <|.. SportsDrive
-    Vehicle --> DriveStrategy: uses
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **DriveStrategy** | Interface defining driving algorithms | None |
-| **NormalDrive** | Concrete strategy - normal driving behavior | Implements DriveStrategy |
-| **SportsDrive** | Concrete strategy - aggressive driving behavior | Implements DriveStrategy |
-| **Vehicle** | Context - uses strategy to drive | Holds reference to DriveStrategy |
-
-## How to Code This Pattern
-
-1. **Create Strategy Interface**: Define `drive()` method
-2. **Create Concrete Strategies**: `NormalDrive` and `SportsDrive`
-3. **Create Context (Vehicle)**: Maintain reference to strategy
-4. **Implement setDriveStrategy()**: Allow changing strategy at runtime
-5. **Delegate to Strategy**: `vehicle.drive()` calls `strategy.drive()`
-6. **Switch Algorithms**: Change strategy based on user input or conditions
-
+![](build/diagrams/behavioralDesign_strategyPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -729,51 +393,7 @@ All recipes have basic steps: Prepare ingredients → Cook → Plate up. But wit
 
 ### UML / Class Diagram
 
-# Template Method - Class Diagram
-
-```mermaid
-classDiagram
-    class PaymentFlow {
-        <<abstract>>
-        +pay() final
-        #validate()
-        #charge()
-        #confirm()
-    }
-
-    class PaymentToFriend {
-        #validate()
-        #charge()
-        #confirm()
-    }
-
-    class PaymentToMerchant {
-        #validate()
-        #charge()
-        #confirm()
-    }
-
-    PaymentFlow <|-- PaymentToFriend
-    PaymentFlow <|-- PaymentToMerchant
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **PaymentFlow** | Abstract class - defines payment algorithm skeleton (template) | None |
-| **PaymentToFriend** | Concrete implementation - specific steps for friend payment | Extends PaymentFlow |
-| **PaymentToMerchant** | Concrete implementation - specific steps for merchant payment | Extends PaymentFlow |
-
-## How to Code This Pattern
-
-1. **Create Abstract Class**: Define `pay()` as final (can't override)
-2. **Define Template Method**: `pay()` calls abstract methods in order
-3. **Define Abstract Methods**: `validate()`, `charge()`, `confirm()` (protected/abstract)
-4. **Create Concrete Classes**: Implement abstract methods with specific logic
-5. **Skeleton in Base**: Algorithm structure stays in base, details in subclasses
-6. **Call Order**: Template method controls execution order, subclasses fill in steps
-
+![](build/diagrams/behavioralDesign_templatePattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -824,80 +444,7 @@ McDonalds Factory makes burgers, fries, coke → KFC Factory makes chicken, frie
 
 ### UML / Class Diagram
 
-# Abstract Factory - Class Diagram
-
-```mermaid
-classDiagram
-    class CarFactory {
-        <<interface>>
-        +createCar(): Car
-        +createEngine(): Engine
-        +createTyre(): Tyre
-    }
-
-    class EconomyCarFactory {
-        +createCar(): Car
-        +createEngine(): Engine
-        +createTyre(): Tyre
-    }
-
-    class LuxuryCarFactory {
-        +createCar(): Car
-        +createEngine(): Engine
-        +createTyre(): Tyre
-    }
-
-    class Car {
-        <<interface>>
-    }
-
-    class EconomyCar {
-    }
-
-    class LuxuryCar {
-    }
-
-    class Engine {
-        <<interface>>
-    }
-
-    class EconomyEngine {
-    }
-
-    class LuxuryEngine {
-    }
-
-    CarFactory <|.. EconomyCarFactory
-    CarFactory <|.. LuxuryCarFactory
-    Car <|.. EconomyCar
-    Car <|.. LuxuryCar
-    Engine <|.. EconomyEngine
-    Engine <|.. LuxuryEngine
-    EconomyCarFactory --> EconomyCar: creates
-    EconomyCarFactory --> EconomyEngine: creates
-    LuxuryCarFactory --> LuxuryCar: creates
-    LuxuryCarFactory --> LuxuryEngine: creates
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **CarFactory** | Abstract factory interface - declares creation methods | None |
-| **EconomyCarFactory** | Creates economy family products | Creates Economy*, implements CarFactory |
-| **LuxuryCarFactory** | Creates luxury family products | Creates Luxury*, implements CarFactory |
-| **Car/Engine/Tyre** | Product interfaces | None |
-| **Economy/Luxury variants** | Concrete products for each family | Implement product interfaces |
-
-## How to Code This Pattern
-
-1. **Create Abstract Factory**: Interface with methods for each product
-2. **Create Product Interfaces**: `Car`, `Engine`, `Tyre`
-3. **Create Concrete Products**: Economy and Luxury variants
-4. **Create Concrete Factories**: Each factory creates its family
-5. **Ensure Consistency**: Factory ensures related products are from same family
-6. **Client Code**: Use factory interface only, don't know concrete classes
-
+![](build/diagrams/creationalDesign_abstractFacotoryPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -954,50 +501,7 @@ You don't say "give me all toppings" or "nothing". You build it step by step: "B
 
 ### UML / Class Diagram
 
-# Builder - Class Diagram
-
-```mermaid
-classDiagram
-    class Student {
-        -name: String
-        -age: int
-        -branch: String
-        -courses: List
-        -Student(builder)
-    }
-
-    class StudentBuilder {
-        -name: String
-        -age: int
-        -branch: String
-        -courses: List
-        +setName(String): StudentBuilder
-        +setAge(int): StudentBuilder
-        +setBranch(String): StudentBuilder
-        +addCourse(String): StudentBuilder
-        +build(): Student
-    }
-
-    Student --> StudentBuilder: created by
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **Student** | Object with multiple optional fields (immutable after building) | Built by StudentBuilder |
-| **StudentBuilder** | Builds Student step-by-step with fluent API | Creates Student |
-
-## How to Code This Pattern
-
-1. **Create Product Class**: `Student` with private constructor accepting builder
-2. **Create Builder Class**: Nested static class with same fields as product
-3. **Implement Fluent Methods**: Each setter returns `this` for chaining
-4. **Add Defaults**: Provide sensible default values for optional fields
-5. **Implement build()**: Create and return final product
-6. **Usage**: `new StudentBuilder().setName("X").setAge(20).build()`
-7. **Optional**: Use `@Builder` annotation from Lombok to auto-generate
-
+![](build/diagrams/creationalDesign_builderPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -1049,55 +553,7 @@ You go to the dealership (Factory) and ask for a "Honda Civic" (type). The deale
 
 ### UML / Class Diagram
 
-# Factory Method - Class Diagram
-
-```mermaid
-classDiagram
-    class Shape {
-        <<interface>>
-        +draw()
-    }
-
-    class Circle {
-        +draw()
-    }
-
-    class Rectangle {
-        +draw()
-    }
-
-    class Square {
-        +draw()
-    }
-
-    class ShapeFactory {
-        +getShape(type): Shape
-    }
-
-    Shape <|.. Circle
-    Shape <|.. Rectangle
-    Shape <|.. Square
-    ShapeFactory --> Shape: creates
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **Shape** | Product interface | None |
-| **Circle/Rectangle/Square** | Concrete products | Implement Shape |
-| **ShapeFactory** | Creator - factory method for creating shapes | Returns Shape interface |
-
-## How to Code This Pattern
-
-1. **Create Product Interface**: Define `draw()` method
-2. **Create Concrete Products**: `Circle`, `Rectangle`, `Square`
-3. **Create Factory Class**: Static method `getShape(String type)`
-4. **Implement Factory Logic**: Switch/if-else to create right shape
-5. **Return Interface**: Always return `Shape` type, not concrete class
-6. **Client Usage**: `Shape shape = ShapeFactory.getShape("circle")`
-7. **Encapsulate Creation**: Client doesn't know how to create shapes
-
+![](build/diagrams/creationalDesign_factoryPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -1149,45 +605,7 @@ You have an original document → You make a photocopy (shallow clone) → But i
 
 ### UML / Class Diagram
 
-# Prototype - Class Diagram
-
-```mermaid
-classDiagram
-    class Cloneable {
-        <<interface>>
-        +clone(): Object
-    }
-
-    class NetworkConnection {
-        -ip: String
-        -port: int
-        -connections: List
-        +clone(): NetworkConnection
-        +shallowClone(): NetworkConnection
-        +deepClone(): NetworkConnection
-    }
-
-    Cloneable <|.. NetworkConnection
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **Cloneable** | Interface for cloneable objects | None |
-| **NetworkConnection** | Implements cloning - supports both shallow and deep | Implements Cloneable |
-
-## How to Code This Pattern
-
-1. **Implement Cloneable**: Make class implement `Cloneable` interface
-2. **Override clone()**: Create and return copy of object
-3. **Shallow Clone**: Copy primitive fields, share reference fields
-4. **Deep Clone**: Create new instances of referenced objects
-5. **Handle Arrays/Lists**: Create new list and add cloned elements
-6. **Catch Exception**: Catch `CloneNotSupportedException` in implementation
-7. **Usage**: `NetworkConnection copy = original.clone()`
-8. **Alternative**: Use copy constructor instead of `clone()`
-
+![](build/diagrams/creationalDesign_prototypePattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -1241,83 +659,7 @@ There's only ONE president at a time. When you need to talk to the president, yo
 
 ### UML / Class Diagram
 
-# Singleton - Class Diagram
-
-```mermaid
-classDiagram
-    class DBConnection {
-        -instance: DBConnection static
-        -DBConnection() private
-        +getInstance(): DBConnection static
-        +executeQuery(String)
-    }
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **DBConnection** | Singleton - only one instance, global access | Self-manages instance |
-
-## How to Code This Pattern
-
-### Eager Initialization (Thread-Safe)
-```java
-class DBConnection {
-    private static final DBConnection instance = new DBConnection();
-    
-    private DBConnection() { }
-    
-    public static DBConnection getInstance() {
-        return instance;
-    }
-}
-```
-
-### Lazy Initialization (Thread-Safe)
-```java
-class DBConnection {
-    private static DBConnection instance;
-    
-    private DBConnection() { }
-    
-    public static synchronized DBConnection getInstance() {
-        if (instance == null) {
-            instance = new DBConnection();
-        }
-        return instance;
-    }
-}
-```
-
-### Double-Checked Locking
-```java
-class DBConnection {
-    private static volatile DBConnection instance;
-    
-    private DBConnection() { }
-    
-    public static DBConnection getInstance() {
-        if (instance == null) {
-            synchronized(DBConnection.class) {
-                if (instance == null) {
-                    instance = new DBConnection();
-                }
-            }
-        }
-        return instance;
-    }
-}
-```
-
-## Key Points
-
-- **Private Constructor**: Prevent instantiation from outside
-- **Static Instance**: Hold single instance
-- **getInstance()**: Return the singleton instance
-- **Thread-Safe**: Use synchronized or volatile for concurrency
-- **Enum Alternative**: Use enum for automatic singleton
-
+![](build/diagrams/creationalDesign_singletonDesignPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -1369,124 +711,7 @@ You have a device (WeightMachine) that outputs in kg, but your client needs it i
 
 ### UML / Class Diagram
 
-# Adapter - Class Diagram
-
-```mermaid
-classDiagram
-    class WeightMachine {
-        +getWeight(): double
-    }
-
-    class WeightMachineAdapter {
-        <<interface>>
-        +getWeightInPounds(): double
-    }
-
-    class WeightMachineAdapterImpl {
-        -weightMachine: WeightMachine
-        +getWeightInPounds(): double
-    }
-
-    WeightMachine --|> WeightMachineAdapterImpl: adapted by
-    WeightMachineAdapter <|.. WeightMachineAdapterImpl: implements
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **WeightMachine** | Adaptee - existing class with incompatible interface | None |
-| **WeightMachineAdapter** | Target interface - interface client expects | None |
-| **WeightMachineAdapterImpl** | Adapter - converts adaptee to target interface | Has WeightMachine, implements Adapter |
-
-## How to Code This Pattern
-
-### Object Adapter (Composition - Recommended)
-```java
-class WeightMachineAdapterImpl implements WeightMachineAdapter {
-    private WeightMachine weightMachine;
-    
-    public WeightMachineAdapterImpl(WeightMachine wm) {
-        # Adapter - Class Diagram
-
-        ```mermaid
-        classDiagram
-            class WeightMachine {
-                +getWeight(): double
-            }
-
-            class WeightReader {
-                <<interface>>
-                +getWeightInPounds(): double
-            }
-
-            class WeightMachineAdapterImpl {
-                -weightMachine: WeightMachine
-                +WeightMachineAdapterImpl(wm: WeightMachine)
-                +getWeightInPounds(): double
-            }
-
-            %% Relationships
-            WeightMachineAdapterImpl --> WeightMachine : uses
-            WeightReader <|.. WeightMachineAdapterImpl
-
-        ```
-
-        ## Class Relationships
-
-        | Class | Responsibility | Depends On |
-        |-------|---|---|
-        | **WeightMachine** | Adaptee — existing class providing weight in its own units | None |
-        | **WeightReader** | Target interface — what clients expect (weight in pounds) | None |
-        | **WeightMachineAdapterImpl** | Adapter (object adapter) — converts WeightMachine to WeightReader | Uses `WeightMachine`, implements `WeightReader` |
-
-        ## Plain Explanation
-
-        The client expects `WeightReader` (method `getWeightInPounds()`), but `WeightMachine` only provides `getWeight()`. The adapter (`WeightMachineAdapterImpl`) holds a `WeightMachine` and converts its result into the expected format.
-
-        ## How to Code This Pattern (Minimal)
-
-        ### Object Adapter (Composition — recommended)
-        ```java
-        // Target
-        public interface WeightReader {
-            double getWeightInPounds();
-        }
-
-        // Adaptee
-        public class WeightMachine {
-            public double getWeight() { return 50.0; /* kg */ }
-        }
-
-        // Adapter
-        public class WeightMachineAdapterImpl implements WeightReader {
-            private final WeightMachine weightMachine;
-
-            public WeightMachineAdapterImpl(WeightMachine wm) { this.weightMachine = wm; }
-
-            @Override
-            public double getWeightInPounds() {
-                return weightMachine.getWeight() * 2.20462; // kg -> lb
-            }
-        }
-        ```
-
-        ### Class Adapter (Inheritance — less flexible)
-        ```java
-        public class WeightMachineAdapter extends WeightMachine implements WeightReader {
-            @Override
-            public double getWeightInPounds() {
-                return getWeight() * 2.20462;
-            }
-        }
-        ```
-
-        ## Key Points
-
-        - Use object adapter (composition) when you can: it works with final/adapted classes and is more flexible.
-        - Use class adapter (inheritance) only when you must inherit and the adaptee's interface is compatible with inheritance.
-        - Adapter focuses on converting interfaces, not changing behaviour.
-
+![](build/diagrams/StructuralDesign_AdapterDesignPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -1539,79 +764,7 @@ Basic shirt → Add sleeves (decorator) → Add buttons (another decorator) → 
 
 ### UML / Class Diagram
 
-# Decorator - Class Diagram
-
-```mermaid
-classDiagram
-    class IceCream {
-        <<interface>>
-        +getCost(): double
-        +getDescription(): String
-    }
-
-    class VanillaIceCream {
-        +getCost(): double
-        +getDescription(): String
-    }
-
-    class IceCreamDecorator {
-        <<abstract>>
-        -iceCream: IceCream
-        +getCost(): double
-        +getDescription(): String
-    }
-
-    class ChocolateSyrupDecorator {
-        +getCost(): double
-        +getDescription(): String
-    }
-
-    class ChocoChipsDecorator {
-        +getCost(): double
-        +getDescription(): String
-    }
-
-    IceCream <|.. VanillaIceCream
-    IceCream <|.. IceCreamDecorator
-    IceCreamDecorator <|-- ChocolateSyrupDecorator
-    IceCreamDecorator <|-- ChocoChipsDecorator
-    IceCreamDecorator --> IceCream: wraps
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **IceCream** | Component interface - defines ice cream operations | None |
-| **VanillaIceCream** | Concrete component - base ice cream | Implements IceCream |
-| **IceCreamDecorator** | Abstract decorator - wraps ice cream and adds features | Has IceCream, implements IceCream |
-| **ChocolateSyrupDecorator** | Concrete decorator - adds chocolate syrup | Extends IceCreamDecorator |
-| **ChocoChipsDecorator** | Concrete decorator - adds choco chips | Extends IceCreamDecorator |
-
-## How to Code This Pattern
-
-1. **Create Component Interface**: `IceCream` with `getCost()` and `getDescription()`
-2. **Create Concrete Component**: `VanillaIceCream` implements interface
-3. **Create Abstract Decorator**: Implements interface, wraps component
-4. **Decorator holds Component**: `IceCreamDecorator` has `IceCream` reference
-5. **Decorator delegates**: Call wrapped component's methods first, then add own behavior
-6. **Create Concrete Decorators**: Each adds specific feature
-7. **Stack Decorators**: Can wrap decorator with another decorator
-
-## Example Usage
-```java
-IceCream iceCream = new VanillaIceCream();  // cost: 30
-iceCream = new ChocolateSyrupDecorator(iceCream);  // cost: 30 + 15 = 45
-iceCream = new ChocoChipsDecorator(iceCream);  // cost: 45 + 10 = 55
-```
-
-## Key Points
-
-- **Wrapper Pattern**: Decorators wrap components
-- **Same Interface**: Decorator implements same interface as component
-- **Recursive Composition**: Can nest decorators
-- **Runtime Addition**: Add features at runtime
-
+![](build/diagrams/StructuralDesign_DecoratorDesign_UML_ClassDiagram.md.png)
 
 
 ---
@@ -1665,104 +818,7 @@ You (Real Subject) are busy. Your assistant (Proxy) handles your calls → If so
 
 ### UML / Class Diagram
 
-# Proxy - Class Diagram
-
-```mermaid
-classDiagram
-    class Employee {
-        <<interface>>
-        +getSalary(): int
-        +getName(): String
-    }
-
-    class EmployeeImpl {
-        -name: String
-        -salary: int
-        +getSalary(): int
-        +getName(): String
-    }
-
-    class EmployeeCacheProxy {
-        -employee: Employee
-        -cachedData: Map~String,Object~
-        +getSalary(): int
-        +getName(): String
-        -fetchFromDB(): void
-    }
-
-    class RedisCacheClient {
-        +get(key): Object
-        +set(key, value): void
-    }
-
-    Employee <|.. EmployeeImpl
-    Employee <|.. EmployeeCacheProxy
-    EmployeeCacheProxy --> EmployeeImpl: delegates to
-    EmployeeCacheProxy --> RedisCacheClient: uses for caching
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **Employee** | Subject interface - defines operations | None |
-| **EmployeeImpl** | Real subject - actual expensive object | Implements Employee |
-| **EmployeeCacheProxy** | Proxy - controls access, adds caching | Has Employee, uses cache |
-| **RedisCacheClient** | External cache - stores cached data | None |
-
-## How to Code This Pattern
-
-1. **Create Subject Interface**: `Employee` with `getSalary()`, `getName()`
-
-2. **Create Real Subject**: `EmployeeImpl` does expensive DB operations
-
-3. **Create Proxy**: Implements same interface
-```java
-class EmployeeCacheProxy implements Employee {
-    private Employee employee;
-    private Map<String, Object> cache;
-    
-    public EmployeeCacheProxy(Employee emp) {
-        this.employee = emp;
-        this.cache = new HashMap<>();
-    }
-    
-    @Override
-    public int getSalary() {
-        if (cache.containsKey("salary")) {
-            return (int) cache.get("salary");
-        }
-        int salary = employee.getSalary();
-        cache.put("salary", salary);
-        return salary;
-    }
-}
-```
-
-4. **Proxy Controls Access**:
-   - Cache before delegating
-   - Lazy load real object
-   - Log/track access
-   - Restrict access
-
-5. **Client uses Proxy**: `Employee emp = new EmployeeCacheProxy(...)`
-
-## Proxy Types
-
-| Type | Purpose |
-|------|---------|
-| **Protection Proxy** | Control access (security) |
-| **Virtual Proxy** | Lazy initialization of expensive objects |
-| **Cache Proxy** | Cache expensive operations |
-| **Remote Proxy** | Represent remote object |
-
-## Key Points
-
-- **Same Interface**: Proxy implements same interface as real object
-- **Transparent**: Client doesn't know it's using proxy
-- **Add Behavior**: Before/after delegating to real object
-- **Control Access**: Decide when and how to delegate
-
+![](build/diagrams/StructuralDesign_ProxyPattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -1814,78 +870,7 @@ A car is abstraction (LivingThing) → It can be Sedan, SUV (Dog, Fish) → Engi
 
 ### UML / Class Diagram
 
-# Bridge - Class Diagram
-
-```mermaid
-classDiagram
-    class LivingThing {
-        -breathingProcess: BreathingProcess
-        +breath()
-    }
-
-    class Dog {
-        +breath()
-    }
-
-    class Fish {
-        +breath()
-    }
-
-    class Tree {
-        +breath()
-    }
-
-    class BreathingProcess {
-        <<interface>>
-        +breathe()
-    }
-
-    class LungsBreathProcess {
-        +breathe()
-    }
-
-    class GillBreathingProcess {
-        +breathe()
-    }
-
-    class PhotoSynthesisProcess {
-        +breathe()
-    }
-
-    LivingThing <|-- Dog
-    LivingThing <|-- Fish
-    LivingThing <|-- Tree
-    BreathingProcess <|.. LungsBreathProcess
-    BreathingProcess <|.. GillBreathingProcess
-    BreathingProcess <|.. PhotoSynthesisProcess
-    LivingThing --> BreathingProcess: uses
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **LivingThing** | Abstraction - high-level interface | Uses BreathingProcess |
-| **Dog/Fish/Tree** | Refined abstractions | Extend LivingThing |
-| **BreathingProcess** | Implementor interface - low-level interface | None |
-| **Lungs/Gill/Photosynthesis** | Concrete implementors | Implement BreathingProcess |
-
-## How to Code This Pattern
-
-1. **Separate Hierarchies**: Keep abstraction and implementation in separate hierarchies
-2. **Abstraction contains Implementor**: `LivingThing` has reference to `BreathingProcess`
-3. **Concrete Abstractions**: `Dog`, `Fish`, `Tree` extend abstraction
-4. **Concrete Implementors**: Implement the implementor interface
-5. **Combine dynamically**: `Dog` can use any `BreathingProcess`
-6. **Avoid Explosion**: Without bridge, would have Dog-Lungs, Dog-Gills, etc. classes
-
-## Key Points
-
-- **Bridge**: Separate abstraction from implementation
-- **Two Hierarchies**: One for abstraction, one for implementation
-- **Composition**: Abstraction uses composition with implementor
-- **Flexibility**: Change implementation independently from abstraction
-
+![](build/diagrams/StructuralDesign_bridgePattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -1937,58 +922,7 @@ Folders contain files and other folders → You can ask any folder/file "what's 
 
 ### UML / Class Diagram
 
-# Composite - Class Diagram
-
-```mermaid
-classDiagram
-    class FileSystem {
-        <<interface>>
-        +getSize(): int
-    }
-
-    class File {
-        -size: int
-        +getSize(): int
-    }
-
-    class Directory {
-        -children: List~FileSystem~
-        +add(FileSystem)
-        +remove(FileSystem)
-        +getChildren(): List
-        +getSize(): int
-    }
-
-    FileSystem <|.. File
-    FileSystem <|.. Directory
-    Directory --> FileSystem: contains
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **FileSystem** | Component interface - defines common operations | None |
-| **File** | Leaf - represents file with no children | Implements FileSystem |
-| **Directory** | Composite - contains FileSystem objects (files/folders) | Implements FileSystem, contains FileSystem |
-
-## How to Code This Pattern
-
-1. **Create Component Interface**: Define `getSize()`, `add()`, `remove()`
-2. **Create Leaf Class**: `File` implements interface, `getSize()` returns file size
-3. **Create Composite Class**: `Directory` implements interface
-4. **Maintain Children**: Directory has list of FileSystem objects
-5. **Add/Remove Methods**: Composite implements add() and remove()
-6. **Recursive Operations**: `Directory.getSize()` sums all children's sizes
-7. **Uniform Treatment**: Both File and Directory are treated as FileSystem
-
-## Key Points
-
-- **Leaf**: File - no children, performs actual work
-- **Composite**: Directory - can have children
-- **Recursive**: Operations work recursively through tree
-- **Uniform**: Client treats both File and Directory same way
-
+![](build/diagrams/StructuralDesign_compositePattern_UML_ClassDiagram.md.png)
 
 
 ---
@@ -2042,83 +976,5 @@ All soldiers have the same armor type (shared/intrinsic) but different positions
 
 ### UML / Class Diagram
 
-# Flyweight - Class Diagram
-
-```mermaid
-classDiagram
-    class IRobot {
-        <<interface>>
-        +display(x: int, y: int)
-    }
-
-    class HumanoidRobot {
-        -sprite: Sprite
-        +display(x: int, y: int)
-    }
-
-    class RoboticDogImpl {
-        -sprite: Sprite
-        +display(x: int, y: int)
-    }
-
-    class RoboticFactory {
-        -robots: Map~String,IRobot~
-        +createRobot(type): IRobot
-    }
-
-    class Sprite {
-        -image: Image
-        -animationFrames: List
-    }
-
-    IRobot <|.. HumanoidRobot
-    IRobot <|.. RoboticDogImpl
-    RoboticFactory --> IRobot: creates & manages
-    HumanoidRobot --> Sprite: intrinsic (shared)
-    RoboticDogImpl --> Sprite: intrinsic (shared)
-```
-
-## Class Relationships
-
-| Class | Responsibility | Depends On |
-|-------|---|---|
-| **IRobot** | Flyweight interface - defines robot display method | None |
-| **HumanoidRobot/RoboticDogImpl** | Concrete flyweights - store intrinsic state (sprite) | Implements IRobot, has shared Sprite |
-| **RoboticFactory** | Flyweight factory - creates and caches flyweights | Creates and manages IRobot |
-| **Sprite** | Intrinsic state - shared across many robots (immutable) | None |
-
-## How to Code This Pattern
-
-1. **Separate Intrinsic/Extrinsic State**:
-   - **Intrinsic**: Sprite (shared) - stored in flyweight
-   - **Extrinsic**: Position x, y (unique) - passed as parameter
-
-2. **Create Flyweight Interface**: `IRobot` with `display(x, y)`
-
-3. **Create Concrete Flyweights**: Store only intrinsic state
-
-4. **Create Factory**: Cache and reuse flyweights
-```java
-class RoboticFactory {
-    private Map<String, IRobot> robots = new HashMap<>();
-    
-    public IRobot createRobot(String type) {
-        if (!robots.containsKey(type)) {
-            robots.put(type, new HumanoidRobot(new Sprite(...)));
-        }
-        return robots.get(type);
-    }
-}
-```
-
-5. **Client provides extrinsic state**: `robot.display(100, 200)`
-
-## Key Points
-
-- **Shared State**: Intrinsic state shared across many objects
-- **Unique State**: Extrinsic state kept in client
-- **Memory Optimization**: 10,000 robots, 1 sprite = huge savings
-- **Immutable**: Flyweight objects must be immutable
-- **Factory**: Factory manages caching and reuse
-
+![](build/diagrams/StructuralDesign_flyweightPattern_UML_ClassDiagram.md.png)
 
