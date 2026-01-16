@@ -4,24 +4,24 @@
 classDiagram
     class PaymentFlow {
         <<abstract>>
-        +pay()$ final
-        #validate()*
-        #charge()*
-        #confirm()*
+        +pay() final
+        #validate()
+        #charge()
+        #confirm()
     }
-    
+
     class PaymentToFriend {
         #validate()
         #charge()
         #confirm()
     }
-    
+
     class PaymentToMerchant {
         #validate()
         #charge()
         #confirm()
     }
-    
+
     PaymentFlow <|-- PaymentToFriend
     PaymentFlow <|-- PaymentToMerchant
 ```

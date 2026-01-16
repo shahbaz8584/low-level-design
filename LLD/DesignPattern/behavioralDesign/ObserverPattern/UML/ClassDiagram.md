@@ -4,17 +4,17 @@
 classDiagram
     class StockObserver {
         <<interface>>
-        +update(price: double)*
+        +update(price: double)
     }
-    
+
     class EmailNotifier {
         +update(price: double)
     }
-    
+
     class SMSNotifier {
         +update(price: double)
     }
-    
+
     class StockSubject {
         -observers: List~StockObserver~
         -price: double
@@ -23,7 +23,7 @@ classDiagram
         -notifyObservers()
         +setPrice(double)
     }
-    
+
     StockObserver <|.. EmailNotifier
     StockObserver <|.. SMSNotifier
     StockSubject --> StockObserver: notifies

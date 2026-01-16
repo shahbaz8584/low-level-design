@@ -4,25 +4,25 @@
 classDiagram
     class Shape {
         <<interface>>
-        +draw()*
+        +draw()
     }
-    
+
     class Circle {
         +draw()
     }
-    
+
     class Rectangle {
         +draw()
     }
-    
+
     class Square {
         +draw()
     }
-    
+
     class ShapeFactory {
-        +getShape(type): Shape$
+        +getShape(type): Shape
     }
-    
+
     Shape <|.. Circle
     Shape <|.. Rectangle
     Shape <|.. Square

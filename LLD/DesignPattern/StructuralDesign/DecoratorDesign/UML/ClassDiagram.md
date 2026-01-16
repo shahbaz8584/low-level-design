@@ -4,32 +4,32 @@
 classDiagram
     class IceCream {
         <<interface>>
-        +getCost(): double*
-        +getDescription(): String*
+        +getCost(): double
+        +getDescription(): String
     }
-    
+
     class VanillaIceCream {
         +getCost(): double
         +getDescription(): String
     }
-    
+
     class IceCreamDecorator {
         <<abstract>>
         -iceCream: IceCream
         +getCost(): double
         +getDescription(): String
     }
-    
+
     class ChocolateSyrupDecorator {
         +getCost(): double
         +getDescription(): String
     }
-    
+
     class ChocoChipsDecorator {
         +getCost(): double
         +getDescription(): String
     }
-    
+
     IceCream <|.. VanillaIceCream
     IceCream <|.. IceCreamDecorator
     IceCreamDecorator <|-- ChocolateSyrupDecorator

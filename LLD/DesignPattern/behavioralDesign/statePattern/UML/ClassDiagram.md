@@ -4,29 +4,29 @@
 classDiagram
     class ATMState {
         <<interface>>
-        +insertCard(ATM)*
-        +insertPin(ATM)*
-        +withdraw(ATM, amount)*
+        +insertCard(ATM)
+        +insertPin(ATM)
+        +withdraw(ATM, amount)
     }
-    
+
     class IdleStateATM {
         +insertCard(ATM)
         +insertPin(ATM)
         +withdraw(ATM, amount)
     }
-    
+
     class CardInsertedState {
         +insertCard(ATM)
         +insertPin(ATM)
         +withdraw(ATM, amount)
     }
-    
+
     class PinVerifiedState {
         +insertCard(ATM)
         +insertPin(ATM)
         +withdraw(ATM, amount)
     }
-    
+
     class ATM {
         -currentState: ATMState
         +setState(ATMState)
@@ -34,7 +34,7 @@ classDiagram
         +insertPin()
         +withdraw(amount)
     }
-    
+
     ATMState <|.. IdleStateATM
     ATMState <|.. CardInsertedState
     ATMState <|.. PinVerifiedState

@@ -4,14 +4,14 @@
 classDiagram
     class FileSystem {
         <<interface>>
-        +getSize(): int*
+        +getSize(): int
     }
-    
+
     class File {
         -size: int
         +getSize(): int
     }
-    
+
     class Directory {
         -children: List~FileSystem~
         +add(FileSystem)
@@ -19,7 +19,7 @@ classDiagram
         +getChildren(): List
         +getSize(): int
     }
-    
+
     FileSystem <|.. File
     FileSystem <|.. Directory
     Directory --> FileSystem: contains

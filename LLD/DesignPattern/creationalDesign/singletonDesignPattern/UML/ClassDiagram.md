@@ -3,9 +3,9 @@
 ```mermaid
 classDiagram
     class DBConnection {
-        -instance: DBConnection$ static
+        -instance: DBConnection static
         -DBConnection() private
-        +getInstance(): DBConnection$ static
+        +getInstance(): DBConnection static
         +executeQuery(String)
     }
 ```

@@ -9,7 +9,7 @@ classDiagram
         -courses: List
         -Student(builder)
     }
-    
+
     class StudentBuilder {
         -name: String
         -age: int
@@ -21,7 +21,7 @@ classDiagram
         +addCourse(String): StudentBuilder
         +build(): Student
     }
-    
+
     Student --> StudentBuilder: created by
 ```
 

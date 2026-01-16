@@ -7,21 +7,21 @@ classDiagram
         -nextProcessor: LogProcessor
         +setNextProcessor(LogProcessor)
         +logMessage(int level, String message)
-        #write(String message)*
+        #write(String message)
     }
-    
+
     class DebugLogProcessor {
         #write(String message)
     }
-    
+
     class InfoLogProcessor {
         #write(String message)
     }
-    
+
     class ErrorLogProcessor {
         #write(String message)
     }
-    
+
     LogProcessor <|-- DebugLogProcessor
     LogProcessor <|-- InfoLogProcessor
     LogProcessor <|-- ErrorLogProcessor

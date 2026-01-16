@@ -49,7 +49,7 @@ When the main player gets injured, instead of having "no player", you put in a b
 
 ### UML / Class Diagram
 
-![](build/diagrams/behavioralDesign_NullObjectPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/behavioralDesign_NullObjectPattern_UML_ClassDiagram.md.svg" alt="NullObjectPattern UML"/></div>
 
 
 ---
@@ -99,7 +99,7 @@ You (Observer) subscribe to a channel (Subject) → When the creator uploads a v
 
 ### UML / Class Diagram
 
-![](build/diagrams/behavioralDesign_ObserverPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/behavioralDesign_ObserverPattern_UML_ClassDiagram.md.svg" alt="ObserverPattern UML"/></div>
 
 
 ---
@@ -144,7 +144,7 @@ Your complaint goes to the frontdesk → If they can't solve it, they pass to ma
 
 ### UML / Class Diagram
 
-![](build/diagrams/behavioralDesign_chainOfResponsibilty_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/behavioralDesign_chainOfResponsibilty_UML_ClassDiagram.md.svg" alt="chainOfResponsibilty UML"/></div>
 
 
 ---
@@ -191,7 +191,7 @@ Your document (Originator) saves snapshots at certain points → Each snapshot i
 
 ### UML / Class Diagram
 
-![](build/diagrams/behavioralDesign_mementoPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/behavioralDesign_mementoPattern_UML_ClassDiagram.md.svg" alt="mementoPattern UML"/></div>
 
 
 ---
@@ -241,7 +241,7 @@ Instead of making a new book for each person, the library has a pool of books. Y
 
 ### UML / Class Diagram
 
-![](build/diagrams/behavioralDesign_objectPoolPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/behavioralDesign_objectPoolPattern_UML_ClassDiagram.md.svg" alt="objectPoolPattern UML"/></div>
 
 
 ---
@@ -291,7 +291,7 @@ IdleState → You insert card (CardInsertedState) → You enter PIN (PinVerified
 
 ### UML / Class Diagram
 
-![](build/diagrams/behavioralDesign_statePattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/behavioralDesign_statePattern_UML_ClassDiagram.md.svg" alt="statePattern UML"/></div>
 
 
 ---
@@ -342,7 +342,7 @@ You have a car (Vehicle) → You can use GoogleMaps route (Strategy1) → Or Waz
 
 ### UML / Class Diagram
 
-![](build/diagrams/behavioralDesign_strategyPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/behavioralDesign_strategyPattern_UML_ClassDiagram.md.svg" alt="strategyPattern UML"/></div>
 
 
 ---
@@ -393,7 +393,7 @@ All recipes have basic steps: Prepare ingredients → Cook → Plate up. But wit
 
 ### UML / Class Diagram
 
-![](build/diagrams/behavioralDesign_templatePattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/behavioralDesign_templatePattern_UML_ClassDiagram.md.png" alt="templatePattern UML"/></div>
 
 
 ---
@@ -444,7 +444,7 @@ McDonalds Factory makes burgers, fries, coke → KFC Factory makes chicken, frie
 
 ### UML / Class Diagram
 
-![](build/diagrams/creationalDesign_abstractFacotoryPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/creationalDesign_abstractFacotoryPattern_UML_ClassDiagram.md.svg" alt="abstractFacotoryPattern UML"/></div>
 
 
 ---
@@ -501,7 +501,7 @@ You don't say "give me all toppings" or "nothing". You build it step by step: "B
 
 ### UML / Class Diagram
 
-![](build/diagrams/creationalDesign_builderPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/creationalDesign_builderPattern_UML_ClassDiagram.md.svg" alt="builderPattern UML"/></div>
 
 
 ---
@@ -553,7 +553,7 @@ You go to the dealership (Factory) and ask for a "Honda Civic" (type). The deale
 
 ### UML / Class Diagram
 
-![](build/diagrams/creationalDesign_factoryPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/creationalDesign_factoryPattern_UML_ClassDiagram.md.svg" alt="factoryPattern UML"/></div>
 
 
 ---
@@ -605,7 +605,7 @@ You have an original document → You make a photocopy (shallow clone) → But i
 
 ### UML / Class Diagram
 
-![](build/diagrams/creationalDesign_prototypePattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/creationalDesign_prototypePattern_UML_ClassDiagram.md.png" alt="prototypePattern UML"/></div>
 
 
 ---
@@ -659,7 +659,7 @@ There's only ONE president at a time. When you need to talk to the president, yo
 
 ### UML / Class Diagram
 
-![](build/diagrams/creationalDesign_singletonDesignPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/creationalDesign_singletonDesignPattern_UML_ClassDiagram.md.svg" alt="singletonDesignPattern UML"/></div>
 
 
 ---
@@ -711,7 +711,7 @@ You have a device (WeightMachine) that outputs in kg, but your client needs it i
 
 ### UML / Class Diagram
 
-![](build/diagrams/StructuralDesign_AdapterDesignPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/StructuralDesign_AdapterDesignPattern_UML_ClassDiagram.md.svg" alt="AdapterDesignPattern UML"/></div>
 
 
 ---
@@ -764,7 +764,7 @@ Basic shirt → Add sleeves (decorator) → Add buttons (another decorator) → 
 
 ### UML / Class Diagram
 
-![](build/diagrams/StructuralDesign_DecoratorDesign_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/StructuralDesign_DecoratorDesign_UML_ClassDiagram.md.svg" alt="DecoratorDesign UML"/></div>
 
 
 ---
@@ -818,7 +818,7 @@ You (Real Subject) are busy. Your assistant (Proxy) handles your calls → If so
 
 ### UML / Class Diagram
 
-![](build/diagrams/StructuralDesign_ProxyPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/StructuralDesign_ProxyPattern_UML_ClassDiagram.md.svg" alt="ProxyPattern UML"/></div>
 
 
 ---
@@ -870,7 +870,7 @@ A car is abstraction (LivingThing) → It can be Sedan, SUV (Dog, Fish) → Engi
 
 ### UML / Class Diagram
 
-![](build/diagrams/StructuralDesign_bridgePattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/StructuralDesign_bridgePattern_UML_ClassDiagram.md.svg" alt="bridgePattern UML"/></div>
 
 
 ---
@@ -922,7 +922,7 @@ Folders contain files and other folders → You can ask any folder/file "what's 
 
 ### UML / Class Diagram
 
-![](build/diagrams/StructuralDesign_compositePattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/StructuralDesign_compositePattern_UML_ClassDiagram.md.svg" alt="compositePattern UML"/></div>
 
 
 ---
@@ -976,5 +976,5 @@ All soldiers have the same armor type (shared/intrinsic) but different positions
 
 ### UML / Class Diagram
 
-![](build/diagrams/StructuralDesign_flyweightPattern_UML_ClassDiagram.md.png)
+<div class="diagram"><img src="build/diagrams/StructuralDesign_flyweightPattern_UML_ClassDiagram.md.svg" alt="flyweightPattern UML"/></div>
 

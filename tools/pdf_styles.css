@@ -16,3 +16,9 @@ thead th { text-align: left; }
 .uml { margin: 10px 0 20px 0; text-align: center; }
 pre.code { background: #f7f7f7; padding: 8px; border-radius: 4px; overflow-x: auto; }
 footer { position: fixed; bottom: 10px; width: 100%; text-align: center; font-size: 10px; color: #666; }
+
+.diagram { text-align: center; margin: 12px 0 18px 0; }
+.diagram img { max-width: 90%; height: auto; display: inline-block; border: 1px solid #e6e6e6; }
+.diagram figcaption { font-size: 11px; color: #444; margin-top: 6px; }
+
+.pattern-section { page-break-inside: avoid; }

@@ -5,17 +5,17 @@ classDiagram
     class WeightMachine {
         +getWeight(): double
     }
-    
+
     class WeightMachineAdapter {
         <<interface>>
-        +getWeightInPounds(): double*
+        +getWeightInPounds(): double
     }
-    
+
     class WeightMachineAdapterImpl {
         -weightMachine: WeightMachine
         +getWeightInPounds(): double
     }
-    
+
     WeightMachine --|> WeightMachineAdapterImpl: adapted by
     WeightMachineAdapter <|.. WeightMachineAdapterImpl: implements
 ```

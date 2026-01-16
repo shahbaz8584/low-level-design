@@ -4,23 +4,23 @@
 classDiagram
     class DriveStrategy {
         <<interface>>
-        +drive()*
+        +drive()
     }
-    
+
     class NormalDrive {
         +drive()
     }
-    
+
     class SportsDrive {
         +drive()
     }
-    
+
     class Vehicle {
         -driveStrategy: DriveStrategy
         +setDriveStrategy(DriveStrategy)
         +drive()
     }
-    
+
     DriveStrategy <|.. NormalDrive
     DriveStrategy <|.. SportsDrive
     Vehicle --> DriveStrategy: uses
