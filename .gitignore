@@ -33,3 +33,6 @@ _bmad*
 .opencode/
 .windsurf/
 .mcp.json
+
+# Node modules
+node_modules/
