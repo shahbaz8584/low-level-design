@@ -7,7 +7,10 @@
 <div class="container">
     <aside class="sidebar">
         <div class="brand" style="cursor: pointer;" onclick="window.location.href='All_Design_Patterns_index.html'">Design Patterns</div>
-        <div class="search"><input oninput="(e=>{const q=e.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{const t=(c.getAttribute('data-title')|| (c.querySelector('h3')&&c.querySelector('h3').innerText)||'').toLowerCase();c.style.display=t.includes(q)?'block':'none'})})(this)" placeholder="Search patterns..."></div>
+        <div class="search" style="position: relative;">
+            <input id="searchInput" oninput="filterPatterns(this)" placeholder="Search patterns..." autocomplete="off">
+            <div id="suggestions" style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #ddd; border-top: none; max-height: 300px; overflow-y: auto; display: none; z-index: 1000; border-radius: 0 0 4px 4px;"></div>
+        </div>
         <nav>
               <ul class="cat-list">
 <li><a class="cat-btn active" href="All_Design_Patterns_Creational.html" data-cat="Creational">Creational</a></li>
@@ -22,27 +25,27 @@
 
       <section class="panel">
         <div class="pattern-list-grid">
-          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/factoryPattern/README.md">
+          <article class="card" data-cat="Creational" tabindex="0" data-href="All_Design_Patterns_factorypattern.html">
             <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/factory-pattern.svg" alt="Factory Pattern image"></div>
             <h3>Factory Pattern</h3>
             <div class="intent">Factory Pattern</div>
           </article>
-          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/builderPattern/README.md">
+          <article class="card" data-cat="Creational" tabindex="0" data-href="All_Design_Patterns_builderpattern.html">
             <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/builderpattern.svg" alt="builderPattern image"></div>
             <h3>Builder Pattern</h3>
             <div class="intent">Builder Pattern</div>
           </article>
-          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/prototypePattern/README.md">
+          <article class="card" data-cat="Creational" tabindex="0" data-href="All_Design_Patterns_prototypepattern.html">
             <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/prototypepattern.svg" alt="prototypePattern image"></div>
             <h3>ProtoType Pattern</h3>
             <div class="intent">ProtoType Pattern</div>
           </article>
-          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/abstractFacotoryPattern/README.md">
+          <article class="card" data-cat="Creational" tabindex="0" data-href="All_Design_Patterns_abstractfactorypattern.html">
             <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/abstractfacotorypattern.svg" alt="abstractFacotoryPattern image"></div>
             <h3>Abstract Factory Pattern</h3>
             <div class="intent">Abstract Factory Pattern</div>
           </article>
-          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/singletonDesignPattern/README.md">
+          <article class="card" data-cat="Creational" tabindex="0" data-href="All_Design_Patterns_singletonpattern.html">
             <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/singleton-pattern.svg" alt="Singleton Pattern image"></div>
             <h3>Singleton Pattern</h3>
             <div class="intent">Singleton Pattern</div>
@@ -53,4 +56,54 @@
 </article>
 </main>
 </div>
+
+<script>
+    function filterPatterns(input) {
+        const query = input.value.toLowerCase().trim();
+        const cards = document.querySelectorAll('.card');
+        const suggestionsBox = document.getElementById('suggestions');
+        
+        // Get all pattern names with their hrefs
+        const patterns = Array.from(cards).map(card => ({
+            title: (card.getAttribute('data-title') || (card.querySelector('h3') && card.querySelector('h3').innerText) || '').trim(),
+            href: card.getAttribute('data-href') || '#',
+            element: card
+        })).filter(p => p.title);
+        
+        if (query.length === 0) {
+            suggestionsBox.style.display = 'none';
+            cards.forEach(c => c.style.display = 'block');
+            return;
+        }
+        
+        // Filter matching patterns
+        const matches = patterns.filter(p => p.title.toLowerCase().includes(query));
+        
+        // Show/hide cards
+        cards.forEach(card => {
+            const title = (card.getAttribute('data-title') || (card.querySelector('h3') && card.querySelector('h3').innerText) || '').toLowerCase();
+            card.style.display = title.includes(query) ? 'block' : 'none';
+        });
+        
+        // Show suggestions
+        if (matches.length > 0) {
+            suggestionsBox.innerHTML = matches.slice(0, 8).map(m => 
+                `<div style="padding: 10px; border-bottom: 1px solid #eee; cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5'" onmouseout="this.style.backgroundColor='transparent'" onclick="window.location.href='${m.href}';">
+                    <strong>${m.title}</strong>
+                </div>`
+            ).join('');
+            suggestionsBox.style.display = 'block';
+        } else {
+            suggestionsBox.innerHTML = '<div style="padding: 10px; color: #999;">No patterns found</div>';
+            suggestionsBox.style.display = 'block';
+        }
+    }
+    
+    // Close suggestions when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search')) {
+            document.getElementById('suggestions').style.display = 'none';
+        }
+    });
+</script>
 </body></html>
