@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Markdown Rendering Test</title>
+  <style>
+    body { font-family: monospace; padding: 20px; }
+    pre { background: #f0f0f0; padding: 10px; overflow: auto; }
+    .test { margin: 20px 0; border: 1px solid #ccc; padding: 10px; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+</head>
+<body>
+  <h1>Test: How Marked.js Renders ### Q1:</h1>
+  
+  <div class="test">
+    <h2>Input Markdown:</h2>
+    <pre>## Common Interview Questions
+
+### Q1: What's the difference?
+
+**Answer:** Some text here
+
+### Q2: How to add new?
+
+More details</pre>
+  </div>
+
+  <div class="test">
+    <h2>Rendered HTML (from marked.js):</h2>
+    <pre id="rendered"></pre>
+  </div>
+
+  <div class="test">
+    <h2>DOM Analysis:</h2>
+    <pre id="dom-analysis"></pre>
+  </div>
+
+  <div class="test">
+    <h2>Accordion Detection Test:</h2>
+    <pre id="accordion-test"></pre>
+  </div>
+
+  <script>
+    const markdown = `## Common Interview Questions
+
+### Q1: What's the difference?
+
+**Answer:** Some text here
+
+### Q2: How to add new?
+
+More details`;
+
+    // Render markdown
+    const rendered = marked.parse(markdown);
+    const safe = DOMPurify.sanitize(rendered, { ADD_ATTR: ['target'] });
+    
+    document.getElementById('rendered').textContent = safe;
+    
+    // Create DOM and analyze
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = safe;
+    
+    let domAnalysis = '';
+    tempDiv.querySelectorAll('*').forEach((el, idx) => {
+      if (idx < 20) {  // First 20 elements
+        domAnalysis += `\n${idx}: <${el.tagName.toLowerCase()}> "${el.textContent.substring(0, 50)}"`;
+      }
+    });
+    
+    document.getElementById('dom-analysis').textContent = domAnalysis;
+    
+    // Test accordion logic
+    let accordionTest = 'Testing H3 detection:\n\n';
+    const h2s = tempDiv.querySelectorAll('h2');
+    accordionTest += `Found ${h2s.length} H2 elements\n`;
+    
+    h2s.forEach((h2, idx) => {
+      accordionTest += `\nH2[${idx}]: "${h2.textContent}"\n`;
+      accordionTest += `Contains "Common Interview Questions": ${h2.textContent.includes('Common Interview Questions')}\n`;
+      
+      if (h2.textContent.includes('Common Interview Questions')) {
+        accordionTest += '  Scanning next elements:\n';
+        let current = h2.nextElementSibling;
+        let count = 0;
+        while (current && current.tagName !== 'H2' && count < 10) {
+          const text = current.textContent.substring(0, 40);
+          accordionTest += `    ${count}: <${current.tagName}> "${text}"\n`;
+          
+          if (current.tagName === 'H3') {
+            const matches = /^Q\d+:/.test(current.textContent);
+            accordionTest += `       Regex /^Q\\d+:/ matches: ${matches}\n`;
+          }
+          
+          current = current.nextElementSibling;
+          count++;
+        }
+      }
+    });
+    
+    document.getElementById('accordion-test').textContent = accordionTest;
+  </script>
+</body>
+</html>

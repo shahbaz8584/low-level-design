@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Prototype Pattern - Design Patterns</title>
+  <link rel="stylesheet" href="tools/index_style.css">
+  <link rel="stylesheet" href="tools/patterns_responsive.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body style="background: #f7fafc;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
+    <a href="All_Design_Patterns_index.html" class="back-button">← Back to Patterns</a>
+    
+    <div class="pattern-header">
+      <div class="breadcrumb">Design Patterns</div>
+      <h1>Prototype Pattern</h1>
+    </div>
+
+    <div class="pattern-container">
+      <aside class="pattern-toc">
+        <h4>Contents</h4>
+        <ul id="toc-list"></ul>
+      </aside>
+      <div class="pattern-main">
+        <div class="uml-section">
+    <h2>Class Diagram</h2>
+    <div class="mermaid">classDiagram
+    class Cloneable {
+        <<interface>>
+        +clone(): Object
+    }
+
+    class NetworkConnection {
+        -ip: String
+        -port: int
+        -connections: List
+        +clone(): NetworkConnection
+        +shallowClone(): NetworkConnection
+        +deepClone(): NetworkConnection
+    }
+
+    Cloneable <|.. NetworkConnection</div>
+    <div class="uml-caption">UML Class Diagram for Prototype Pattern</div>
+  </div>
+  
+        <article id="content" class="markdown-body"></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script id="md-data" type="application/json">"# Prototype Pattern \u2014 Interview Reference\n\n## Intent\nSpecify kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.\n\n## Problem Statement\nCreating new objects from scratch is expensive when initialization involves complex logic, database queries, or resource allocation. Additionally, tight coupling to concrete classes makes it hard to change object creation strategies at runtime.\n\n## Why Simple Code Fails\nUsing direct instantiation scattered throughout code creates tight coupling and makes it hard to:\n- Clone complex objects with deep state\n- Switch between different implementations at runtime\n- Handle expensive object creation efficiently\n- Test code that depends on specific object types\n\n## Solution Overview\nDefine a Prototype interface with a clone() method. Create concrete prototypes that implement cloning. Instead of creating new objects with `new`, clone existing prototypes. This allows creating variations efficiently and decouples clients from concrete classes.\n\n## Participants / Roles\n- Prototype (declares cloning interface)\n- ConcretePrototype (implements cloning)\n- Client (works with prototypes)\n\n## Runtime Execution Flow\n1. Client obtains a prototype instance\n2. Client calls prototype.clone()\n3. Prototype creates and returns a copy of itself\n4. Client uses the cloned object\n\n## Minimal Java Example\n## Without Pattern\n\n```java\n// Direct instantiation - expensive and tightly coupled\npublic class ExpensiveObject {\n  private DatabaseConnection db;\n  private ComplexConfig config;\n  \n  public ExpensiveObject() {\n    this.db = new DatabaseConnection(\"localhost\");\n    this.config = new ComplexConfig();\n    // 10+ expensive initialization steps...\n  }\n}\n\n// Usage requires full initialization each time\nExpensiveObject obj1 = new ExpensiveObject(); // Slow\nExpensiveObject obj2 = new ExpensiveObject(); // Slow\n```\n\n## With Pattern\n\n```java\n// Prototype interface\npublic interface Prototype<T> {\n  T clone();\n}\n\n// Concrete prototype\npublic class ExpensiveObject implements Prototype<ExpensiveObject> {\n  private DatabaseConnection db;\n  private ComplexConfig config;\n  \n  public ExpensiveObject(String host) {\n    this.db = new DatabaseConnection(host);\n    this.config = new ComplexConfig();\n  }\n  \n  @Override\n  public ExpensiveObject clone() {\n    try {\n      return (ExpensiveObject) super.clone();\n    } catch (CloneNotSupportedException e) {\n      throw new RuntimeException(e);\n    }\n  }\n}\n\n// Usage - fast cloning\nExpensiveObject prototype = new ExpensiveObject(\"localhost\");\nExpensiveObject obj1 = prototype.clone(); // Fast\nExpensiveObject obj2 = prototype.clone(); // Fast\n```\n\n## Advantages\n- Avoids expensive initialization by cloning\n- Decouples clients from concrete classes\n- Can add new prototypes at runtime without code changes\n- Better performance when object creation is costly\n- Works well with Factory pattern\n- Reduces constructor complexity\n\n## Disadvantages\n- Cloning complex objects with circular references is tricky\n- Shallow copy vs deep copy confusion and bugs\n- Objects with final fields can be difficult to clone\n- Not all objects should be cloneable (security concerns)\n- Requires implementing Cloneable interface properly\n\n## When NOT to Use\n- Simple objects with quick instantiation\n- Objects that shouldn't be copied (singletons, stateful services)\n- Objects with unique identities or database IDs\n- When security implications of cloning aren't understood\n\n## Common Mistakes\n- Shallow copying instead of deep copying when needed\n- Forgetting to handle mutable fields in clones\n- Not implementing deep copy for nested objects\n- Not handling CloneNotSupportedException properly\n- Cloning objects that shouldn't be cloned\n\n## Framework / Library Usage\n- **Java**: Cloneable interface, Object.clone()\n- **Python**: copy.copy(), copy.deepcopy()\n- **C#**: ICloneable interface\n- **Spring**: Can prototype scope for beans\n- **Apache Commons**: BeanUtils.cloneBean() for shallow cloning\n\n## System Design Use Cases\n- Caching objects to avoid expensive recreation\n- Configuration object templates\n- Game development (cloning game entities/NPCs)\n- Graphics systems (cloning complex scene objects)\n- Database query result caching\n\n## Interview One-Liner\nPrototype pattern allows efficient object creation by cloning existing prototypes instead of expensive instantiation, reducing coupling and overhead.\n\n## Common Interview Questions\n\n### Q1: What's the difference between shallow copy and deep copy?\n\n**Answer:**\n| Aspect | Shallow Copy | Deep Copy |\n|--------|-------------|----------|\n| **Primitives** | Copied | Copied |\n| **References** | Shared (same object) | New instances created |\n| **Memory** | Less memory | More memory |\n| **Changes** | Modifying nested object affects both | Independent copies |\n| **Speed** | Faster | Slower |\n\n**Code Example:**\n```java\nclass Person {\n    String name;\n    Address address; // Reference type\n}\n\n// Shallow copy - address is shared\nPerson p1 = new Person(\"John\", addr);\nPerson p2 = p1.shallowClone();\np2.address.city = \"NYC\"; // Changes p1 too!\n\n// Deep copy - address is cloned\nPerson p3 = p1.deepClone();\np3.address.city = \"NYC\"; // p1 unaffected\n```\n\n### Q2: When should you use Prototype vs Factory?\n\n**Answer:**\n| Aspect | Prototype | Factory |\n|--------|-----------|---------|\n| **Purpose** | Clone existing objects | Create new objects from scratch |\n| **Cost** | When cloning is cheaper than creating | When creation logic is complex |\n| **Coupling** | Decouples from concrete classes | Centralizes creation logic |\n| **Configuration** | Clone with existing state | Create with default state |\n| **Use Case** | Expensive initialization, caching | Type selection, inheritance hierarchy |\n\n**Example:**\n```java\n// Factory - best for choosing type\nNetworkConnection conn = ConnectionFactory.create(\"TCP\"); // Creates fresh\n\n// Prototype - best for cloning configured objects\nNetworkConnection original = new NetworkConnection(config);\nNetworkConnection clone = original.deepClone(); // Same config\n```\n\n### Q3: How do you handle circular references in cloning?\n\n**Answer:** Circular references occur when objects reference each other:\n\n```java\n// Naive approach - infinite loop\nclass Node {\n    Node next;\n    public Node clone() {\n        return new Node(next.clone()); // Infinite loop if next -> this\n    }\n}\n\n// Solution: Track visited objects\nMap<Node, Node> visited = new HashMap<>();\n\npublic Node clone(Node node, Map<Node, Node> visited) {\n    if (visited.containsKey(node)) {\n        return visited.get(node); // Return already-cloned copy\n    }\n    \n    Node copy = new Node(node.value);\n    visited.put(node, copy);\n    \n    if (node.next != null) {\n        copy.next = clone(node.next, visited);\n    }\n    \n    return copy;\n}\n```\n\n### Q4: What are the security implications of Cloneable?\n\n**Answer:** \n- **Access to private fields**: Clone bypasses constructor validation\n- **Mutable state exposure**: Clones might share mutable fields (shallow copy)\n- **Bypassing immutability**: Can clone immutable objects and modify them\n- **Type confusion**: Can clone objects intended not to be cloned\n\n**Secure approach:**\n```java\n// Don't use Cloneable - use copy constructor\npublic class SecureClass {\n    private final String data;\n    \n    public SecureClass(SecureClass other) {\n        this.data = new String(other.data); // Validate/transform\n    }\n    \n    // Don't override clone() at all\n}\n```\n\n### Q5: How would you implement prototype with immutable objects?\n\n**Answer:** Immutable objects cannot be cloned in traditional sense - create new instances:\n\n```java\npublic final class ImmutableUser {\n    private final String name;\n    private final int age;\n    private final List<String> roles;\n    \n    // Copy constructor for \"cloning\"\n    public ImmutableUser(ImmutableUser other) {\n        this.name = other.name;\n        this.age = other.age;\n        this.roles = new ArrayList<>(other.roles); // Deep copy list\n    }\n    \n    // Builder for modification (create new instance)\n    public ImmutableUser withAge(int newAge) {\n        return new ImmutableUser(this.name, newAge, this.roles);\n    }\n}\n\n// Usage\nImmutableUser original = new ImmutableUser(\"John\", 30, roles);\nImmutableUser copy = new ImmutableUser(original); // \"Clone\"\nImmutableUser modified = original.withAge(31); // New instance\n```\n\n### Q6: When should you use Prototype vs New?\n\n**Answer:**\n```java\n// Use 'new' when:\nShape circle = new Circle(); // Simple, cheap initialization\n\n// Use Prototype when:\nDatabaseConnection original = expensive(); // Costly DB connection\nDatabaseConnection clone = original.clone(); // Reuse connection pool\n\n// Use Prototype when:\nGameEntity template = loadTemplate(\"Orc\");\nGameEntity orc1 = template.clone(); // Many identical creatures\nGameEntity orc2 = template.clone();\nGameEntity orc3 = template.clone();\n```\n\n### Q7: How does Prototype relate to Registry Pattern?\n\n**Answer:** Prototype + Registry = Prototype manager:\n\n```java\n// Registry of prototypes\npublic class ShapeRegistry {\n    private Map<String, Shape> prototypes = new HashMap<>();\n    \n    public void registerPrototype(String name, Shape prototype) {\n        prototypes.put(name, prototype);\n    }\n    \n    public Shape createShape(String name) {\n        return prototypes.get(name).clone(); // Clone from registry\n    }\n}\n\n// Usage\nregistry.registerPrototype(\"redCircle\", new Circle(10, \"red\"));\nShape s1 = registry.createShape(\"redCircle\"); // Cloned red circle\nShape s2 = registry.createShape(\"redCircle\"); // Another red circle\n\n// Benefits:\n// - Centralized prototype management\n// - Easy to add new shapes without code changes\n// - Configurations stored in registry\n```\n\n"</script>
+  <script src="tools/pattern_renderer.js"></script>
+</body>
+</html>

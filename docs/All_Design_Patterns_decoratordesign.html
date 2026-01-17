@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Decorator Pattern - Design Patterns</title>
+  <link rel="stylesheet" href="tools/index_style.css">
+  <link rel="stylesheet" href="tools/patterns_responsive.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body style="background: #f7fafc;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
+    <a href="All_Design_Patterns_index.html" class="back-button">← Back to Patterns</a>
+    
+    <div class="pattern-header">
+      <div class="breadcrumb">Design Patterns</div>
+      <h1>Decorator Pattern</h1>
+    </div>
+
+    <div class="pattern-container">
+      <aside class="pattern-toc">
+        <h4>Contents</h4>
+        <ul id="toc-list"></ul>
+      </aside>
+      <div class="pattern-main">
+        <div class="uml-section">
+    <h2>Class Diagram</h2>
+    <div class="mermaid">classDiagram
+    class IceCream {
+        <<interface>>
+        +getCost(): double
+        +getDescription(): String
+    }
+
+    class VanillaIceCream {
+        +getCost(): double
+        +getDescription(): String
+    }
+
+    class IceCreamDecorator {
+        <<abstract>>
+        -iceCream: IceCream
+        +getCost(): double
+        +getDescription(): String
+    }
+
+    class ChocolateSyrupDecorator {
+        +getCost(): double
+        +getDescription(): String
+    }
+
+    class ChocoChipsDecorator {
+        +getCost(): double
+        +getDescription(): String
+    }
+
+    IceCream <|.. VanillaIceCream
+    IceCream <|.. IceCreamDecorator
+    IceCreamDecorator <|-- ChocolateSyrupDecorator
+    IceCreamDecorator <|-- ChocoChipsDecorator
+    IceCreamDecorator --> IceCream: wraps</div>
+    <div class="uml-caption">UML Class Diagram for Decorator Pattern</div>
+  </div>
+  
+        <article id="content" class="markdown-body"></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script id="md-data" type="application/json">"# Decorator Pattern \u2014 Interview Reference\n\n## Intent\nAttach additional responsibilities to an object dynamically, providing a flexible alternative to subclassing for extending functionality.\n\n## Problem Statement\nWhen you need to add features to objects, subclassing creates inflexible hierarchies. A Coffee class with addMilk(), addSugar(), addChocolate() variants requires exponential classes (CoffeeWithMilk, CoffeeWithMilkAndSugar, etc.). Decorator allows combining features dynamically without inheritance explosion.\n\n## Why Simple Code Fails\nUsing inheritance for optional features creates:\n- Exponential class explosion (2^n combinations for n features)\n- Tight coupling between features\n- Difficult to add/remove features at runtime\n- Violates Single Responsibility (classes do too much)\n\n## Solution Overview\nDefine a Component interface. Create concrete components and decorators that wrap components while implementing the same interface. Decorators add behavior before/after delegating to the wrapped object.\n\n## Participants / Roles\n- Component (interface for objects that can be decorated)\n- ConcreteComponent (base object to be decorated)\n- Decorator (abstract wrapper implementing Component)\n- ConcreteDecorator (adds specific responsibilities)\n\n## Runtime Execution Flow\n1. Client wraps ConcreteComponent with Decorators\n2. Each decorator wraps the previous one\n3. At runtime, client calls the outermost decorator\n4. Decorators chain calls down to ConcreteComponent\n5. Component executes, results bubble back up with decorations\n\n## Minimal Java Example\n## Without Pattern\n\n```java\n// Without Decorator: exponential classes for combinations\nabstract class Coffee { abstract double cost(); }\nclass Espresso extends Coffee { public double cost() { return 2.0; } }\nclass EspressoWithMilk extends Coffee { public double cost() { return 2.0 + 0.5; } }\nclass EspressoWithMilkAndSugar extends Coffee { public double cost() { return 2.0 + 0.5 + 0.3; } }\nclass EspressoWithMilkAndSugarAndChocolate extends Coffee { /*...*/ }\n// Add more combinations... problem scales exponentially!\n```\n\n## With Pattern\n\n```java\n// With Decorator: flexible composition of features\npublic interface Coffee { \n  double cost(); \n  String description();\n}\n\npublic class Espresso implements Coffee {\n  public double cost() { return 2.0; }\n  public String description() { return \"Espresso\"; }\n}\n\npublic abstract class CoffeeDecorator implements Coffee {\n  protected Coffee coffee;\n  public CoffeeDecorator(Coffee coffee) { this.coffee = coffee; }\n  public double cost() { return coffee.cost(); }  // delegates\n  public String description() { return coffee.description(); }  // delegates\n}\n\npublic class MilkDecorator extends CoffeeDecorator {\n  public MilkDecorator(Coffee coffee) { super(coffee); }\n  public double cost() { return super.cost() + 0.5; }\n  public String description() { return super.description() + \", Milk\"; }\n}\n\npublic class SugarDecorator extends CoffeeDecorator {\n  public SugarDecorator(Coffee coffee) { super(coffee); }\n  public double cost() { return super.cost() + 0.3; }\n  public String description() { return super.description() + \", Sugar\"; }\n}\n\npublic class ChocolateDecorator extends CoffeeDecorator {\n  public ChocolateDecorator(Coffee coffee) { super(coffee); }\n  public double cost() { return super.cost() + 0.7; }\n  public String description() { return super.description() + \", Chocolate\"; }\n}\n\n// Usage: Combine any features dynamically!\nCoffee coffee = new Espresso();  // cost: 2.0, desc: \"Espresso\"\ncoffee = new MilkDecorator(coffee);  // cost: 2.5, desc: \"Espresso, Milk\"\ncoffee = new SugarDecorator(coffee);  // cost: 2.8, desc: \"Espresso, Milk, Sugar\"\ncoffee = new ChocolateDecorator(coffee);  // cost: 3.5, desc: \"Espresso, Milk, Sugar, Chocolate\"\n\n// Or chain directly\nCoffee deluxe = new ChocolateDecorator(\n  new SugarDecorator(\n    new MilkDecorator(\n      new Espresso()\n    )\n  )\n);\n```\n\n## Real-World Examples\n\n### Java I/O Streams\n```java\n// File streaming with decorators\nInputStream input = new FileInputStream(\"data.txt\");  // base\ninput = new BufferedInputStream(input);  // decorator 1: buffering\ninput = new GZIPInputStream(input);      // decorator 2: compression\n// Read through decorated chain\nbyte[] data = input.read();\n```\n\n### UI Components\n```java\n// Window with optional decorators\nWindow window = new BasicWindow(\"Title\");\nwindow = new ScrollBarDecorator(window);  // add scroll\nwindow = new FrameDecorator(window);      // add frame\nwindow = new TitleBarDecorator(window);   // add title\nwindow.draw();\n```\n\n### Spring HttpHeaders\n```java\n// Request with headers (each header is a decorator)\nHttpHeaders headers = new HttpHeaders();\nheaders.add(\"Content-Type\", \"application/json\");\nheaders.add(\"Authorization\", \"Bearer token\");\nheaders.add(\"Cache-Control\", \"no-cache\");\n// Headers decorate the base HTTP request\n```\n\n## Advantages\n- \u2713 **Flexible feature composition** - Combine features dynamically without classes explosion\n- \u2713 **Single Responsibility** - Each decorator adds one feature\n- \u2713 **Open/Closed Principle** - Extend without modifying existing classes\n- \u2713 **Runtime flexibility** - Add/remove features at runtime\n- \u2713 **Alternative to inheritance** - Avoids deep inheritance hierarchies\n- \u2713 **Composition over inheritance** - More flexible and maintainable\n\n## Disadvantages\n- \u2717 **More objects** - Creating decorators creates many small objects in memory\n- \u2717 **Wrapper overhead** - Each decorator adds a function call layer\n- \u2717 **Complex debugging** - Deep decorator chains hard to trace\n- \u2717 **Order matters** - Decorator order can affect behavior\n- \u2717 **Type checking issues** - instanceof checks difficult with decorated objects\n\n## When NOT to Use\n- When only a few feature combinations exist (simple inheritance is better)\n- When performance is critical and wrapper overhead matters\n- When you need to modify existing behavior (use Strategy instead)\n- When decorator order shouldn't matter (mix-in composition or traits might be better)\n\n## Common Mistakes\n- Not delegating to wrapped object (breaking the chain)\n- Creating decorators for different responsibilities (each should do one thing)\n- Using when Strategy or State would be cleaner\n- Decorating decorators excessively (becomes unmaintainable)\n\n## Framework / Library Usage\n- **Java I/O** - BufferedInputStream, GZIPInputStream, ObjectInputStream\n- **Collections** - Collections.unmodifiableList(), Collections.synchronizedList()\n- **Servlet API** - HttpServletRequestWrapper, HttpServletResponseWrapper\n- **Spring** - SecurityContextHolderStrategyProvider for request decoration\n\n## System Design Use Cases\n- **Caching layers** - Decorate service calls with caching decorator\n- **Logging/Monitoring** - Decorate methods with logging decorators\n- **Permission checking** - Decorate operations with authentication decorators\n- **Compression/Encryption** - Decorate streams with compression/encryption\n\n## Interview One-Liner\nDecorator wraps objects to add responsibilities dynamically without modifying the original class or using inheritance.\n\n## Common Interview Questions\n- How is Decorator different from inheritance?\n- Can you decorate a decorator?\n- What's the difference between Decorator and Strategy?\n- Real-world example of Decorator you've used?\n\n## Interview One-Liner\nOne-line summary of the pattern.\n\n"</script>
+  <script src="tools/pattern_renderer.js"></script>
+</body>
+</html>

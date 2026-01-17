@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Observer Pattern - Design Patterns</title>
+  <link rel="stylesheet" href="tools/index_style.css">
+  <link rel="stylesheet" href="tools/patterns_responsive.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body style="background: #f7fafc;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
+    <a href="All_Design_Patterns_index.html" class="back-button">← Back to Patterns</a>
+    
+    <div class="pattern-header">
+      <div class="breadcrumb">Design Patterns</div>
+      <h1>Observer Pattern</h1>
+    </div>
+
+    <div class="pattern-container">
+      <aside class="pattern-toc">
+        <h4>Contents</h4>
+        <ul id="toc-list"></ul>
+      </aside>
+      <div class="pattern-main">
+        <div class="uml-section">
+    <h2>Class Diagram</h2>
+    <div class="mermaid">classDiagram
+    class StockObserver {
+        <<interface>>
+        +update(price: double)
+    }
+
+    class EmailNotifier {
+        +update(price: double)
+    }
+
+    class SMSNotifier {
+        +update(price: double)
+    }
+
+    class StockSubject {
+        -observers: List~StockObserver~
+        -price: double
+        +attach(StockObserver)
+        +detach(StockObserver)
+        -notifyObservers()
+        +setPrice(double)
+    }
+
+    StockObserver <|.. EmailNotifier
+    StockObserver <|.. SMSNotifier
+    StockSubject --> StockObserver: notifies</div>
+    <div class="uml-caption">UML Class Diagram for Observer Pattern</div>
+  </div>
+  
+        <article id="content" class="markdown-body"></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script id="md-data" type="application/json">"# Observer Pattern \u2014 Interview Reference\n\n## Intent\nDefine a one-to-many dependency so when one object changes state, its dependents are notified and updated automatically.\n\n## Problem Statement\nMultiple components need to react to state changes; tight coupling makes it hard to add/remove listeners.\n\n## Why Simple Code Fails\nHard-coded callbacks scatter notification logic and duplicate update code across observers.\n\n## Solution Overview\nIntroduce Subject (observable) that maintains a list of Observers; notify them on state changes.\n\n## UML Diagram\nSee `observable` folder UML and generated diagram at `build/diagrams/behavioralDesign_ObserverPattern_UML_ClassDiagram.md.png` (if present).\n\n## Participants / Roles\n- Subject/Observable: holds state and observers\n- Observer: interface for update callback\n- ConcreteObserver: implements reaction to changes\n\n## Runtime Execution Flow\n1. Observers register with Subject\n2. Subject changes state and calls notifyObservers()\n3. Each Observer.update() executes handling logic\n\n## Minimal Java Example\n## Without Pattern\n\n```java\n// Without Observer: manual callback invocations across components\nserviceChanged(); loggerUpdate(); cacheUpdate();\n```\n\n## With Pattern\n\n```java\n// With Observer: register observers to subject\nsubject.register(new LoggerObserver());\nsubject.register(new CacheObserver());\nsubject.notifyAll(\"UPDATE\");\n```\n\n\n```java\npublic interface Observer { void update(String evt); }\npublic class EventSource {\n  private List<Observer> observers = new ArrayList<>();\n  public void register(Observer o){ observers.add(o); }\n  public void notifyAll(String evt){ observers.forEach(o->o.update(evt)); }\n}\n```\n\n## Advantages\n- Loose coupling between subject and observers\n- Dynamic subscription/unsubscription\n\n## Disadvantages\n- Can introduce unexpected update order dependencies\n- Possible memory leaks if observers not unsubscribed\n\n## When NOT to Use\n- High-frequency updates where push costs are too high; prefer polling or debounced events\n\n## Common Mistakes\n- Forgetting to unregister observers\n- Heavy work inside update() blocking subject\n\n## Framework / Library Usage\n- Use event buses (Guava EventBus), Reactive frameworks (RxJava), or Spring ApplicationEvents for production systems\n\n## System Design Use Cases\n- UI event handling, cache invalidation, event-driven microservices\n\n## Interview One-Liner\nObserver decouples state changes from reaction logic by subscribing observers to subjects.\n\n## Common Interview Questions\n- How to handle slow/unreliable observers?\n- How to order notifications or handle failures in observers?\n"</script>
+  <script src="tools/pattern_renderer.js"></script>
+</body>
+</html>

@@ -32,7 +32,7 @@ _bmad*
 .gemini/
 .opencode/
 .windsurf/
-.mcp.json
+.mcp.json/
 
 # Node modules
 node_modules/

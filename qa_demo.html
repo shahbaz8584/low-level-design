@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Q&A Accordion Demo - Design Patterns</title>
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <style>
+    body {
+      background: #f7fafc;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 2rem;
+    }
+    .demo-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    }
+    .demo-header {
+      margin-bottom: 2rem;
+    }
+    .demo-header h1 {
+      color: #1f6feb;
+      margin: 0 0 0.5rem 0;
+      font-size: 2rem;
+    }
+    .demo-header p {
+      color: #666;
+      margin: 0;
+      font-size: 1rem;
+    }
+    .demo-instructions {
+      background: #f0f9ff;
+      border-left: 4px solid #1f6feb;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 4px;
+    }
+    .demo-instructions h3 {
+      margin: 0 0 0.5rem 0;
+      color: #1f6feb;
+    }
+    .demo-instructions p {
+      margin: 0.25rem 0;
+      color: #333;
+      font-size: 0.9rem;
+    }
+    .demo-instructions code {
+      background: #e0f2fe;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-header">
+      <h1>Q&A Accordion Feature Demo</h1>
+      <p>Interactive design pattern questions and answers with smooth expand/collapse animations</p>
+    </div>
+
+    <div class="demo-instructions">
+      <h3>Try it out:</h3>
+      <p>✓ Click on any question to expand/collapse the answer</p>
+      <p>✓ Watch the chevron (▼) rotate smoothly</p>
+      <p>✓ Use keyboard: Tab to focus, Enter or Space to toggle</p>
+      <p>✓ Hover over questions to see the background change</p>
+    </div>
+
+    <article id="content" class="markdown-body"></article>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script id="md-data" type="application/json">"## Common Interview Questions\n\n- How do you create a thread-safe singleton in Java?\n- What are the drawbacks of using the Singleton pattern?\n- How would you test code that depends on a Singleton?\n- Can you name different ways to implement Singleton?\n- What's the difference between Singleton and static class?\n- How do you prevent reflection attacks on Singleton?\n- Is Singleton still considered a good pattern in 2024?"</script>
+  <script>
+    // Q&A Conversion Function
+    function convertQAToAccordions(contentEl) {
+      const headings = contentEl.querySelectorAll('h2');
+      
+      headings.forEach(heading => {
+        if (heading.textContent.includes('Common Interview Questions')) {
+          let nextEl = heading.nextElementSibling;
+          
+          while (nextEl) {
+            if (nextEl.tagName === 'UL') {
+              const listItems = nextEl.querySelectorAll('li');
+              const qaSection = document.createElement('div');
+              qaSection.className = 'qa-section';
+              
+              const qaHeading = document.createElement('h2');
+              qaHeading.textContent = 'Common Interview Questions';
+              qaSection.appendChild(qaHeading);
+              
+              listItems.forEach((item) => {
+                const question = item.textContent.trim();
+                
+                const qaItem = document.createElement('div');
+                qaItem.className = 'qa-item';
+                
+                const qaQuestion = document.createElement('div');
+                qaQuestion.className = 'qa-question';
+                qaQuestion.tabIndex = 0;
+                qaQuestion.role = 'button';
+                
+                const questionText = document.createElement('span');
+                questionText.className = 'qa-question-text';
+                questionText.textContent = 'Q: ' + question;
+                
+                const toggle = document.createElement('span');
+                toggle.className = 'qa-toggle';
+                toggle.textContent = '▼';
+                
+                qaQuestion.appendChild(questionText);
+                qaQuestion.appendChild(toggle);
+                
+                const qaAnswer = document.createElement('div');
+                qaAnswer.className = 'qa-answer';
+                const answerText = document.createElement('p');
+                answerText.textContent = 'This is a placeholder answer. In production, each pattern would have a detailed, curated answer explaining best practices, considerations, and code examples specific to this question.';
+                qaAnswer.appendChild(answerText);
+                
+                qaItem.appendChild(qaQuestion);
+                qaItem.appendChild(qaAnswer);
+                
+                qaSection.appendChild(qaItem);
+              });
+              
+              nextEl.replaceWith(qaSection);
+              break;
+            } else if (nextEl.tagName && nextEl.tagName.match(/^H[1-6]$/)) {
+              break;
+            }
+            nextEl = nextEl.nextElementSibling;
+          }
+        }
+      });
+    }
+
+    // Initialize Accordions
+    function initQAAccordions() {
+      const qaQuestions = document.querySelectorAll('.qa-question');
+      
+      qaQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          const qaItem = this.closest('.qa-item');
+          if (qaItem) {
+            qaItem.classList.toggle('open');
+          }
+        });
+
+        question.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+    }
+
+    // Render content
+    const mdEl = document.getElementById('md-data');
+    const md = JSON.parse(mdEl.textContent);
+    const rendered = marked.parse(md);
+    const safe = DOMPurify.sanitize(rendered, { ADD_ATTR: ['target'] });
+    
+    const contentEl = document.getElementById('content');
+    contentEl.innerHTML = safe;
+    
+    convertQAToAccordions(contentEl);
+    initQAAccordions();
+  </script>
+</body>
+</html>

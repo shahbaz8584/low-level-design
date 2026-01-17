@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bridge Pattern - Design Patterns</title>
+  <link rel="stylesheet" href="tools/index_style.css">
+  <link rel="stylesheet" href="tools/patterns_responsive.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body style="background: #f7fafc;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
+    <a href="All_Design_Patterns_index.html" class="back-button">← Back to Patterns</a>
+    
+    <div class="pattern-header">
+      <div class="breadcrumb">Design Patterns</div>
+      <h1>Bridge Pattern</h1>
+    </div>
+
+    <div class="pattern-container">
+      <aside class="pattern-toc">
+        <h4>Contents</h4>
+        <ul id="toc-list"></ul>
+      </aside>
+      <div class="pattern-main">
+        <div class="uml-section">
+    <h2>Class Diagram</h2>
+    <div class="mermaid">classDiagram
+    class LivingThing {
+        -breathingProcess: BreathingProcess
+        +breath()
+    }
+
+    class Dog {
+        +breath()
+    }
+
+    class Fish {
+        +breath()
+    }
+
+    class Tree {
+        +breath()
+    }
+
+    class BreathingProcess {
+        <<interface>>
+        +breathe()
+    }
+
+    class LungsBreathProcess {
+        +breathe()
+    }
+
+    class GillBreathingProcess {
+        +breathe()
+    }
+
+    class PhotoSynthesisProcess {
+        +breathe()
+    }
+
+    LivingThing <|-- Dog
+    LivingThing <|-- Fish
+    LivingThing <|-- Tree
+    BreathingProcess <|.. LungsBreathProcess
+    BreathingProcess <|.. GillBreathingProcess
+    BreathingProcess <|.. PhotoSynthesisProcess
+    LivingThing --> BreathingProcess: uses</div>
+    <div class="uml-caption">UML Class Diagram for Bridge Pattern</div>
+  </div>
+  
+        <article id="content" class="markdown-body"></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script id="md-data" type="application/json">"# Bridge Pattern \u2014 Interview Reference\n\n## Intent\nDecouple an abstraction from its implementation so the two can vary independently.\n\n## Problem Statement\nConsider a Shape hierarchy (Circle, Rectangle, Triangle) that needs to support multiple rendering engines (OpenGL, DirectX, Vulkan). Without Bridge, you'd create 3\u00d73=9 classes (CircleOpenGL, CircleDirectX, RectangleOpenGL, etc.). The problem explodes as you add shapes or renderers.\n\n## Why Simple Code Fails\nUsing inheritance to combine abstractions and implementations:\n- Creates exponential class combinations (m shapes \u00d7 n implementations = m*n classes)\n- Tightly couples shape logic to rendering logic\n- Hard to add new shapes or renderers without creating new classes\n- Violates Single Responsibility (classes do too much)\n\n## Solution Overview\nSeparate abstraction (what shapes do) from implementation (how they render). Create an abstraction hierarchy and an implementation hierarchy, then bridge them via composition. The abstraction delegates to the implementation.\n\n## Participants / Roles\n- Abstraction (Shape interface)\n- RefinedAbstraction (Circle, Rectangle)\n- Implementor (Renderer interface)\n- ConcreteImplementor (OpenGLRenderer, DirectXRenderer)\n\n## Runtime Execution Flow\n1. Client creates a Shape with a specific Renderer\n2. Shape methods delegate to Renderer implementation\n3. Renderer handles platform-specific rendering\n4. Shape provides high-level API, Renderer provides low-level details\n\n## Minimal Java Example\n## Without Pattern\n\n```java\n// Without Bridge: exponential class explosion\n// Problem: 3 shapes \u00d7 3 renderers = 9 classes!\n\nabstract class Shape {}\nclass CircleOpenGL extends Shape { public void draw() { /*OpenGL circle*/ } }\nclass CircleDirectX extends Shape { public void draw() { /*DirectX circle*/ } }\nclass CircleVulkan extends Shape { public void draw() { /*Vulkan circle*/ } }\nclass RectangleOpenGL extends Shape { public void draw() { /*OpenGL rect*/ } }\nclass RectangleDirectX extends Shape { public void draw() { /*DirectX rect*/ } }\nclass RectangleVulkan extends Shape { public void draw() { /*Vulkan rect*/ } }\n// ... add more shapes or renderers, complexity grows!\n\n// Hard to switch renderers at runtime\nShape s = new CircleOpenGL();  // locked into OpenGL\n// To use DirectX, need to create new CircleDirectX instance\n```\n\n## With Pattern\n\n```java\n// With Bridge: 3 shapes + 3 renderers = 6 classes total (NOT 9!)\n\n// Abstraction: what shapes do\npublic abstract class Shape {\n  protected Renderer renderer;  // bridge to implementation\n  \n  public Shape(Renderer renderer) {\n    this.renderer = renderer;\n  }\n  \n  public abstract void draw();\n}\n\n// Refined Abstraction: specific shapes\npublic class Circle extends Shape {\n  private double radius;\n  \n  public Circle(Renderer renderer, double radius) {\n    super(renderer);\n    this.radius = radius;\n  }\n  \n  @Override\n  public void draw() {\n    renderer.drawCircle(radius);  // delegates to implementation\n  }\n}\n\npublic class Rectangle extends Shape {\n  private double width, height;\n  \n  public Rectangle(Renderer renderer, double width, double height) {\n    super(renderer);\n    this.width = width;\n    this.height = height;\n  }\n  \n  @Override\n  public void draw() {\n    renderer.drawRectangle(width, height);  // delegates\n  }\n}\n\n// Implementor: how rendering happens (abstract interface)\npublic interface Renderer {\n  void drawCircle(double radius);\n  void drawRectangle(double width, double height);\n}\n\n// Concrete Implementors: platform-specific rendering\npublic class OpenGLRenderer implements Renderer {\n  @Override\n  public void drawCircle(double radius) {\n    System.out.println(\"OpenGL: Drawing circle with radius \" + radius);\n    // OpenGL-specific code...\n  }\n  \n  @Override\n  public void drawRectangle(double w, double h) {\n    System.out.println(\"OpenGL: Drawing rectangle \" + w + \"x\" + h);\n    // OpenGL-specific code...\n  }\n}\n\npublic class DirectXRenderer implements Renderer {\n  @Override\n  public void drawCircle(double radius) {\n    System.out.println(\"DirectX: Drawing circle with radius \" + radius);\n    // DirectX-specific code...\n  }\n  \n  @Override\n  public void drawRectangle(double w, double h) {\n    System.out.println(\"DirectX: Drawing rectangle \" + w + \"x\" + h);\n    // DirectX-specific code...\n  }\n}\n\n// Usage: Flexible combinations!\nRenderer openGL = new OpenGLRenderer();\nRenderer directX = new DirectXRenderer();\n\nShape circle = new Circle(openGL, 5.0);  // OpenGL circle\ncircle.draw();  // Uses OpenGL renderer\n\nShape rect = new Rectangle(directX, 10.0, 20.0);  // DirectX rectangle\nrect.draw();  // Uses DirectX renderer\n\n// Easy to switch renderers at runtime!\nRenderer currentRenderer = getConfiguredRenderer();  // Could be any renderer\nShape shape = new Circle(currentRenderer, 5.0);\nshape.draw();\n```\n\n## Real-World Examples\n\n### JDBC Database Bridge\n```java\n// Abstraction: DataSource interface\npublic interface DataSource {\n  Connection getConnection();\n}\n\n// Implementations: Different databases\npublic class MysqlDataSource implements DataSource { /*...*/ }\npublic class PostgresDataSource implements DataSource { /*...*/ }\npublic class OracleDataSource implements DataSource { /*...*/ }\n\n// Usage: Switch databases without code change\nString dbType = config.getDatabase();  // \"mysql\" or \"postgres\"\nDataSource ds = DataSourceFactory.create(dbType);\nConnection conn = ds.getConnection();\n```\n\n### Logging Framework Bridge\n```java\n// Abstraction: Logger interface\npublic interface Logger {\n  void debug(String msg);\n  void info(String msg);\n  void error(String msg);\n}\n\n// Implementations: Different logging backends\npublic class Log4jLogger implements Logger { /*...*/ }\npublic class SLF4jLogger implements Logger { /*...*/ }\npublic class JuliLogger implements Logger { /*...*/ }\n\n// Usage: Switch logging framework easily\nLogger logger = LoggerFactory.getLogger(\"com.example\");\nlogger.info(\"Application started\");\n```\n\n### Device Driver Bridge\n```java\n// Abstraction: Device\npublic abstract class Device {\n  protected DeviceImplementation implementation;\n  public abstract void operate();\n}\n\n// Implementations: Different OS drivers\npublic interface DeviceImplementation {\n  void turnOn();\n  void turnOff();\n}\n\npublic class WindowsDeviceImpl implements DeviceImplementation { /*...*/ }\npublic class LinuxDeviceImpl implements DeviceImplementation { /*...*/ }\n```\n\n## Advantages\n- \u2713 **Decoupling** - Separates abstraction from implementation\n- \u2713 **Independent variation** - Change shape logic or rendering independently\n- \u2713 **Avoids class explosion** - m+n classes instead of m\u00d7n\n- \u2713 **Runtime flexibility** - Switch implementations at runtime\n- \u2713 **Extensibility** - Add new shapes or renderers without touching existing code\n- \u2713 **Single Responsibility** - Each class has one reason to change\n\n## Disadvantages\n- \u2717 **Increased complexity** - More classes and indirection\n- \u2717 **Overhead** - Delegation adds function call overhead\n- \u2717 **Learning curve** - Takes time to understand the pattern\n- \u2717 **Premature design** - Unnecessary if variations are simple\n\n## When NOT to Use\n- When you have only one implementation (overhead not justified)\n- When abstraction and implementation always change together\n- When the bridge adds more complexity than it solves\n- For simple, fixed class hierarchies\n\n## Common Mistakes\n- Confusing Bridge with Adapter (Bridge is for design time, Adapter for runtime incompatibilities)\n- Creating unnecessary bridges (YAGNI principle)\n- Not truly separating concerns (abstraction and implementation still coupled)\n- Wrong implementation choices (should be about variations, not inheritance)\n\n## Framework / Library Usage\n- **JDBC** - Driver interface bridges applications to databases\n- **SLF4J** - Logging facade bridges to different logging implementations\n- **AWT/Swing** - Component/ComponentPeer hierarchy\n- **Android** - Camera/CameraImpl hierarchy\n- **Java Collections** - List interface with different implementations\n\n## System Design Use Cases\n- **Multi-platform applications** - Different OS implementations\n- **Database abstraction layers** - Support multiple databases\n- **UI frameworks** - Separate UI logic from rendering engine\n- **Device drivers** - Abstract hardware behind driver interface\n\n## Interview One-Liner\nBridge decouples an abstraction from implementation using composition, allowing them to vary independently.\n\n## Common Interview Questions\n- How is Bridge different from Decorator?\n- When would you use Bridge vs Adapter?\n- Real-world system using Bridge pattern?\n- How does Bridge reduce class complexity?\n- Can you swap implementations at runtime with Bridge?\n\n## Interview One-Liner\nOne-line summary of the pattern.\n\n"</script>
+  <script src="tools/pattern_renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>compositePattern - Design Patterns</title>
+  <link rel="stylesheet" href="tools/index_style.css">
+  <link rel="stylesheet" href="tools/patterns_responsive.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body style="background: #f7fafc;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
+    <a href="All_Design_Patterns_index.html" class="back-button">← Back to Patterns</a>
+    
+    <div class="pattern-header">
+      <div class="breadcrumb">Design Patterns</div>
+      <h1>compositePattern</h1>
+    </div>
+
+    <div class="pattern-container">
+      <aside class="pattern-toc">
+        <h4>Contents</h4>
+        <ul id="toc-list"></ul>
+      </aside>
+      <div class="pattern-main">
+        <div class="uml-section">
+    <h2>Class Diagram</h2>
+    <div class="mermaid">classDiagram
+    class FileSystem {
+        <<interface>>
+        +getSize(): int
+    }
+
+    class File {
+        -size: int
+        +getSize(): int
+    }
+
+    class Directory {
+        -children: List~FileSystem~
+        +add(FileSystem)
+        +remove(FileSystem)
+        +getChildren(): List
+        +getSize(): int
+    }
+
+    FileSystem <|.. File
+    FileSystem <|.. Directory
+    Directory --> FileSystem: contains</div>
+    <div class="uml-caption">UML Class Diagram for compositePattern</div>
+  </div>
+  
+        <article id="content" class="markdown-body"></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script id="md-data" type="application/json">"# compositePattern \u2014 Interview Reference\n\n## Intent\nProvide a concise intent for the compositePattern pattern.\n\n## Problem Statement\n## What is it? The Composite pattern composes objects into tree structures to represent part-whole hierarchies. It allows clients to treat individual objects and compositions uniformly.\n\n## Why Simple Code Fails\nOften ad-hoc solutions (if/else, scattered constructors, tight coupling) make code hard to extend and test.\n\n## Solution Overview\nDescribe how the compositePattern pattern solves the problem by providing structure and separation of concerns.\n\n## Minimal Java Example\n## Without Pattern\n\n```java\n// Example not provided.\n```\n\n## With Pattern\n\n```java\n// Example not provided.\n```\n\n\n```java\n// Example not provided in original README.\n```\n\n## Advantages\n- Describe key advantages (decoupling, extensibility, reuse).\n\n## Disadvantages\n- Describe trade-offs (complexity, indirection, overuse).\n\n## When NOT to Use\n- Situations where the pattern is unnecessary.\n\n## Common Mistakes\n- Frequent anti-patterns or pitfalls.\n\n## Framework / Library Usage\n- Notes on common frameworks or language features.\n\n## System Design Use Cases\n- Real-world systems where this pattern helps.\n\n## Interview One-Liner\nOne-line summary of the pattern.\n\n"</script>
+  <script src="tools/pattern_renderer.js"></script>
+</body>
+</html>

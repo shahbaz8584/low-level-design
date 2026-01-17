@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Strategy Pattern - Design Patterns</title>
+  <link rel="stylesheet" href="tools/index_style.css">
+  <link rel="stylesheet" href="tools/patterns_responsive.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body style="background: #f7fafc;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
+    <a href="All_Design_Patterns_index.html" class="back-button">← Back to Patterns</a>
+    
+    <div class="pattern-header">
+      <div class="breadcrumb">Design Patterns</div>
+      <h1>Strategy Pattern</h1>
+    </div>
+
+    <div class="pattern-container">
+      <aside class="pattern-toc">
+        <h4>Contents</h4>
+        <ul id="toc-list"></ul>
+      </aside>
+      <div class="pattern-main">
+        <div class="uml-section">
+    <h2>Class Diagram</h2>
+    <div class="mermaid">classDiagram
+    class DriveStrategy {
+        <<interface>>
+        +drive()
+    }
+
+    class NormalDrive {
+        +drive()
+    }
+
+    class SportsDrive {
+        +drive()
+    }
+
+    class Vehicle {
+        -driveStrategy: DriveStrategy
+        +setDriveStrategy(DriveStrategy)
+        +drive()
+    }
+
+    DriveStrategy <|.. NormalDrive
+    DriveStrategy <|.. SportsDrive
+    Vehicle --> DriveStrategy: uses</div>
+    <div class="uml-caption">UML Class Diagram for Strategy Pattern</div>
+  </div>
+  
+        <article id="content" class="markdown-body"></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script id="md-data" type="application/json">"# Strategy Pattern \u2014 Interview Reference\n\n## Intent\nDefine a family of algorithms, encapsulate each one, and make them interchangeable.\n\n## Problem Statement\nMultiple algorithms are implemented with conditionals in client code making it hard to extend or test.\n\n## Why Simple Code Fails\nConditionals couple clients to algorithm implementations; adding new strategies requires modifying client code.\n\n## Solution Overview\nExtract algorithms into Strategy interfaces and inject appropriate Strategy into the Context.\n\n## UML Diagram\nSee `UML/ClassDiagram.md` and generated diagram at `build/diagrams/behavioralDesign_strategyPattern_UML_ClassDiagram.md.png` (if present).\n\n## Participants / Roles\n- Strategy (interface)\n- ConcreteStrategy (implementations)\n- Context (uses Strategy)\n\n## Runtime Execution Flow\n1. Client selects or injects a Strategy into Context\n2. Context delegates algorithm calls to Strategy\n3. Strategy executes algorithm and returns result\n\n## Minimal Java Example\n## Without Pattern\n\n```java\n// Without Strategy: conditional selection of algorithm\nif(mode==\"zip\") compressZip(data); else compressGzip(data);\n```\n\n## With Pattern\n\n```java\n// With Strategy: inject Compression strategy\nCompressor c = new Compressor(new ZipCompression());\nc.compress(data);\n```\n\n\n```java\npublic interface Compression { byte[] compress(byte[] data); }\npublic class ZipCompression implements Compression { public byte[] compress(byte[] d){/*...*/} }\npublic class Compressor {\n  private Compression compression;\n  public Compressor(Compression c){ this.compression = c; }\n  public void compress(byte[] data){ compression.compress(data); }\n}\n```\n\n## Advantages\n- Algorithms are isolated and interchangeable\n- Follows Open/Closed: add new strategies without changing clients\n\n## Disadvantages\n- More classes/code\n- Clients must be aware of Strategy selection\n\n## When NOT to Use\n- If only one algorithm exists and unlikely to change\n\n## Common Mistakes\n- Exposing too many strategy methods\n- Putting selection logic back into Context\n\n## Framework / Library Usage\n- Use DI frameworks (Spring) to wire strategies as beans and select by qualifier or profile\n\n## System Design Use Cases\n- Sorting strategies, compression formats, payment routing strategies, retry/backoff policies\n\n## Interview One-Liner\nStrategy encapsulates an interchangeable algorithm so clients can select behavior at runtime.\n\n## Common Interview Questions\n- How to combine Strategy with Factory for selection?\n- How to avoid strategy explosion?\n"</script>
+  <script src="tools/pattern_renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Adapter Pattern - Design Patterns</title>
+  <link rel="stylesheet" href="tools/index_style.css">
+  <link rel="stylesheet" href="tools/patterns_responsive.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body style="background: #f7fafc;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
+    <a href="All_Design_Patterns_index.html" class="back-button">← Back to Patterns</a>
+    
+    <div class="pattern-header">
+      <div class="breadcrumb">Design Patterns</div>
+      <h1>Adapter Pattern</h1>
+    </div>
+
+    <div class="pattern-container">
+      <aside class="pattern-toc">
+        <h4>Contents</h4>
+        <ul id="toc-list"></ul>
+      </aside>
+      <div class="pattern-main">
+        <div class="uml-section">
+    <h2>Class Diagram</h2>
+    <div class="mermaid">classDiagram
+    class WeightMachine {
+        +getWeight(): double
+    }
+
+    class WeightMachineAdapter {
+        <<interface>>
+        +getWeightInPounds(): double
+    }
+
+    class WeightMachineAdapterImpl {
+        -weightMachine: WeightMachine
+        +getWeightInPounds(): double
+    }
+
+    WeightMachine --|> WeightMachineAdapterImpl: adapted by
+    WeightMachineAdapter <|.. WeightMachineAdapterImpl: implements</div>
+    <div class="uml-caption">UML Class Diagram for Adapter Pattern</div>
+  </div>
+  
+        <article id="content" class="markdown-body"></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script id="md-data" type="application/json">"# Adapter Pattern \u2014 Interview Reference\n\n## Intent\nConvert the interface of a class into another interface clients expect, allowing incompatible interfaces to work together.\n\n## Problem Statement\nExisting classes provide useful behavior but expose an incompatible interface required by clients.\n\n## Why Simple Code Fails\nCopying or modifying existing classes to fit new interfaces introduces duplication and brittle changes.\n\n## Solution Overview\nProvide an Adapter that wraps the adaptee and implements the target interface, translating calls.\n\n## UML Diagram\nSee `UML/ClassDiagram.md` and generated diagram at `build/diagrams/StructuralDesign_AdapterDesignPattern_UML_ClassDiagram.md.png` (if present).\n\n## Participants / Roles\n- Target: desired interface\n- Adaptee: existing class with incompatible interface\n- Adapter: implements Target and delegates to Adaptee\n\n## Runtime Execution Flow\n1. Client uses Target interface\n2. Adapter implements Target and translates calls to Adaptee\n3. Adaptee performs the work; Adapter returns results to client\n\n## Minimal Java Example\n## Without Pattern\n\n```java\n// Problem: Multiple incompatible interfaces scattered throughout code\nLegacyDatabase legacyDB = new LegacyDatabase();\nlegacyDB.openConnection(\"host\", \"port\");  // legacy method\nlegacyDB.executeQuery(\"SELECT ...\");       // legacy method\nlegacyDB.closeConnection();                // legacy method\n\n// Client code tightly coupled to legacy interface\n// Hard to switch to modern database without refactoring everywhere\npublic void loadUserData(String userId) {\n  LegacyDatabase db = new LegacyDatabase();\n  db.openConnection(\"localhost\", \"3306\");\n  String result = db.executeQuery(\"SELECT * FROM users WHERE id=\" + userId);\n  // Parse result manually\n  db.closeConnection();\n}\n```\n\n## With Pattern\n\n```java\n// Solution: Adapter translates legacy interface to modern one\npublic interface ModernDatabase {\n  void connect(String connectionString);\n  String query(String sql);\n  void disconnect();\n}\n\npublic class DatabaseAdapter implements ModernDatabase {\n  private LegacyDatabase legacyDB = new LegacyDatabase();\n  \n  @Override\n  public void connect(String connectionString) {\n    // Translate: parse connection string and call legacy methods\n    String[] parts = connectionString.split(\":\");\n    legacyDB.openConnection(parts[0], parts[1]);\n  }\n  \n  @Override\n  public String query(String sql) {\n    // Translate: legacy returns raw string, modern returns parsed data\n    return legacyDB.executeQuery(sql);\n  }\n  \n  @Override\n  public void disconnect() {\n    legacyDB.closeConnection();\n  }\n}\n\n// Usage: Client code works with modern interface\npublic void loadUserData(String userId, ModernDatabase db) {\n  db.connect(\"localhost:3306\");\n  String result = db.query(\"SELECT * FROM users WHERE id=\" + userId);\n  // Work with clean result\n  db.disconnect();\n}\n\n// Switch between implementations easily\nModernDatabase db = new DatabaseAdapter(); // Uses legacy backend\nloadUserData(\"123\", db);\n```\n\n## Real-World Examples\n\n### JDBC Adapter Example\n```java\n// Legacy system uses custom connection API\nclass OracleConnection {\n  public void open(String host, int port) { /*...*/ }\n  public void exec(String query) { /*...*/ }\n}\n\n// JDBC expects standard interface\npublic interface java.sql.Connection {\n  Statement createStatement();\n  void close();\n}\n\n// JDBC adapter bridges the gap (internal to driver)\n// Users see standard Connection interface, driver handles Oracle specifics\n```\n\n### Collections.asSet() Example\n```java\n// Legacy array-based code\nString[] items = {\"apple\", \"banana\", \"cherry\"};\n\n// Modern Collections API\nList<String> list = Arrays.asList(items);\nSet<String> set = new HashSet<>(list);\n// Adapter converts array \u2192 List \u2192 Set transparently\n```\n\n### Android RecyclerView Adapter Example\n```java\n// RecyclerView expects ViewHolder interface\npublic abstract class RecyclerView.Adapter<VH extends ViewHolder> {\n  abstract void onBindViewHolder(VH holder, int position);\n}\n\n// Our app data might be in any format (API response, database)\npublic class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {\n  private List<User> users;\n  \n  @Override\n  public void onBindViewHolder(UserViewHolder holder, int position) {\n    // Adapt: translate User object \u2192 ViewHolder UI bindings\n    User user = users.get(position);\n    holder.nameView.setText(user.getName());\n    holder.emailView.setText(user.getEmail());\n  }\n}\n```\n\n## Advantages\n- Reuse existing code without modification\n- Keeps client code clean and stable\n\n## Disadvantages\n- Can add extra layers and indirection\n\n## When NOT to Use\n- When you can change both sides or when interfaces are simple to align\n\n## Common Mistakes\n- Over-adapting: creating adapters for trivial interface differences\n- Hiding performance or semantic differences behind adapter\n\n## Framework / Library Usage\n- Adapters commonly appear as wrappers, facades, or compatibility layers in middleware\n\n## System Design Use Cases\n- Integrating legacy systems, API version adapters, driver or protocol translation\n\n## Interview One-Liner\nAdapter wraps an incompatible interface to match the client's expected interface without changing original code.\n\n## Common Interview Questions\n- Adapter vs Facade \u2014 differences?\n- When to prefer object adapter over class adapter?\n"</script>
+  <script src="tools/pattern_renderer.js"></script>
+</body>
+</html>

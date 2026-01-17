@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Design Patterns - Overview</title>
+    <link rel="stylesheet" href="tools/index_style.css">
+    <link rel="stylesheet" href="tools/patterns_responsive.css">
+    <script defer src="tools/patterns_animations.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="brand">Design Patterns</div>
+            <div class="search"><input
+                    oninput="(e=>{const q=e.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{const t=(c.getAttribute('data-title')|| (c.querySelector('h3')&&c.querySelector('h3').innerText)||'').toLowerCase();c.style.display=t.includes(q)?'block':'none'})})(this)"
+                    placeholder="Search patterns..."></div>
+            <nav>
+                <ul class="cat-list">
+                    <li><a class="cat-btn" href="All_Design_Patterns_Creational.html"
+                            data-cat="Creational">Creational</a></li>
+                    <li><a class="cat-btn" href="All_Design_Patterns_Structural.html"
+                            data-cat="Structural">Structural</a></li>
+                    <li><a class="cat-btn" href="All_Design_Patterns_Behavioral.html"
+                            data-cat="Behavioral">Behavioral</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="header">
+                <h1>Design Patterns — Quick Guide</h1>
+            </div>
+            <article>
+
+                <section class="panel">
+                    <h2>What is a Design Pattern?</h2>
+                    <p>A design pattern is a clear, reusable approach to solving a common software design problem. It
+                        describes the problem, the idea for solving it, and the main roles or parts involved. Patterns
+                        help you write designs that are easier to understand, change, and reuse across projects.</p>
+                    <p>A good pattern explains when to use it, why it works, and the trade-offs to expect. Patterns are
+                        language-independent: they describe structure and behavior, not exact code.</p>
+                </section>
+
+                <section class="panel">
+                    <h2>Why Design Patterns Are Useful</h2>
+                    <ul>
+                        <li>Provide tested and proven solutions to common software design problems</li>
+                        <li>Help developers build faster without reinventing solutions</li>
+                        <li>Prevent hidden design issues that may appear later in development</li>
+                        <li>Improve code readability and maintainability</li>
+                        <li>Make code easier to understand for developers familiar with the patterns</li>
+                        <li>Offer general solutions that work across many different problems</li>
+                        <li>Are not tied to a specific language or project</li>
+                        <li>Give developers a common vocabulary to communicate design ideas</li>
+                        <li>Reduce reliance on ad-hoc or one-time solutions</li>
+                        <li>Improve over time through community experience and best practices</li>
+                    </ul>
+                </section>
+
+                <section class="panel">
+                    <h2>📋 Recent Updates (January 2026)</h2>
+                    <div style="background: #f0f9ff; padding: 1.5rem; border-left: 4px solid #1f6feb; border-radius: 4px;">
+                        <h3 style="margin-top: 0; color: #0f172a;">✨ New Features & Improvements</h3>
+                        
+                        <h4 style="color: #1f6feb; margin-top: 1.5rem;">🎯 Interactive Q&A Accordions</h4>
+                        <p>All design pattern pages now feature <strong>Common Interview Questions</strong> with interactive accordion sections:</p>
+                        <ul>
+                            <li><strong>Q1-Q7</strong> comprehensive interview questions for each pattern</li>
+                            <li><strong>Click to expand/collapse</strong> answers with smooth animations</li>
+                            <li><strong>Only one answer open at a time</strong> for focused learning</li>
+                            <li><strong>Copy-friendly answers</strong> with code examples and tables</li>
+                        </ul>
+
+                        <h4 style="color: #1f6feb; margin-top: 1.5rem;">📊 Updated Patterns with Q&A</h4>
+                        <p><strong>Recently enhanced with full interview questions:</strong></p>
+                        <ul>
+                            <li><strong>Builder Pattern</strong> — Q1-Q7 covering telescoping constructors, immutability, reusability</li>
+                            <li><strong>Prototype Pattern</strong> — Q1-Q7 covering shallow/deep copy, circular references, cloning strategies</li>
+                            <li><strong>Singleton Pattern</strong> — Q1-Q7 covering thread-safety, eager vs lazy, microservices concerns</li>
+                            <li><strong>Factory Pattern</strong> — Q1-Q7 covering Factory vs Builder, Open/Closed Principle, real-world use cases</li>
+                        </ul>
+
+                        <h4 style="color: #1f6feb; margin-top: 1.5rem;">🎨 UML Diagrams</h4>
+                        <p>All pattern pages include <strong>Class Diagrams</strong> rendered with Mermaid:</p>
+                        <ul>
+                            <li>Visual representation of pattern structure</li>
+                            <li>Class relationships and dependencies</li>
+                            <li>Participant roles clearly labeled</li>
+                        </ul>
+
+                        <h4 style="color: #1f6feb; margin-top: 1.5rem;">🔧 Technical Improvements</h4>
+                        <ul>
+                            <li>Fixed accordion toggle button responsiveness</li>
+                            <li>Proper section ordering (questions after "Common Interview Questions" heading)</li>
+                            <li>Removed duplicate headings and conflicting event handlers</li>
+                            <li>Smooth max-height animations with proper padding transitions</li>
+                            <li>Console logging for debugging accordion behavior</li>
+                        </ul>
+
+                        <h4 style="color: #1f6feb; margin-top: 1.5rem;">📖 All Updated Patterns</h4>
+                        <p><strong>Complete coverage with interview questions and diagrams:</strong></p>
+                        <ul style="columns: 2; gap: 2rem;">
+                            <li>Abstract Factory</li>
+                            <li>Adapter</li>
+                            <li>Bridge</li>
+                            <li>Builder</li>
+                            <li>Chain of Responsibility</li>
+                            <li>Composite</li>
+                            <li>Decorator</li>
+                            <li>Factory</li>
+                            <li>Flyweight</li>
+                            <li>Memento</li>
+                            <li>Null Object</li>
+                            <li>Object Pool</li>
+                            <li>Observer</li>
+                            <li>Prototype</li>
+                            <li>Proxy</li>
+                            <li>Singleton</li>
+                            <li>State</li>
+                            <li>Strategy</li>
+                            <li>Template Method</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="margin-top: 2rem;">🚀 How to Use</h3>
+                    <ol>
+                        <li>Select a pattern category: <strong>Creational</strong>, <strong>Structural</strong>, or <strong>Behavioral</strong></li>
+                        <li>Click on any pattern to view detailed explanation and UML diagram</li>
+                        <li>Scroll to <strong>"Common Interview Questions"</strong> section</li>
+                        <li>Click <strong>"+"</strong> button to expand a question and read the answer</li>
+                        <li>Click <strong>"−"</strong> to collapse and open another question</li>
+                        <li>Use the <strong>search box</strong> to find patterns quickly</li>
+                    </ol>
+                </section>
+
+            </article>
+        </main>
+    </div>
+</body>
+
+</html>

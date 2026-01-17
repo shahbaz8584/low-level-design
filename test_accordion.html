@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accordion Test</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; }
+    h1 { color: #333; }
+    .console-output { 
+      background: #1e1e1e; 
+      color: #d4d4d4; 
+      padding: 15px; 
+      border-radius: 5px; 
+      font-family: monospace;
+      font-size: 13px;
+      max-height: 400px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    button { 
+      padding: 10px 20px; 
+      background: #007bff; 
+      color: white; 
+      border: none; 
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <h1>Accordion Debugging Test</h1>
+  <p>This page will load the Factory Pattern page and show console logs</p>
+  <button onclick="testAccordion()">Test Accordion Setup</button>
+  <div id="console" class="console-output">Loading...</div>
+
+  <script>
+    let logs = [];
+    const originalLog = console.log;
+    
+    // Intercept console.log
+    console.log = function(...args) {
+      originalLog.apply(console, args);
+      logs.push(args.join(' '));
+      updateConsole();
+    };
+    
+    function updateConsole() {
+      document.getElementById('console').textContent = logs.join('\n');
+      document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight;
+    }
+    
+    async function testAccordion() {
+      logs = [];
+      document.getElementById('console').textContent = 'Fetching Factory Pattern page...';
+      
+      try {
+        const response = await fetch('All_Design_Patterns_factorypattern.html');
+        const html = await response.text();
+        
+        // Extract the JSON markdown data
+        const match = html.match(/<script id="md-data" type="application\/json">"(.*)"/);
+        if (!match) {
+          logs.push('ERROR: Could not extract markdown data from HTML');
+          updateConsole();
+          return;
+        }
+        
+        let mdText = match[1];
+        // Unescape the JSON string
+        mdText = mdText.replace(/\\n/g, '\n').replace(/\\t/g, '\t').replace(/\\\"/g, '"').replace(/\\\\/g, '\\');
+        
+        logs.push('Markdown extracted. Length: ' + mdText.length);
+        logs.push('First 200 chars: ' + mdText.substring(0, 200));
+        
+        // Parse markdown and build DOM
+        logs.push('');
+        logs.push('=== SIMULATING MARKDOWN RENDER ===');
+        
+        // Create a test container
+        const testDiv = document.createElement('div');
+        testDiv.innerHTML = '<h2>Common Interview Questions</h2>';
+        
+        // Add some test content
+        const h3 = document.createElement('h3');
+        h3.textContent = 'Q1: Test Question';
+        testDiv.appendChild(h3);
+        
+        const p = document.createElement('p');
+        p.textContent = 'This is a test answer';
+        testDiv.appendChild(p);
+        
+        logs.push('Created test structure with H3 matching /^Q\\d+:/');
+        logs.push('Testing regex: ' + (/^Q\d+:/.test('Q1: Test')));
+        
+        // Test the logic
+        logs.push('');
+        logs.push('=== TESTING H3 COLLECTION ===');
+        const h2s = testDiv.querySelectorAll('h2');
+        logs.push('Found ' + h2s.length + ' H2 headings');
+        
+        for (let h2 of h2s) {
+          logs.push('H2 text: "' + h2.textContent + '"');
+          if (h2.textContent.includes('Common Interview Questions')) {
+            logs.push('✓ Found QA section!');
+            
+            let currentEl = h2.nextElementSibling;
+            let count = 0;
+            while (currentEl) {
+              logs.push('  Element: ' + currentEl.tagName + ' - "' + currentEl.textContent.substring(0, 50) + '"');
+              if (currentEl.tagName === 'H3') {
+                logs.push('    Regex test: ' + /^Q\d+:/.test(currentEl.textContent));
+              }
+              currentEl = currentEl.nextElementSibling;
+              count++;
+              if (count > 10) break;
+            }
+          }
+        }
+        
+        logs.push('');
+        logs.push('Check browser console (F12) for full logs!');
+        updateConsole();
+        
+      } catch (e) {
+        logs.push('ERROR: ' + e.message);
+        updateConsole();
+      }
+    }
+    
+    // Auto-test on load
+    window.addEventListener('load', testAccordion);
+  </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accordion Test</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; }
+    .test { border: 1px solid #ddd; padding: 15px; margin: 15px 0; border-radius: 5px; }
+    .qa-section { margin: 20px 0; }
+    .qa-item { margin: 10px 0; }
+    .qa-question { 
+      padding: 10px; 
+      background: #e3f2fd; 
+      border: 1px solid #90caf9; 
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .qa-question:hover { background: #bbdefb; }
+    .qa-answer { 
+      max-height: 0; 
+      overflow: hidden; 
+      padding: 10px;
+      padding-left: 20px;
+      transition: max-height 0.3s ease;
+    }
+    .qa-item.open .qa-answer { 
+      max-height: 500px; 
+      border: 1px solid #e0e0e0;
+      border-top: none;
+    }
+    code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+</head>
+<body>
+  <h1>Accordion Functionality Test</h1>
+  
+  <div class="test">
+    <h2>Test 1: Manual Accordion Creation</h2>
+    <div id="manual-accordion" class="qa-section"></div>
+  </div>
+
+  <div class="test">
+    <h2>Test 2: Markdown Rendering + Accordion Conversion</h2>
+    <div id="rendered-accordion" class="qa-section"></div>
+  </div>
+
+  <div class="test">
+    <h2>Test 3: Factory Pattern Page Data</h2>
+    <div id="factory-test"></div>
+  </div>
+
+  <script>
+    // Test 1: Manual accordion
+    function createManualAccordion() {
+      const container = document.getElementById('manual-accordion');
+      
+      const item1 = document.createElement('div');
+      item1.className = 'qa-item';
+      item1.innerHTML = `
+        <div class="qa-question">
+          <span>Q1: Test question?</span>
+          <span>+</span>
+        </div>
+        <div class="qa-answer">
+          <p>This is the answer to the test question.</p>
+          <code>const answer = true;</code>
+        </div>
+      `;
+      
+      const item2 = document.createElement('div');
+      item2.className = 'qa-item';
+      item2.innerHTML = `
+        <div class="qa-question">
+          <span>Q2: Another question?</span>
+          <span>+</span>
+        </div>
+        <div class="qa-answer">
+          <p>This is another answer.</p>
+        </div>
+      `;
+      
+      container.appendChild(item1);
+      container.appendChild(item2);
+      
+      // Add click handlers
+      container.querySelectorAll('.qa-question').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const qaItem = this.closest('.qa-item');
+          qaItem.classList.toggle('open');
+          const toggle = this.querySelector('span:last-child');
+          toggle.textContent = qaItem.classList.contains('open') ? '−' : '+';
+        });
+      });
+    }
+    
+    // Test 2: Markdown rendering
+    function testMarkdownRendering() {
+      const markdown = `## Common Interview Questions
+
+### Q1: What is Factory Pattern?
+
+**Answer:** It's a creational design pattern that provides an interface for creating objects without specifying exact classes.
+
+### Q2: When should I use it?
+
+**Answer:** Use Factory Pattern when you need to:
+- Hide complex creation logic
+- Support multiple object types
+- Decouple client code from concrete classes`;
+
+      const rendered = marked.parse(markdown);
+      const safe = DOMPurify.sanitize(rendered, { ADD_ATTR: ['target'] });
+      
+      const container = document.createElement('div');
+      container.innerHTML = safe;
+      
+      // Now test accordion conversion
+      convertToAccordion(container);
+      
+      document.getElementById('rendered-accordion').parentElement.innerHTML = '';
+      document.getElementById('rendered-accordion').parentElement.appendChild(container);
+    }
+    
+    function convertToAccordion(contentEl) {
+      const h2s = contentEl.querySelectorAll('h2');
+      let qaHeading = null;
+      
+      for (let h2 of h2s) {
+        if (h2.textContent.includes('Common Interview Questions')) {
+          qaHeading = h2;
+          break;
+        }
+      }
+      
+      if (!qaHeading) {
+        console.log('No QA heading found');
+        return;
+      }
+      
+      const qaSection = document.createElement('div');
+      qaSection.className = 'qa-section';
+      
+      let currentEl = qaHeading.nextElementSibling;
+      const questions = [];
+      let currentQuestion = null;
+      
+      while (currentEl && currentEl.tagName !== 'H2') {
+        if (currentEl.tagName === 'H3' && /^Q\d+:/.test(currentEl.textContent)) {
+          if (currentQuestion) questions.push(currentQuestion);
+          currentQuestion = { title: currentEl.textContent, content: [] };
+        } else if (currentQuestion) {
+          currentQuestion.content.push(currentEl.cloneNode(true));
+        }
+        currentEl = currentEl.nextElementSibling;
+      }
+      
+      if (currentQuestion) questions.push(currentQuestion);
+      
+      console.log('Found', questions.length, 'questions');
+      
+      questions.forEach(q => {
+        const item = document.createElement('div');
+        item.className = 'qa-item';
+        
+        const btn = document.createElement('div');
+        btn.className = 'qa-question';
+        btn.innerHTML = `<span>${q.title}</span><span>+</span>`;
+        
+        const ans = document.createElement('div');
+        ans.className = 'qa-answer';
+        q.content.forEach(el => ans.appendChild(el));
+        
+        item.appendChild(btn);
+        item.appendChild(ans);
+        
+        btn.addEventListener('click', function() {
+          item.classList.toggle('open');
+          const toggle = btn.querySelector('span:last-child');
+          toggle.textContent = item.classList.contains('open') ? '−' : '+';
+        });
+        
+        qaSection.appendChild(item);
+      });
+      
+      qaHeading.replaceWith(qaSection);
+      qaHeading.remove();
+      
+      contentEl.querySelectorAll('h3').forEach(h3 => {
+        if (/^Q\d+:/.test(h3.textContent)) h3.remove();
+      });
+    }
+    
+    // Test 3: Load actual Factory Pattern data
+    async function testFactoryPatternData() {
+      try {
+        const response = await fetch('All_Design_Patterns_factorypattern.html');
+        const html = await response.text();
+        const match = html.match(/<script id="md-data".*?"(.*?)"<\/script>/s);
+        
+        if (match) {
+          const mdText = JSON.parse('"' + match[1] + '"');
+          const count = (mdText.match(/### Q\d+:/g) || []).length;
+          document.getElementById('factory-test').innerHTML = `
+            <p><strong>✓ Factory Pattern data loaded successfully</strong></p>
+            <p>Markdown size: ${mdText.length} characters</p>
+            <p>Q&A questions found: ${count}</p>
+            <p>Contains "Common Interview Questions": ${mdText.includes('Common Interview Questions') ? 'Yes' : 'No'}</p>
+          `;
+        }
+      } catch (e) {
+        document.getElementById('factory-test').innerHTML = '<p style="color: red;">Error: ' + e.message + '</p>';
+      }
+    }
+    
+    window.addEventListener('load', function() {
+      createManualAccordion();
+      testMarkdownRendering();
+      testFactoryPatternData();
+    });
+  </script>
+</body>
+</html>

@@ -45,3 +45,16 @@ body{background:var(--bg);font-family:Inter, system-ui, -apple-system, 'Segoe UI
 
 /* accessibility focus */
 .card:focus{outline:3px solid rgba(37,99,235,0.12);outline-offset:4px}
+
+/* Modal for pattern details */
+.pattern-modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.54);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+.pattern-modal{background:#fff;border-radius:12px;max-width:980px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 20px 50px rgba(2,6,23,0.4);padding:22px}
+.pattern-modal .modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pattern-modal h2{margin:0;font-size:1.25rem}
+.pattern-modal .close-btn{background:transparent;border:none;font-size:1.25rem;cursor:pointer;color:var(--muted)}
+.pattern-modal .modal-body{margin-top:14px;display:grid;grid-template-columns:1fr 320px;gap:18px}
+.pattern-modal .modal-body .main{overflow:auto}
+.pattern-modal .modal-body .aside{background:#fbfbfc;border-radius:8px;padding:12px;max-height:60vh;overflow:auto}
+.pattern-modal pre{background:#0f172a;color:#f8fafc;padding:12px;border-radius:8px;overflow:auto}
+.pattern-modal img{max-width:100%;height:auto;border-radius:6px}
+@media(max-width:900px){.pattern-modal{padding:16px}.pattern-modal .modal-body{grid-template-columns:1fr;}.pattern-modal .modal-body .aside{order:2}} 

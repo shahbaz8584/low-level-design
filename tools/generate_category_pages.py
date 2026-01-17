@@ -8,6 +8,7 @@ from pathlib import Path
 import html
 import re
 import shutil
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 PATTERN_ROOT = ROOT / 'LLD' / 'DesignPattern'
@@ -255,9 +256,41 @@ def write_category_page(cat_name, items):
         f.write(head)
         f.write('\n      <section class="panel">\n        <div class="pattern-list-grid">\n')
         for it in items:
-            f.write('          <article class="card" data-cat="'+cat_name+'" tabindex="0" data-href="'+html.escape(it.get('href',''))+'">\n')
-            imgsrc = html.escape(it.get('img',''))
-            slug = slugify(it['title'])
+            # link card to the generated HTML page for the pattern
+            </head>
+                        f.write('          <article class="card" data-cat="'+cat_name+'" tabindex="0" data-href="'+html.escape(it.get('url',''))+'">\n')
+                        imgsrc = html.escape(it.get('img',''))
+                        slug = slugify(it['title'])
+</head>
+<body>
+    <main style="max-width:900px;margin:28px auto;padding:16px;">
+        <article id="content" class="markdown-body"></article>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        (function(){
+            const md = JSON.parse(%(md_json)s);
+            const raw = md || '';
+            const rendered = marked.parse(raw);
+            const safe = DOMPurify.sanitize(rendered, {ADD_ATTR: ['target']});
+            const el = document.getElementById('content');
+            el.innerHTML = safe;
+            document.querySelectorAll('pre code').forEach((b)=>{hljs.highlightElement(b)});
+            try{ if(window.mermaid) mermaid.init(undefined, document.querySelectorAll('.language-mermaid, .mermaid')); }catch(e){}
+        })();
+    </script>
+</body>
+</html>'''
+                                page_html = page_template % {'title': it['title'], 'md_json': json.dumps(md_text)}
+                                try:
+                                        pattern_page.write_text(page_html, encoding='utf-8')
+                                except Exception:
+                                        pass
+                        except Exception:
+                                pass
             svg_file = Path('tools') / 'pattern_images' / (slug + '.svg')
             png_small = Path('tools') / 'pattern_images' / 'png' / (slug + '.png')
             png_large = Path('tools') / 'pattern_images' / 'png' / (slug + '@2x.png')

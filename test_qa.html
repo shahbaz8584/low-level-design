@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Q&A Test</title>
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+</head>
+<body>
+  <div id="content" class="markdown-body">
+    <!-- This will be populated by the test -->
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script id="md-data" type="application/json">"# Test Markdown\n\nThis is a test.\n\n## Common Interview Questions\n- How does this pattern work?\n- When should I use it?\n- What are the downsides?"</script>
+  <script>
+    // Inline the renderer functions for testing
+    function convertQAToAccordions(contentEl) {
+      const headings = contentEl.querySelectorAll('h2');
+      
+      headings.forEach(heading => {
+        if (heading.textContent.includes('Common Interview Questions')) {
+          let nextEl = heading.nextElementSibling;
+          
+          while (nextEl) {
+            if (nextEl.tagName === 'UL') {
+              const listItems = nextEl.querySelectorAll('li');
+              const qaSection = document.createElement('div');
+              qaSection.className = 'qa-section';
+              
+              const qaHeading = document.createElement('h2');
+              qaHeading.textContent = 'Common Interview Questions';
+              qaSection.appendChild(qaHeading);
+              
+              listItems.forEach((item, index) => {
+                const question = item.textContent.trim();
+                
+                const qaItem = document.createElement('div');
+                qaItem.className = 'qa-item';
+                
+                const qaQuestion = document.createElement('div');
+                qaQuestion.className = 'qa-question';
+                qaQuestion.tabIndex = 0;
+                qaQuestion.role = 'button';
+                
+                const questionText = document.createElement('span');
+                questionText.className = 'qa-question-text';
+                questionText.textContent = 'Q: ' + question;
+                
+                const toggle = document.createElement('span');
+                toggle.className = 'qa-toggle';
+                toggle.textContent = '▼';
+                
+                qaQuestion.appendChild(questionText);
+                qaQuestion.appendChild(toggle);
+                
+                const qaAnswer = document.createElement('div');
+                qaAnswer.className = 'qa-answer';
+                const answerText = document.createElement('p');
+                answerText.textContent = 'A common interview question about this pattern. Click to expand and see best practices and considerations.';
+                qaAnswer.appendChild(answerText);
+                
+                qaItem.appendChild(qaQuestion);
+                qaItem.appendChild(qaAnswer);
+                
+                qaSection.appendChild(qaItem);
+              });
+              
+              nextEl.replaceWith(qaSection);
+              break;
+            } else if (nextEl.tagName && nextEl.tagName.match(/^H[1-6]$/)) {
+              break;
+            }
+            nextEl = nextEl.nextElementSibling;
+          }
+        }
+      });
+    }
+
+    function initQAAccordions() {
+      const qaQuestions = document.querySelectorAll('.qa-question');
+      
+      qaQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          const qaItem = this.closest('.qa-item');
+          if (qaItem) {
+            qaItem.classList.toggle('open');
+          }
+        });
+
+        question.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+    }
+
+    // Initialize
+    const mdEl = document.getElementById('md-data');
+    const md = JSON.parse(mdEl.textContent);
+    const rendered = marked.parse(md);
+    const safe = DOMPurify.sanitize(rendered, { ADD_ATTR: ['target'] });
+    
+    const contentEl = document.getElementById('content');
+    contentEl.innerHTML = safe;
+    
+    convertQAToAccordions(contentEl);
+    initQAAccordions();
+    
+    console.log('Q&A initialized. Click questions to toggle answers.');
+  </script>
+</body>
+</html>
