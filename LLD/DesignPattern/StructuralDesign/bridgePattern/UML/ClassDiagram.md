@@ -6,36 +6,36 @@ classDiagram
         -breathingProcess: BreathingProcess
         +breath()
     }
-    
+
     class Dog {
         +breath()
     }
-    
+
     class Fish {
         +breath()
     }
-    
+
     class Tree {
         +breath()
     }
-    
+
     class BreathingProcess {
         <<interface>>
-        +breathe()*
+        +breathe()
     }
-    
+
     class LungsBreathProcess {
         +breathe()
     }
-    
+
     class GillBreathingProcess {
         +breathe()
     }
-    
+
     class PhotoSynthesisProcess {
         +breathe()
     }
-    
+
     LivingThing <|-- Dog
     LivingThing <|-- Fish
     LivingThing <|-- Tree

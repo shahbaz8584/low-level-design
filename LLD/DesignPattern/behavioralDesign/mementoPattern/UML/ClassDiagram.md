@@ -8,18 +8,18 @@ classDiagram
         +createMemento(): Memento
         +restoreFromMemento(Memento)
     }
-    
+
     class Memento {
         -state: String
         +getState(): String
     }
-    
+
     class CareTaker {
         -mementos: List~Memento~
         +saveMemento(Memento)
         +getMemento(int): Memento
     }
-    
+
     Originator --> Memento: creates
     CareTaker --> Memento: manages
 ```

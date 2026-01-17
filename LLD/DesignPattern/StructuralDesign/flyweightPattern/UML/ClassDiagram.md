@@ -4,29 +4,29 @@
 classDiagram
     class IRobot {
         <<interface>>
-        +display(x: int, y: int)*
+        +display(x: int, y: int)
     }
-    
+
     class HumanoidRobot {
         -sprite: Sprite
         +display(x: int, y: int)
     }
-    
+
     class RoboticDogImpl {
         -sprite: Sprite
         +display(x: int, y: int)
     }
-    
+
     class RoboticFactory {
         -robots: Map~String,IRobot~
-        +createRobot(type): IRobot$
+        +createRobot(type): IRobot
     }
-    
+
     class Sprite {
         -image: Image
         -animationFrames: List
     }
-    
+
     IRobot <|.. HumanoidRobot
     IRobot <|.. RoboticDogImpl
     RoboticFactory --> IRobot: creates & manages

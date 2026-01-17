@@ -4,43 +4,43 @@
 classDiagram
     class CarFactory {
         <<interface>>
-        +createCar(): Car*
-        +createEngine(): Engine*
-        +createTyre(): Tyre*
+        +createCar(): Car
+        +createEngine(): Engine
+        +createTyre(): Tyre
     }
-    
+
     class EconomyCarFactory {
         +createCar(): Car
         +createEngine(): Engine
         +createTyre(): Tyre
     }
-    
+
     class LuxuryCarFactory {
         +createCar(): Car
         +createEngine(): Engine
         +createTyre(): Tyre
     }
-    
+
     class Car {
         <<interface>>
     }
-    
+
     class EconomyCar {
     }
-    
+
     class LuxuryCar {
     }
-    
+
     class Engine {
         <<interface>>
     }
-    
+
     class EconomyEngine {
     }
-    
+
     class LuxuryEngine {
     }
-    
+
     CarFactory <|.. EconomyCarFactory
     CarFactory <|.. LuxuryCarFactory
     Car <|.. EconomyCar

@@ -4,17 +4,17 @@
 classDiagram
     class Employee {
         <<interface>>
-        +getSalary(): int*
-        +getName(): String*
+        +getSalary(): int
+        +getName(): String
     }
-    
+
     class EmployeeImpl {
         -name: String
         -salary: int
         +getSalary(): int
         +getName(): String
     }
-    
+
     class EmployeeCacheProxy {
         -employee: Employee
         -cachedData: Map~String,Object~
@@ -22,12 +22,12 @@ classDiagram
         +getName(): String
         -fetchFromDB(): void
     }
-    
+
     class RedisCacheClient {
-        +get(key): Object$
-        +set(key, value): void$
+        +get(key): Object
+        +set(key, value): void
     }
-    
+
     Employee <|.. EmployeeImpl
     Employee <|.. EmployeeCacheProxy
     EmployeeCacheProxy --> EmployeeImpl: delegates to

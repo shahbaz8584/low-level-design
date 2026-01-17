@@ -4,9 +4,9 @@
 classDiagram
     class Cloneable {
         <<interface>>
-        +clone(): Object*
+        +clone(): Object
     }
-    
+
     class NetworkConnection {
         -ip: String
         -port: int
@@ -15,7 +15,7 @@ classDiagram
         +shallowClone(): NetworkConnection
         +deepClone(): NetworkConnection
     }
-    
+
     Cloneable <|.. NetworkConnection
 ```
 

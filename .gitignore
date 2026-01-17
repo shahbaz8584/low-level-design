@@ -25,4 +25,14 @@ replay_pid*
 _bmad*
 .github/
 .vscode
-.DS*.DS_Store
+.DS*
+.agent*
+.claude/
+.cursor/
+.gemini/
+.opencode/
+.windsurf/
+.mcp.json
+
+# Node modules
+node_modules/

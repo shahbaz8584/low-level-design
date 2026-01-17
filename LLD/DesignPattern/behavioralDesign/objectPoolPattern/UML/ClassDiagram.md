@@ -8,7 +8,7 @@ classDiagram
         +executeQuery(String)
         +close()
     }
-    
+
     class DBConnectionPoolManager {
         -availableConnections: Queue~DBConnection~
         -inUseConnections: Set~DBConnection~
@@ -17,7 +17,7 @@ classDiagram
         +releaseConnection(DBConnection)
         -createNewConnection(): DBConnection
     }
-    
+
     DBConnectionPoolManager --> DBConnection: manages & reuses
 ```
 
