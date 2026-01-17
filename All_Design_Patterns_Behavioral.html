@@ -1,0 +1,71 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Behavioral Patterns</title>
+<link rel="stylesheet" href="tools/index_style.css">
+<link rel="stylesheet" href="tools/patterns_responsive.css">
+<script defer src="tools/patterns_animations.js"></script>
+</head><body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="brand">Design Patterns</div>
+        <div class="search"><input oninput="(e=>{const q=e.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{const t=(c.getAttribute('data-title')|| (c.querySelector('h3')&&c.querySelector('h3').innerText)||'').toLowerCase();c.style.display=t.includes(q)?'block':'none'})})(this)" placeholder="Search patterns..."></div>
+        <nav>
+              <ul class="cat-list">
+<li><a class="cat-btn" href="All_Design_Patterns_Creational.html" data-cat="Creational">Creational</a></li>
+<li><a class="cat-btn" href="All_Design_Patterns_Structural.html" data-cat="Structural">Structural</a></li>
+<li><a class="cat-btn active" href="All_Design_Patterns_Behavioral.html" data-cat="Behavioral">Behavioral</a></li>
+</ul>
+        </nav>
+    </aside>
+    <main class="main">
+        <div class="header"><h1>Behavioral Patterns</h1></div>
+        <article>
+
+      <section class="panel">
+        <div class="pattern-list-grid">
+          <article class="card" data-cat="Behavioral" tabindex="0" data-href="LLD/DesignPattern/behavioralDesign/strategyPattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/strategy-pattern.svg" alt="Strategy Pattern image"></div>
+            <h3>Strategy Pattern</h3>
+            <div class="intent">Strategy Pattern</div>
+          </article>
+          <article class="card" data-cat="Behavioral" tabindex="0" data-href="LLD/DesignPattern/behavioralDesign/statePattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/statepattern.svg" alt="statePattern image"></div>
+            <h3>statePattern</h3>
+            <div class="intent">statePattern</div>
+          </article>
+          <article class="card" data-cat="Behavioral" tabindex="0" data-href="LLD/DesignPattern/behavioralDesign/ObserverPattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/observer-pattern.svg" alt="Observer Pattern image"></div>
+            <h3>Observer Pattern</h3>
+            <div class="intent">Observer Pattern</div>
+          </article>
+          <article class="card" data-cat="Behavioral" tabindex="0" data-href="LLD/DesignPattern/behavioralDesign/objectPoolPattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/objectpoolpattern.svg" alt="objectPoolPattern image"></div>
+            <h3>objectPoolPattern</h3>
+            <div class="intent">objectPoolPattern</div>
+          </article>
+          <article class="card" data-cat="Behavioral" tabindex="0" data-href="LLD/DesignPattern/behavioralDesign/mementoPattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/mementopattern.svg" alt="mementoPattern image"></div>
+            <h3>mementoPattern</h3>
+            <div class="intent">mementoPattern</div>
+          </article>
+          <article class="card" data-cat="Behavioral" tabindex="0" data-href="LLD/DesignPattern/behavioralDesign/NullObjectPattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/nullobjectpattern.svg" alt="NullObjectPattern image"></div>
+            <h3>NullObjectPattern</h3>
+            <div class="intent">NullObjectPattern</div>
+          </article>
+          <article class="card" data-cat="Behavioral" tabindex="0" data-href="LLD/DesignPattern/behavioralDesign/chainOfResponsibilty/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/chainofresponsibilty.svg" alt="chainOfResponsibilty image"></div>
+            <h3>chainOfResponsibilty</h3>
+            <div class="intent">chainOfResponsibilty</div>
+          </article>
+          <article class="card" data-cat="Behavioral" tabindex="0" data-href="LLD/DesignPattern/behavioralDesign/templatePattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/templatepattern.svg" alt="templatePattern image"></div>
+            <h3>templatePattern</h3>
+            <div class="intent">templatePattern</div>
+          </article>
+        </div>
+      </section>
+
+</article>
+</main>
+</div>
+</body></html>
