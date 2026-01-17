@@ -1,0 +1,73 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Design Patterns - Overview</title>
+<link rel="stylesheet" href="tools/index_style.css">
+<link rel="stylesheet" href="tools/patterns_responsive.css">
+<script defer src="tools/patterns_animations.js"></script>
+</head><body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="brand">Design Patterns</div>
+        <div class="search"><input oninput="(e=>{const q=e.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{const t=(c.getAttribute('data-title')|| (c.querySelector('h3')&&c.querySelector('h3').innerText)||'').toLowerCase();c.style.display=t.includes(q)?'block':'none'})})(this)" placeholder="Search patterns..."></div>
+        <nav>
+              <ul class="cat-list">
+<li><a class="cat-btn" href="All_Design_Patterns_Creational.html" data-cat="Creational">Creational</a></li>
+<li><a class="cat-btn" href="All_Design_Patterns_Structural.html" data-cat="Structural">Structural</a></li>
+<li><a class="cat-btn" href="All_Design_Patterns_Behavioral.html" data-cat="Behavioral">Behavioral</a></li>
+</ul>
+        </nav>
+    </aside>
+    <main class="main">
+        <div class="header"><h1>Design Patterns</h1></div>
+        <article>
+
+      <section class="panel">
+        <h2>Overview</h2>
+        <p>Design patterns are reusable solutions to common problems in software design. They represent best practices and can speed up the development process by providing tested, proven development paradigms.</p>
+        <p>This repository documents three main categories of design patterns:</p>
+      </section>
+
+      <section class="panel">
+        <div class="pattern-list-grid">
+          <article class="card" data-cat="Creational" tabindex="0" data-href="All_Design_Patterns_Creational.html">
+            <div class="thumb-wrap" style="background:#f3f6f9;border-radius:12px;padding:20px;display:flex;align-items:center;justify-content:center;height:160px">
+              <div style="font-size:48px;color:#1f2937">🏗️</div>
+            </div>
+            <h3>Creational Patterns</h3>
+            <div class="intent">Patterns that deal with object creation mechanisms</div>
+            <a href="All_Design_Patterns_Creational.html" style="display:inline-block;margin-top:10px;color:#1f6feb;text-decoration:none;font-weight:600">View Patterns →</a>
+          </article>
+          <article class="card" data-cat="Structural" tabindex="0" data-href="All_Design_Patterns_Structural.html">
+            <div class="thumb-wrap" style="background:#f3f6f9;border-radius:12px;padding:20px;display:flex;align-items:center;justify-content:center;height:160px">
+              <div style="font-size:48px;color:#1f2937">🔧</div>
+            </div>
+            <h3>Structural Patterns</h3>
+            <div class="intent">Patterns that deal with object composition and relationships</div>
+            <a href="All_Design_Patterns_Structural.html" style="display:inline-block;margin-top:10px;color:#1f6feb;text-decoration:none;font-weight:600">View Patterns →</a>
+          </article>
+          <article class="card" data-cat="Behavioral" tabindex="0" data-href="All_Design_Patterns_Behavioral.html">
+            <div class="thumb-wrap" style="background:#f3f6f9;border-radius:12px;padding:20px;display:flex;align-items:center;justify-content:center;height:160px">
+              <div style="font-size:48px;color:#1f2937">⚡</div>
+            </div>
+            <h3>Behavioral Patterns</h3>
+            <div class="intent">Patterns that deal with object collaboration and responsibility distribution</div>
+            <a href="All_Design_Patterns_Behavioral.html" style="display:inline-block;margin-top:10px;color:#1f6feb;text-decoration:none;font-weight:600">View Patterns →</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>What You'll Find</h2>
+        <p>Each pattern includes:</p>
+        <ul>
+          <li>Clear visual representations</li>
+          <li>Problem description and solution</li>
+          <li>Use cases and benefits</li>
+          <li>Implementation examples</li>
+          <li>Related patterns</li>
+        </ul>
+      </section>
+
+</article>
+</main>
+</div>
+</body></html>
