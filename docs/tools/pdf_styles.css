@@ -1,0 +1,33 @@
+/* PDF styling for All_Design_Patterns.html */
+@page { size: A4; margin: 28mm 20mm; }
+body { font-family: 'Georgia', 'Times New Roman', serif; color: #111; line-height: 1.35; }
+h1 { font-size: 34px; margin: 6px 0 12px 0; }
+h2 { font-size: 22px; margin-top: 20px; color: #2b2b2b; }
+h3 { font-size: 16px; color: #333; }
+.cover { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; }
+.cover h1 { font-size: 56px; margin-bottom: 6px; }
+.cover .subtitle { font-size: 18px; margin-bottom: 8px; color: #444; }
+.cover .meta { font-size: 11px; color: #666; }
+.page-break { page-break-after: always; }
+.toc { margin-top: 20px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 6px 8px; vertical-align: top; }
+thead th { text-align: left; }
+.uml { margin: 14px 0 22px 0; text-align: center; }
+pre.code { background: #f7f7f7; padding: 10px; border-radius: 4px; overflow-x: auto; font-family: 'Menlo', 'Courier New', monospace; font-size: 10.5px; }
+footer { position: fixed; bottom: 10px; width: 100%; text-align: center; font-size: 10px; color: #666; }
+
+.diagram { text-align: center; margin: 12px 0 18px 0; }
+.diagram img { max-width: 90%; height: auto; display: inline-block; border: 1px solid #e6e6e6; }
+.diagram figcaption { font-size: 11px; color: #444; margin-top: 6px; }
+
+.pattern-section { page-break-inside: avoid; padding: 8px 0; border-bottom: 1px solid #eee; }
+.pattern-card { background: #fff; padding: 12px 14px; border-left: 6px solid #8a2be2; margin: 8px 0 18px 0; }
+.pattern-card h2 { margin: 0 0 6px 0; }
+.pattern-meta { color: #666; font-size: 11px; margin-bottom: 8px; }
+.pattern-columns { display: flex; gap: 12px; }
+.pattern-columns .col { flex: 1; }
+
+.code-block { background: #f6f8fa; border: 1px solid #eaecef; padding: 10px; border-radius: 4px; font-family: 'Menlo', monospace; font-size: 10.5px; }
+
+.small { font-size: 11px; color: #555; }

@@ -28,22 +28,49 @@
         <div class="uml-section">
     <h2>Class Diagram</h2>
     <div class="mermaid">classDiagram
-    class Cloneable {
-        <<interface>>
-        +clone(): Object
+    class Prototype {
+        clone() Object
     }
-
-    class NetworkConnection {
-        -ip: String
-        -port: int
-        -connections: List
-        +clone(): NetworkConnection
-        +shallowClone(): NetworkConnection
-        +deepClone(): NetworkConnection
+    
+    class ConcretePrototype {
+        -data String
+        -config Config
+        +clone() ConcretePrototype
     }
+    
+    Prototype <|.. ConcretePrototype</div>
+    <div class="uml-caption">Prototype Pattern - Class Diagram</div>
+  </div>
 
-    Cloneable <|.. NetworkConnection</div>
-    <div class="uml-caption">UML Class Diagram for Prototype Pattern</div>
+        <div class="uml-section">
+    <h3>Cloning Flow</h3>
+    <div class="mermaid">flowchart TD
+    A["👨 Client<br/>Needs Object"] -->|Calls| B["🔄 prototype.clone()"]
+    B -->|Step 1| C["📋 Scan Fields<br/>ip, port, config"]
+    C -->|Step 2| D["🔧 Allocate Memory<br/>for Clone"]
+    D -->|Step 3| E["📦 Copy All Fields<br/>to Clone"]
+    E -->|Step 4| F["✨ Return Clone"]
+    
+    F -->|Original Object| G["🟢 Original<br/>ip: 192.168.1.1<br/>port: 8080"]
+    F -->|Cloned Object| H["🟢 Clone<br/>ip: 192.168.1.1<br/>port: 8080"]
+    
+    G -->|Independent| I["✏️ Modify<br/>port: 9000"]
+    H -->|Independent| J["✏️ Modify<br/>port: 8081"]
+    
+    I --> K["🟢 Original<br/>port: 9000"]
+    J --> L["🟢 Clone<br/>port: 8081"]
+    
+    style A fill:#e1f5ff
+    style B fill:#fff3e0
+    style C fill:#f3e5f5
+    style D fill:#f3e5f5
+    style E fill:#fff3e0
+    style F fill:#c8e6c9
+    style G fill:#a5d6a7
+    style H fill:#a5d6a7
+    style K fill:#66bb6a
+    style L fill:#66bb6a</div>
+    <div class="uml-caption">Prototype Cloning - Step-by-Step Flow</div>
   </div>
   
         <article id="content" class="markdown-body"></article>

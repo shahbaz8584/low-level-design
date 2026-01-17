@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='400' height='240' viewBox='0 0 400 240'>
+  <rect width='100%' height='100%' fill='#f8fafc' rx='12'/>
+  <g transform='translate(0,12)'><g><rect x='40' y='40' width='120' height='80' rx='8' fill='#fff' stroke='#1f2937' stroke-width='3'/><rect x='180' y='56' width='120' height='48' rx='8' fill='#fff' stroke='#f97316' stroke-width='3'/></g></g>
+  <text x='24' y='212' font-family='Merriweather, Georgia, serif' font-size='16' fill='#0f172a'>Factory Pattern</text>
+</svg>

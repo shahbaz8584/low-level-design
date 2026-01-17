@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='400' height='240' viewBox='0 0 400 240'>
+  <rect width='100%' height='100%' fill='#f8fafc' rx='12'/>
+  <g transform='translate(0,12)'><g><rect x='60' y='60' width='120' height='60' rx='8' fill='#fff' stroke='#1f2937' stroke-width='2.5'/><rect x='200' y='60' width='60' height='60' rx='8' fill='#fff' stroke='#1f2937' stroke-width='1.8' opacity='0.9'/></g></g>
+  <text x='24' y='212' font-family='Merriweather, Georgia, serif' font-size='16' fill='#0f172a'>ProxyPattern</text>
+</svg>

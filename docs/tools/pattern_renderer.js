@@ -44,8 +44,7 @@
     // Apply syntax highlighting
     applySyntaxHighlighting();
 
-    // Initialize Mermaid diagrams
-    initMermaidDiagrams();
+    // Mermaid diagrams are auto-rendered by startOnLoad: true
 
     // Add smooth scroll behavior to TOC links
     addTOCScrollBehavior();
@@ -369,23 +368,8 @@
     });
   }
 
-  /**
-   * Initialize Mermaid diagram rendering
-   */
-  function initMermaidDiagrams() {
-    try {
-      if (window.mermaid) {
-        // Use mermaid.run() instead of init() - handles async properly
-        if (typeof window.mermaid.run === 'function') {
-          window.mermaid.run();
-        } else if (typeof window.mermaid.contentLoaded === 'function') {
-          window.mermaid.contentLoaded();
-        }
-      }
-    } catch (e) {
-      console.warn('Mermaid initialization failed:', e);
-    }
-  }
+  // Mermaid is handled by startOnLoad: true in HTML initialization
+  // No manual diagram rendering needed
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {

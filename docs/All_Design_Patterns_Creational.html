@@ -6,7 +6,7 @@
 </head><body>
 <div class="container">
     <aside class="sidebar">
-        <div class="brand">Design Patterns</div>
+        <div class="brand" style="cursor: pointer;" onclick="window.location.href='All_Design_Patterns_index.html'">Design Patterns</div>
         <div class="search"><input oninput="(e=>{const q=e.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{const t=(c.getAttribute('data-title')|| (c.querySelector('h3')&&c.querySelector('h3').innerText)||'').toLowerCase();c.style.display=t.includes(q)?'block':'none'})})(this)" placeholder="Search patterns..."></div>
         <nav>
               <ul class="cat-list">

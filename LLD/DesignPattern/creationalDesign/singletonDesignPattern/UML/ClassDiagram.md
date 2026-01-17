@@ -4,10 +4,35 @@
 classDiagram
     class DBConnection {
         -instance: DBConnection static
+        -connection: Connection private
         -DBConnection() private
-        +getInstance(): DBConnection static
-        +executeQuery(String)
+        +getInstance()✨ DBConnection static
+        +executeQuery(String) void
+        +closeConnection() void
     }
+    
+    note for DBConnection "✨ Only ONE instance exists\n🔒 Private constructor\n🌍 Global access point"
+```
+
+## Visual Flow Diagram
+```mermaid
+sequenceDiagram
+    participant Client
+    participant DBConnection
+    
+    Note over Client,DBConnection: First Call
+    Client->>DBConnection: getInstance()
+    activate DBConnection
+    DBConnection->>DBConnection: Check if instance == null
+    DBConnection->>DBConnection: Create new instance 🔧
+    deactivate DBConnection
+    
+    Note over Client,DBConnection: Subsequent Calls
+    Client->>DBConnection: getInstance()
+    activate DBConnection
+    DBConnection->>DBConnection: instance already exists
+    DBConnection-->>Client: Return existing instance
+    deactivate DBConnection
 ```
 
 ## Class Relationships
