@@ -1,0 +1,61 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Creational Patterns</title>
+<link rel="stylesheet" href="tools/index_style.css">
+<link rel="stylesheet" href="tools/patterns_responsive.css">
+<script defer src="tools/patterns_animations.js"></script>
+</head><body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="brand">Design Patterns</div>
+        <div class="search"><input oninput="(e=>{const q=e.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{const t=(c.getAttribute('data-title')|| (c.querySelector('h3')&&c.querySelector('h3').innerText)||'').toLowerCase();c.style.display=t.includes(q)?'block':'none'})})(this)" placeholder="Search patterns..."></div>
+        <nav>
+              <ul class="cat-list">
+<li><a class="cat-btn active" href="All_Design_Patterns_Creational.html" data-cat="Creational">Creational</a></li>
+<li><a class="cat-btn" href="All_Design_Patterns_Structural.html" data-cat="Structural">Structural</a></li>
+<li><a class="cat-btn" href="All_Design_Patterns_Behavioral.html" data-cat="Behavioral">Behavioral</a></li>
+</ul>
+        </nav>
+    </aside>
+    <main class="main">
+        <div class="header"><h1>Creational Patterns</h1></div>
+        <article>
+
+      <section class="panel">
+        <div class="pattern-list-grid">
+          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/abstractFactoryDesignPattern/PatternReference.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/abstractfactorydesignpattern.svg" alt="abstractFactoryDesignPattern image"></div>
+            <h3>abstractFactoryDesignPattern</h3>
+            <div class="intent">abstractFactoryDesignPattern</div>
+          </article>
+          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/factoryPattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/factory-pattern.svg" alt="Factory Pattern image"></div>
+            <h3>Factory Pattern</h3>
+            <div class="intent">Factory Pattern</div>
+          </article>
+          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/builderPattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/builderpattern.svg" alt="builderPattern image"></div>
+            <h3>builderPattern</h3>
+            <div class="intent">builderPattern</div>
+          </article>
+          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/prototypePattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/prototypepattern.svg" alt="prototypePattern image"></div>
+            <h3>prototypePattern</h3>
+            <div class="intent">prototypePattern</div>
+          </article>
+          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/abstractFacotoryPattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/abstractfacotorypattern.svg" alt="abstractFacotoryPattern image"></div>
+            <h3>abstractFacotoryPattern</h3>
+            <div class="intent">abstractFacotoryPattern</div>
+          </article>
+          <article class="card" data-cat="Creational" tabindex="0" data-href="LLD/DesignPattern/creationalDesign/singletonDesignPattern/README.md">
+            <div class="thumb-wrap"><img class="thumb" src="tools/pattern_images/singleton-pattern.svg" alt="Singleton Pattern image"></div>
+            <h3>Singleton Pattern</h3>
+            <div class="intent">Singleton Pattern</div>
+          </article>
+        </div>
+      </section>
+
+</article>
+</main>
+</div>
+</body></html>
