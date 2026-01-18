@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Facade Pattern - Design Patterns</title>
+  <link rel="stylesheet" href="tools/index_style.css">
+  <link rel="stylesheet" href="tools/patterns_responsive.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body style="background: #f7fafc;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
+    <a href="All_Design_Patterns_Structural.html" class="back-button">← Back to Patterns</a>
+    
+    <div class="pattern-header">
+      <div class="breadcrumb">Design Patterns</div>
+      <h1>Facade Pattern</h1>
+    </div>
+
+    <div class="pattern-container">
+      <aside class="pattern-toc">
+        <h4>Contents</h4>
+        <ul id="toc-list"></ul>
+      </aside>
+      <div class="pattern-main">
+        <div class="uml-section">
+    <h2>Class Diagram</h2>
+    <div class="mermaid">classDiagram
+    class Facade {
+        +operation()
+    }
+
+    class SubsystemA {
+        +a1()
+    }
+
+    class SubsystemB {
+        +b1()
+    }
+
+    class Client {
+        +call()
+    }
+
+    Facade --> SubsystemA
+    Facade --> SubsystemB
+    Client --> Facade</div>
+    <div class="uml-caption">UML Class Diagram for Facade Pattern</div>
+  </div>
+  
+        <article id="content" class="markdown-body"></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script id="md-data" type="application/json">"# Facade Pattern \u2014 Interview Reference\n\n## Intent\nProvide a simplified interface to a complex subsystem, making the subsystem easier to use and reducing coupling between the subsystem and its clients.\n\n## Problem Statement\nComplex subsystems expose many classes and methods that clients must interact with directly, leading to tight coupling and harder-to-use APIs.\n\n## Solution Overview\nCreate a `Facade` class that exposes a small set of high-level methods delegating to the subsystem classes. Clients use the Facade instead of interacting with the subsystem directly.\n\n## Minimal Java Example\n```java\npublic class Facade {\n  private SubsystemA a = new SubsystemA();\n  private SubsystemB b = new SubsystemB();\n  public void operation() {\n    a.a1();\n    b.b1();\n  }\n}\n```\n\n## Advantages\n- Simplifies usage of complex subsystems\n- Reduces coupling between client and subsystem\n\n## Disadvantages\n- Can become a god object if it grows too large\n"</script>
+  <script src="tools/pattern_renderer.js"></script>
+</body>
+</html>

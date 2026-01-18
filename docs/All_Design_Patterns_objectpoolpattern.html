@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>objectPoolPattern - Design Patterns</title>
+  <title>Object Pool Pattern - Design Patterns</title>
   <link rel="stylesheet" href="tools/index_style.css">
   <link rel="stylesheet" href="tools/patterns_responsive.css">
   <link rel="stylesheet" href="tools/pattern_page.css">
@@ -12,11 +12,11 @@
 </head>
 <body style="background: #f7fafc;">
   <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
-    <a href="All_Design_Patterns_Behavioral.html" class="back-button">← Back to Patterns</a>
+    <a href="All_Design_Patterns_Structural.html" class="back-button">← Back to Patterns</a>
     
     <div class="pattern-header">
       <div class="breadcrumb">Design Patterns</div>
-      <h1>objectPoolPattern</h1>
+      <h1>Object Pool Pattern</h1>
     </div>
 
     <div class="pattern-container">
@@ -45,7 +45,7 @@
     }
 
     DBConnectionPoolManager --> DBConnection: manages & reuses</div>
-    <div class="uml-caption">UML Class Diagram for objectPoolPattern</div>
+    <div class="uml-caption">UML Class Diagram for Object Pool Pattern</div>
   </div>
   
         <article id="content" class="markdown-body"></article>
@@ -57,7 +57,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-  <script id="md-data" type="application/json">"# objectPoolPattern \u2014 Interview Reference\n\n## Intent\nProvide a concise intent for the objectPoolPattern pattern.\n\n## Problem Statement\n# Object Pool Pattern\n\n## Why Simple Code Fails\nOften ad-hoc solutions (if/else, scattered constructors, tight coupling) make code hard to extend and test.\n\n## Solution Overview\nDescribe how the objectPoolPattern pattern solves the problem by providing structure and separation of concerns.\n\n## Minimal Java Example\n## Without Pattern\n\n```java\n// Example not provided.\n```\n\n## With Pattern\n\n```java\n// Example not provided.\n```\n\n\n```java\n// Example not provided in original README.\n```\n\n## Advantages\n- Describe key advantages (decoupling, extensibility, reuse).\n\n## Disadvantages\n- Describe trade-offs (complexity, indirection, overuse).\n\n## When NOT to Use\n- Situations where the pattern is unnecessary.\n\n## Common Mistakes\n- Frequent anti-patterns or pitfalls.\n\n## Framework / Library Usage\n- Notes on common frameworks or language features.\n\n## System Design Use Cases\n- Real-world systems where this pattern helps.\n\n## Interview One-Liner\nOne-line summary of the pattern.\n\n"</script>
+  <script id="md-data" type="application/json">"# Object Pool Pattern \u2014 Interview Reference\n\n## Intent\nReuse and manage a fixed set of expensive-to-create objects (connections, buffers, threads) by keeping them in a pool and lending them to clients on demand.\n\n## Problem Statement\nCreating and tearing down heavyweight objects repeatedly is costly and can lead to resource exhaustion under load. Ad-hoc creation scattered across code increases coupling and makes resource management inconsistent.\n\n## Why Simple Code Fails\nNaive solutions create objects per request or rely on callers to manage lifecycles, leading to high allocation overhead, leaks, and unpredictable performance.\n\n## Solution Overview\nMaintain a pool of ready-to-use objects. Clients `acquire()` an object, use it, then `release()` it back to the pool. The pool can lazily create objects up to a configured maximum, validate objects before handing them out, and reset them when returned.\n\n## Minimal Java Example\n```java\npublic interface Pooled { void reset(); }\n\npublic class DBConnection implements Pooled {\n  private final int id;\n  public DBConnection(int id) { this.id = id; }\n  public void execute(String sql) { /* execute */ }\n  public void reset() { /* clear state */ }\n}\n\npublic class DBConnectionPool {\n  private final Queue<DBConnection> available = new ArrayDeque<>();\n  private final Set<DBConnection> inUse = new HashSet<>();\n  private final int maxSize;\n  private int counter = 0;\n\n  public DBConnectionPool(int maxSize) { this.maxSize = maxSize; }\n\n  public synchronized DBConnection acquire() {\n    if (!available.isEmpty()) return borrowFromPool();\n    if (counter < maxSize) return createNew();\n    return waitForAvailable();\n  }\n\n  public synchronized void release(DBConnection c) {\n    c.reset();\n    inUse.remove(c);\n    available.offer(c);\n    notifyAll();\n  }\n\n  private DBConnection createNew() { return new DBConnection(++counter); }\n  private DBConnection borrowFromPool() { var c = available.poll(); inUse.add(c); return c; }\n  private DBConnection waitForAvailable() {\n    while (available.isEmpty()) { try { wait(); } catch (InterruptedException e) { Thread.currentThread().interrupt(); } }\n    return borrowFromPool();\n  }\n}\n```\n\n## Advantages\n- Reduces allocation and initialization overhead for expensive objects\n- Centralizes lifecycle and validation logic\n- Improves performance and predictability under load\n\n## Disadvantages\n- Adds complexity for concurrency, sizing and lifecycle management\n- Risk of stale or corrupted objects if not validated/reset properly\n- Can mask root-cause resource leaks if callers don't `release()` objects\n\n## When NOT to Use\n- Objects are cheap to create or stateless and immutable\n- Pooling adds more overhead than benefit (small scale apps)\n\n## Common Mistakes\n- Forgetting to return objects to the pool (causes exhaustion)\n- Not validating objects on acquire (returns broken objects)\n- Using unbounded pools causing OOM under load\n\n## Framework / Library Usage\n- Most platforms offer connection pools (HikariCP, Apache DBCP) and object pool implementations (Apache Commons Pool). Prefer battle-tested libraries for production use.\n\n## System Design Use Cases\n- Database connection reuse, thread and worker pools, buffer reuse for I/O, expensive parser instances.\n\n## Interview One-Liner\nRecycle expensive objects via a central pool to reduce allocation overhead and manage resource usage."</script>
   <script src="tools/pattern_renderer.js"></script>
 </body>
 </html>
