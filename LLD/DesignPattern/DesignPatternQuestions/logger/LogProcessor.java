@@ -1,4 +1,4 @@
-package DesignPattern.behavioralDesign.chainOfResponsibilty;
+package DesignPattern.DesignPatternQuestions.logger;
 
 public abstract class LogProcessor {
 

@@ -210,16 +210,26 @@
 
 .qa-answer {
   padding: 0 1.5rem;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
   background: #fafbfc;
+  display: none; /* hidden by default, shown when details is open */
 }
 
-.qa-item.open .qa-answer {
+/* When using native details/summary, target the open attribute */
+.qa-item[open] .qa-answer {
+  display: block;
   padding: 1.5rem;
-  max-height: 2000px;
 }
+
+/* Remove default disclosure marker and ensure summary styles match previous look */
+summary.qa-question {
+  list-style: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Hide native marker */
+summary.qa-question::-webkit-details-marker { display: none; }
+summary.qa-question::marker { content: none; }
 
 .qa-answer p {
   margin: 0.5rem 0;
@@ -277,7 +287,7 @@
     padding: 0 1rem;
   }
   
-  .qa-item.open .qa-answer {
+  .qa-item[open] .qa-answer {
     padding: 1rem;
   }
 }

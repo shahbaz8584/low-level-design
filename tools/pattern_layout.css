@@ -204,21 +204,19 @@
   margin-left: 1rem;
 }
 
-.qa-item.open .qa-toggle {
+.qa-item[open] .qa-toggle {
   transform: rotate(180deg);
 }
 
 .qa-answer {
   padding: 0 1.5rem;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
   background: #fafbfc;
+  display: none;
 }
 
-.qa-item.open .qa-answer {
+.qa-item[open] .qa-answer {
+  display: block;
   padding: 1.5rem;
-  max-height: 2000px;
 }
 
 .qa-answer p {
@@ -277,7 +275,7 @@
     padding: 0 1rem;
   }
   
-  .qa-item.open .qa-answer {
+  .qa-item[open] .qa-answer {
     padding: 1rem;
   }
 }

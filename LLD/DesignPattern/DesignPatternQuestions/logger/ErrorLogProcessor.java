@@ -1,19 +1,18 @@
-package DesignPattern.behavioralDesign.chainOfResponsibilty;
+package DesignPattern.DesignPatternQuestions.logger;
 
-public class DebugLogProcessor extends LogProcessor{
-    
-    DebugLogProcessor(LogProcessor nexLogProcessor){
+public class ErrorLogProcessor extends LogProcessor{
+
+    ErrorLogProcessor(LogProcessor nexLogProcessor){
         super(nexLogProcessor);
     }
 
     public void log(int logLevel, String message){
-        if(logLevel == DEBUG){
+        if(logLevel == ERROR){
             System.out.println("INFO :" + message);
         }
         else {
             super.log(logLevel, message);
         }
     }
-
     
 }
