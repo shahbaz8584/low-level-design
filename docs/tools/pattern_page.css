@@ -323,3 +323,44 @@
     color: #d73a49;
   }
 }
+
+/* QA accordion sizing and layout tweaks */
+.qa-section {
+  margin-top: 1rem;
+}
+
+.qa-item {
+  margin-bottom: 0.6rem;
+}
+
+.qa-question {
+  font-size: 1rem;
+  padding: 0.65rem 0.9rem;
+  background-color: #eaf6ff;
+  border: 1px solid #90caf9;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.qa-question span {
+  font-size: 1rem;
+}
+
+.qa-toggle {
+  font-size: 1.2rem !important;
+  min-width: 28px;
+  height: 28px;
+  line-height: 28px;
+}
+
+.qa-answer {
+  font-size: 0.95rem;
+  color: #374151;
+  padding: 0 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .qa-question { font-size: 0.98rem; padding: 0.55rem 0.8rem; }
+  .qa-answer { font-size: 0.92rem; padding: 0 0.8rem; }
+  .qa-toggle { font-size: 1.1rem; min-width: 26px; height: 26px; line-height: 26px; }
+}

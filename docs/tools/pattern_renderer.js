@@ -57,163 +57,97 @@
    * Convert Q&A sections to accordion markup
    */
   function convertQAToAccordions(contentEl) {
-    console.log('[QA Accordion] Starting conversion...');
-    
+    console.log('[QA Accordion] Starting conversion (native details/summary)...');
+
     // Find all H3 elements that match Q# pattern
     const allH3s = Array.from(contentEl.querySelectorAll('h3'));
     const qItems = allH3s.filter(h3 => /^Q\d+:/.test(h3.textContent));
-    
+
     console.log('[QA Accordion] Found', qItems.length, 'Q items');
-    
-    if (qItems.length === 0) {
-      console.log('[QA Accordion] No Q items found');
-      return;
-    }
-    
+    if (qItems.length === 0) return;
+
     // Collect data for each Q item BEFORE removing anything
     const qData = [];
     qItems.forEach((qHeading) => {
       const content = [];
       let currentEl = qHeading.nextElementSibling;
-      
+
       // Collect all siblings until next H3 or H2
       while (currentEl && currentEl.tagName !== 'H2' && currentEl.tagName !== 'H3') {
         content.push(currentEl.cloneNode(true));
         currentEl = currentEl.nextElementSibling;
       }
-      
+
       qData.push({
         title: qHeading.textContent,
         content: content,
         heading: qHeading
       });
     });
-    
-    console.log('[QA Accordion] Collected data for', qData.length, 'questions');
-    
+
     // Create accordion container
     const qaSection = document.createElement('div');
     qaSection.className = 'qa-section';
-    
-    // Create accordion items
+
+    // Create native <details> items
     qData.forEach((item, idx) => {
-      console.log('[QA Accordion] Creating item', idx + 1);
-      
-      const qaItem = document.createElement('div');
-      qaItem.className = 'qa-item';
-      
-      const qaQuestion = document.createElement('div');
-      qaQuestion.className = 'qa-question';
-      qaQuestion.style.cursor = 'pointer';
-      qaQuestion.style.display = 'flex';
-      qaQuestion.style.justifyContent = 'space-between';
-      qaQuestion.style.alignItems = 'center';
-      qaQuestion.style.padding = '1rem';
-      qaQuestion.style.backgroundColor = '#e3f2fd';
-      qaQuestion.style.border = '1px solid #90caf9';
-      qaQuestion.style.borderRadius = '4px';
-      qaQuestion.style.marginBottom = '0.5rem';
-      
+      const details = document.createElement('details');
+      details.className = 'qa-item';
+
+      const summary = document.createElement('summary');
+      summary.className = 'qa-question';
+      summary.setAttribute('role', 'button');
+      summary.setAttribute('aria-expanded', 'false');
+
       const questionText = document.createElement('span');
+      questionText.className = 'qa-question-text';
       questionText.textContent = item.title;
-      
+
       const toggle = document.createElement('span');
       toggle.className = 'qa-toggle';
       toggle.textContent = '+';
-      toggle.style.fontSize = '1.5rem';
-      toggle.style.fontWeight = 'bold';
-      toggle.style.minWidth = '30px';
-      toggle.style.textAlign = 'center';
-      toggle.style.transition = 'transform 0.3s ease';
-      
-      qaQuestion.appendChild(questionText);
-      qaQuestion.appendChild(toggle);
-      
-      const qaAnswer = document.createElement('div');
-      qaAnswer.className = 'qa-answer';
-      qaAnswer.style.maxHeight = '0';
-      qaAnswer.style.overflow = 'hidden';
-      qaAnswer.style.transition = 'max-height 0.3s ease, padding 0.3s ease';
-      qaAnswer.style.padding = '0 1.5rem';
-      
-      // Add content
-      item.content.forEach(el => {
-        qaAnswer.appendChild(el);
-      });
-      
-      // Click handler
-      qaQuestion.addEventListener('click', function() {
-        const isOpen = qaItem.classList.contains('open');
-        console.log('[QA Click] Clicked:', item.title, '- Currently open:', isOpen);
-        console.log('[QA Click] qaItem classes before:', qaItem.className);
-        
-        // Close ALL other open items FIRST
-        document.querySelectorAll('.qa-item.open').forEach(other => {
-          if (other === qaItem) return; // Skip current item
-          
-          console.log('[QA Click] Closing other item');
-          other.classList.remove('open');
-          const otherBtn = other.querySelector('.qa-toggle');
-          const otherAns = other.querySelector('.qa-answer');
-          
-          if (otherBtn) {
-            otherBtn.textContent = '+';
-            otherBtn.style.transform = 'rotate(0deg)';
-          }
-          if (otherAns) {
-            otherAns.style.maxHeight = '0';
-            otherAns.style.padding = '0 1.5rem';
-          }
-        });
-        
-        // Now toggle the current item
-        if (isOpen) {
-          // Close it
-          console.log('[QA Click] Closing current item');
-          qaItem.classList.remove('open');
-          toggle.textContent = '+';
-          toggle.style.transform = 'rotate(0deg)';
-          qaAnswer.style.maxHeight = '0';
-          qaAnswer.style.padding = '0 1.5rem';
-          console.log('[QA Click] After close - classes:', qaItem.className);
-        } else {
-          // Open it
-          console.log('[QA Click] Opening current item');
-          qaItem.classList.add('open');
-          console.log('[QA Click] After add open - classes:', qaItem.className);
-          toggle.textContent = '−';
-          toggle.style.transform = 'rotate(180deg)';
-          qaAnswer.style.padding = '1.5rem';
-          
-          // Use setTimeout to ensure DOM is ready for scrollHeight calculation
-          setTimeout(() => {
-            console.log('[QA Click] In setTimeout - scrollHeight:', qaAnswer.scrollHeight);
-            qaAnswer.style.maxHeight = qaAnswer.scrollHeight + 'px';
-            console.log('[QA Click] Set maxHeight to:', qaAnswer.scrollHeight + 'px');
-          }, 0);
+
+      summary.appendChild(questionText);
+      summary.appendChild(toggle);
+
+      const answer = document.createElement('div');
+      answer.className = 'qa-answer';
+
+      item.content.forEach(el => answer.appendChild(el));
+
+      // Update toggle icon on open/close
+      details.addEventListener('toggle', () => {
+        const open = details.hasAttribute('open');
+        summary.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.textContent = open ? '−' : '+';
+
+        // If opened, close other details to maintain single-open behavior
+        if (open) {
+          document.querySelectorAll('.qa-item').forEach(other => {
+            if (other !== details && other.hasAttribute('open')) {
+              other.removeAttribute('open');
+            }
+          });
         }
       });
-      
-      qaItem.appendChild(qaQuestion);
-      qaItem.appendChild(qaAnswer);
-      qaSection.appendChild(qaItem);
+
+      details.appendChild(summary);
+      details.appendChild(answer);
+      qaSection.appendChild(details);
     });
-    
-    // Now remove ALL original Q headings and their content
-    console.log('[QA Accordion] Removing original Q headings from DOM');
+
+    // Remove original Q headings and their content
     qData.forEach((item) => {
-      // Remove all siblings first
       let el = item.heading.nextElementSibling;
       while (el && el.tagName !== 'H2' && el.tagName !== 'H3') {
         const next = el.nextElementSibling;
         el.remove();
         el = next;
       }
-      // Then remove the heading itself
       item.heading.remove();
     });
-    
-    // Find the "Common Interview Questions" h2 heading (it should still exist)
+
+    // Insert accordion AFTER the "Common Interview Questions" heading, fallback to append
     let ciHeading = null;
     const h2s = contentEl.querySelectorAll('h2');
     for (let h2 of h2s) {
@@ -222,18 +156,11 @@
         break;
       }
     }
-    
-    // Insert accordion AFTER the "Common Interview Questions" heading
-    if (qData.length > 0 && ciHeading) {
-      ciHeading.parentNode.insertBefore(qaSection, ciHeading.nextSibling);
-      console.log('[QA Accordion] Inserted accordion after Common Interview Questions heading');
-    } else if (qData.length > 0) {
-      // Fallback: append to content if heading not found
-      contentEl.appendChild(qaSection);
-      console.log('[QA Accordion] Appended accordion to content (fallback)');
-    }
-    
-    console.log('[QA Accordion] Conversion complete');
+
+    if (ciHeading) ciHeading.parentNode.insertBefore(qaSection, ciHeading.nextSibling);
+    else contentEl.appendChild(qaSection);
+
+    console.log('[QA Accordion] Conversion complete (details/summary)');
   }
 
   /**

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>mementoPattern - Design Patterns</title>
+  <title>Memento Pattern - Design Patterns</title>
   <link rel="stylesheet" href="tools/index_style.css">
   <link rel="stylesheet" href="tools/patterns_responsive.css">
   <link rel="stylesheet" href="tools/pattern_page.css">
@@ -16,7 +16,7 @@
     
     <div class="pattern-header">
       <div class="breadcrumb">Design Patterns</div>
-      <h1>mementoPattern</h1>
+      <h1>Memento Pattern</h1>
     </div>
 
     <div class="pattern-container">
@@ -48,7 +48,7 @@
 
     Originator --> Memento: creates
     CareTaker --> Memento: manages</div>
-    <div class="uml-caption">UML Class Diagram for mementoPattern</div>
+    <div class="uml-caption">UML Class Diagram for Memento Pattern</div>
   </div>
   
         <article id="content" class="markdown-body"></article>
@@ -60,7 +60,116 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-  <script id="md-data" type="application/json">"# mementoPattern \u2014 Interview Reference\n\n## Intent\nProvide a concise intent for the mementoPattern pattern.\n\n## Problem Statement\n## What is it? The Memento pattern captures and stores an object's internal state without exposing it, allowing the object to be restored to that state later.\n\n## Why Simple Code Fails\nOften ad-hoc solutions (if/else, scattered constructors, tight coupling) make code hard to extend and test.\n\n## Solution Overview\nDescribe how the mementoPattern pattern solves the problem by providing structure and separation of concerns.\n\n## Minimal Java Example\n## Without Pattern\n\n```java\n// Example not provided.\n```\n\n## With Pattern\n\n```java\n// Example not provided.\n```\n\n\n```java\n// Example not provided in original README.\n```\n\n## Advantages\n- Describe key advantages (decoupling, extensibility, reuse).\n\n## Disadvantages\n- Describe trade-offs (complexity, indirection, overuse).\n\n## When NOT to Use\n- Situations where the pattern is unnecessary.\n\n## Common Mistakes\n- Frequent anti-patterns or pitfalls.\n\n## Framework / Library Usage\n- Notes on common frameworks or language features.\n\n## System Design Use Cases\n- Real-world systems where this pattern helps.\n\n## Interview One-Liner\nOne-line summary of the pattern.\n\n"</script>
+  <script id="md-data" type="application/json"># Memento Pattern — Interview Reference
+
+## Intent
+Capture and externalize an object's internal state so it can be restored later, without violating encapsulation.
+
+## Problem Statement
+Some systems need to provide undo/rollback functionality or snapshot state for later restoration. Directly exposing internal state breaks encapsulation and increases coupling.
+
+## Why Simple Code Fails
+Storing internal fields directly or providing getters for all state exposes implementation details and ties clients to the object's internals. Ad-hoc solutions often duplicate snapshot logic and are error-prone.
+
+## Solution Overview
+Introduce three roles: `Originator` (creates a memento containing a snapshot of its state), `Memento` (an immutable snapshot object that hides internal details), and `Caretaker` (keeps mementos but does not inspect or modify their contents). The Originator can restore its state from a Memento when needed.
+
+## Without Pattern
+<small>Naive approach (without Memento)</small>
+```java
+// Without Pattern - naive undo using exposed state
+public class Document {
+  public String content; // exposed - breaks encapsulation
+  public void append(String s) { content = (content == null ? "" : content) + s; }
+  public void setContent(String c) { content = c; }
+  public String getContent() { return content; }
+}
+
+// Client manages snapshots directly (bad practice)
+Document doc = new Document();
+doc.setContent("Hello");
+String snapshot = doc.getContent(); // client must know internals
+doc.append(" World");
+// To undo:
+doc.setContent(snapshot);
+```
+
+## With Pattern
+<small>Memento implementation (better encapsulation)</small>
+```java
+// Memento - immutable snapshot
+public final class Memento {
+  private final String state;
+  public Memento(String state) { this.state = state; }
+  String getState() { return state; } // package-private to preserve encapsulation
+}
+
+// Originator - creates and restores state
+public class Originator {
+  private String state;
+  public void setState(String s) { state = s; }
+  public String getState() { return state; }
+  public Memento createMemento() { return new Memento(state); }
+  public void restoreFromMemento(Memento m) { this.state = m.getState(); }
+}
+
+// Caretaker - manages mementos (no access to internals)
+public class Caretaker {
+  private final List<Memento> history = new ArrayList<>();
+  public void save(Memento m) { history.add(m); }
+  public Memento get(int idx) { return history.get(idx); }
+}
+
+// Usage (undo example)
+Originator origin = new Originator();
+Caretaker caretaker = new Caretaker();
+origin.setState("State1");
+caretaker.save(origin.createMemento());
+origin.setState("State2");
+// undo
+origin.restoreFromMemento(caretaker.get(0));
+```
+
+## Advantages
+- Restores object state without exposing internals
+- Supports undo/rollback functionality
+- Keeps snapshot creation responsibility with the Originator
+
+## Disadvantages
+- Can consume significant memory if snapshots are large or frequent
+- Managing lifecycle of mementos (when to discard) is the caller's responsibility
+- Adds extra classes and indirection
+
+## When NOT to Use
+- State is cheap to reconstruct or immutable
+- Snapshots are large and would cause memory pressure
+
+## Common Mistakes
+- Making Memento's internals public (breaks encapsulation)
+- Storing too many snapshots without pruning
+- Letting Caretaker manipulate Memento internals
+
+## Framework / Library Usage
+- Undo stacks (text editors), transactional snapshots, and checkpointing systems often implement similar ideas. Use serialization or delta snapshots to reduce memory usage.
+
+## System Design Use Cases
+- Text editor undo/redo, game state checkpoints, transactional rollbacks, complex forms with preview/undo.
+
+## Common Interview Questions
+
+### Q1: What roles exist in the Memento pattern?
+The three roles are:
+
+- `Originator` — creates and restores its state via mementos.
+- `Memento` — an immutable snapshot that holds the originator's state.
+- `Caretaker` — stores and manages mementos but does not inspect or modify them.
+
+### Q2: How does Memento preserve encapsulation?
+The Memento hides the originator's internal state and provides no public methods to read or modify it. Only the Originator has access to the memento's 
+internals (for example via package-private methods or an inner class), so the Caretaker and other clients cannot inspect or change the stored state.
+
+## Interview One-Liner
+Capture and store object snapshots to enable restore/undo while preserving encapsulation.</script>
   <script src="tools/pattern_renderer.js"></script>
 </body>
 </html>
