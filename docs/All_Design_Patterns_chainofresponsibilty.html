@@ -3,6 +3,193 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Chain Of Responsibility - Design Patterns</title>
+  <link rel="stylesheet" href="tools/index_style.css">
+  <link rel="stylesheet" href="tools/patterns_responsive.css">
+  <link rel="stylesheet" href="tools/pattern_page.css">
+  <link rel="stylesheet" href="tools/pattern_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body style="background: #f7fafc;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem;">
+    <a href="All_Design_Patterns_Behavioral.html" class="back-button">← Back to Patterns</a>
+    
+    <div class="pattern-header">
+      <div class="breadcrumb">Design Patterns</div>
+      <h1>Chain Of Responsibility</h1>
+    </div>
+
+    <div class="pattern-container">
+      <aside class="pattern-toc">
+        <h4>Contents</h4>
+        <ul id="toc-list"></ul>
+      </aside>
+      <div class="pattern-main">
+        <div class="uml-section">
+    <h2>Class Diagram</h2>
+    <div class="mermaid">classDiagram
+    class ATMHandler {
+      <<abstract>>
+      -nextHandler: ATMHandler
+      +setNextHandler(ATMHandler)
+      +handlerRequest(int amount)
+    }
+
+    class ThousandHandler {
+      -availableNotes: int
+      +ThousandHandler(ATMHandler,int)
+      +handlerRequest(int)
+    }
+
+    class FiveHundredHandler {
+      -availableNotes: int
+      +FiveHundredHandler(ATMHandler,int)
+      +handlerRequest(int)
+    }
+
+    class TwoHundredHandler {
+      -availableNotes: int
+      +TwoHundredHandler(ATMHandler,int)
+      +handlerRequest(int)
+    }
+
+    class HundredHandler {
+      -availableNotes: int
+      +HundredHandler(ATMHandler,int)
+      +handlerRequest(int)
+    }
+
+    class Main {
+      +main(String[])
+    }
+
+    ATMHandler <|-- ThousandHandler
+    ATMHandler <|-- FiveHundredHandler
+    ATMHandler <|-- TwoHundredHandler
+    ATMHandler <|-- HundredHandler
+    Main --> ATMHandler: uses
+    ATMHandler --> ATMHandler: nextHandler
+    </div>
+    <div class="uml-caption">UML Class Diagram for Chain of Responsibility (ATM cash withdrawal)</div>
+  </div>
+  
+        <article id="content" class="markdown-body"></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script id="md-data" type="application/json">"# Chain of Responsibility — Interview Reference
+
+## Intent
+Let a request pass along a chain of handlers until one (or multiple) handlers process it. Decouple sender and handlers and enable flexible runtime composition.
+
+## Problem Statement
+When handling a request can involve multiple possible processors (for example dispensing cash in different denominations), embedding all decision logic in one place leads to fragile, hard-to-extend code. The ATM cash-dispensing example requires trying larger notes first, then falling back to smaller ones — a natural fit for a handler chain.
+
+## Why Simple Code Fails
+Naive solutions often use large switch/if ladders or generate one class per feature combination. Those approaches are hard to extend and test, and lead to combinatorial class explosion or tangled conditional logic.
+
+## Solution Overview
+Define an abstract handler with a reference to the next handler. Each concrete handler (ThousandHandler, FiveHundredHandler, TwoHundredHandler, HundredHandler) attempts to satisfy the request partially and forwards the remainder down the chain.
+
+## Java Example (updated ATM handlers)
+
+### ATMHandler (abstract)
+```java
+public abstract class ATMHandler {
+    protected ATMHandler nextHandler;
+    public ATMHandler(ATMHandler nextHandler) { this.nextHandler = nextHandler; }
+    public abstract void handlerRequest(int amount);
+    public void setNextHandler(ATMHandler nextHandler){ this.nextHandler = nextHandler; }
+}
+```
+
+### Concrete handler (pattern is same for each denomination)
+```java
+public class ThousandHandler extends ATMHandler{
+    private int availableNotes;
+    public ThousandHandler(ATMHandler nextHandler, int availableNotes) { super(nextHandler); this.availableNotes = availableNotes; }
+    @Override
+    public void handlerRequest(int amount) {
+        int notesNeeded = amount / 1000;
+        if(notesNeeded > availableNotes){ notesNeeded = availableNotes; availableNotes = 0; }
+        else { availableNotes -= notesNeeded; }
+        if(notesNeeded > 0) System.out.println("Dispensing " + notesNeeded + " x thousand notes");
+        int remainingAmount = amount - (notesNeeded * 1000);
+        if(remainingAmount > 0) {
+            if(nextHandler != null) nextHandler.handlerRequest(remainingAmount);
+            else System.out.println("Cannot dispense remaining amount: " + remainingAmount);
+        }
+    }
+}
+```
+
+Repeat similar concrete classes for `FiveHundredHandler`, `TwoHundredHandler`, and `HundredHandler` (see repo source for full code).
+
+### Main (usage)
+```java
+ATMHandler hundredHandler = new HundredHandler(null, 10);
+ATMHandler twoHundredHandler = new TwoHundredHandler(hundredHandler, 10);
+ATMHandler fiveHundredHandler = new FiveHundredHandler(twoHundredHandler, 10);
+ATMHandler thousandHandler = new ThousandHandler(fiveHundredHandler, 10);
+
+int amountToWithdraw = 7600;
+thousandHandler.handlerRequest(amountToWithdraw);
+```
+
+Expected output for 7600 with the above availability:
+```
+Dispensing 7 x thousand notes
+Dispensing 1 x five hundred notes
+Dispensing 1 x hundred notes
+```
+
+## Why this design helps (short)
+- Single Responsibility — each handler focuses on one denomination
+- Open/Closed — add new denominations by inserting handlers in the chain
+- Runtime flexibility — change chain order or available notes at runtime
+- Easier to test — small, focused classes
+
+## Trade-offs
+- Slight runtime overhead from delegation
+- Debugging deep chains needs tracing
+- Ordering matters — choose a canonical order (largest to smallest) for predictable behavior
+
+## Interview Q&A
+Q: Why pick Chain of Responsibility over switch/if? 
+A: It separates concerns and avoids a monolithic conditional; new handlers can be added without editing existing code.
+
+Q: How do you ensure a single handler handles a request? 
+A: Handlers can either fully handle a request or partially handle and forward the remainder. To ensure exclusive handling, design the chain so only one handler claims the request.
+
+Q: How does this pattern scale when adding new denominations? 
+A: Adding a denomination is O(1) work — implement a handler and insert it in the chain; no existing handlers need modification.
+
+Q: What if denominations are not independent or require complex allocation? 
+A: Then chain logic may need to coordinate (e.g., backtracking or a central allocator). Chain is best when handlers make local decisions and forward the remainder.
+
+## When NOT to use
+- When a single centralized algorithm (greedy or DP) is more appropriate for optimal allocation across handlers
+
+## System Design Use Cases
+- Request routing, authentication/authorization filters, middleware pipelines, retry/fallback handlers
+
+## Interview One-Liner
+Chain of Responsibility passes a request along a chain of handlers until one handles it; it decouples sender and receiver and allows flexible handler composition.
+
+"</script>
+  <script src="tools/pattern_renderer.js"></script>
+</body>
+</html>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>chainOfResponsibilty - Design Patterns</title>
   <link rel="stylesheet" href="tools/index_style.css">
   <link rel="stylesheet" href="tools/patterns_responsive.css">
@@ -28,31 +215,49 @@
         <div class="uml-section">
     <h2>Class Diagram</h2>
     <div class="mermaid">classDiagram
-    class LogProcessor {
-        <<abstract>>
-        -nextProcessor: LogProcessor
-        +setNextProcessor(LogProcessor)
-        +logMessage(int level, String message)
-        #write(String message)
+    class ATMHandler {
+      <<abstract>>
+      -nextHandler: ATMHandler
+      +setNextHandler(ATMHandler)
+      +handlerRequest(int amount)
     }
 
-    class DebugLogProcessor {
-        #write(String message)
+    class ThousandHandler {
+      -availableNotes: int
+      +ThousandHandler(ATMHandler,int)
+      +handlerRequest(int)
     }
 
-    class InfoLogProcessor {
-        #write(String message)
+    class FiveHundredHandler {
+      -availableNotes: int
+      +FiveHundredHandler(ATMHandler,int)
+      +handlerRequest(int)
     }
 
-    class ErrorLogProcessor {
-        #write(String message)
+    class TwoHundredHandler {
+      -availableNotes: int
+      +TwoHundredHandler(ATMHandler,int)
+      +handlerRequest(int)
     }
 
-    LogProcessor <|-- DebugLogProcessor
-    LogProcessor <|-- InfoLogProcessor
-    LogProcessor <|-- ErrorLogProcessor
-    LogProcessor --> LogProcessor: nextProcessor</div>
-    <div class="uml-caption">UML Class Diagram for chainOfResponsibilty</div>
+    class HundredHandler {
+      -availableNotes: int
+      +HundredHandler(ATMHandler,int)
+      +handlerRequest(int)
+    }
+
+    class Main {
+      +main(String[])
+    }
+
+    ATMHandler <|-- ThousandHandler
+    ATMHandler <|-- FiveHundredHandler
+    ATMHandler <|-- TwoHundredHandler
+    ATMHandler <|-- HundredHandler
+    Main --> ATMHandler: uses
+    ATMHandler --> ATMHandler: nextHandler
+    </div>
+    <div class="uml-caption">UML Class Diagram for Chain of Responsibility (ATM cash withdrawal)</div>
   </div>
   
         <article id="content" class="markdown-body"></article>
